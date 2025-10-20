@@ -36,8 +36,8 @@ RSpec.describe MenubarComponent, type: :component do
     it "renders menubar structure" do
       render_inline(described_class.new(menus: menus))
 
-      expect(page).to have_selector("nav[role='menubar']")
-      expect(page).to have_selector("[data-controller='menubar']")
+      expect(page).to have_css("nav[role='menubar']")
+      expect(page).to have_css("[data-controller='menubar']")
     end
 
     it "renders all menu triggers" do
@@ -59,14 +59,14 @@ RSpec.describe MenubarComponent, type: :component do
     it "renders keyboard shortcuts" do
       render_inline(described_class.new(menus: menus))
 
-      expect(page).to have_selector("kbd", text: "Cmd+N")
-      expect(page).to have_selector("kbd", text: "Cmd+X")
+      expect(page).to have_css("kbd", text: "Cmd+N")
+      expect(page).to have_css("kbd", text: "Cmd+X")
     end
 
     it "renders separators in menus" do
       render_inline(described_class.new(menus: menus))
 
-      expect(page).to have_selector("[role='separator']")
+      expect(page).to have_css("[role='separator']")
     end
   end
 
@@ -97,13 +97,13 @@ RSpec.describe MenubarComponent, type: :component do
     it "has menu role on dropdowns" do
       render_inline(described_class.new(menus: menus))
 
-      expect(page).to have_selector("[role='menu']", count: 3, visible: :all)
+      expect(page).to have_css("[role='menu']", count: 3, visible: :all)
     end
 
     it "has vertical orientation on dropdown menus" do
       render_inline(described_class.new(menus: menus))
 
-      page.all("[role='menu']", visible: :all).each do |menu|
+      page.all("[role='menu']", visible: :all).find_each do |menu|
         expect(menu["aria-orientation"]).to eq("vertical")
       end
     end
@@ -113,13 +113,13 @@ RSpec.describe MenubarComponent, type: :component do
     it "has menubar controller" do
       render_inline(described_class.new(menus: menus))
 
-      expect(page).to have_selector("[data-controller='menubar']")
+      expect(page).to have_css("[data-controller='menubar']")
     end
 
     it "has dropdown-menu controller on each menu" do
       render_inline(described_class.new(menus: menus))
 
-      expect(page).to have_selector("[data-controller='dropdown-menu']", count: 3)
+      expect(page).to have_css("[data-controller='dropdown-menu']", count: 3)
     end
 
     it "has hover action on triggers" do
@@ -167,7 +167,7 @@ RSpec.describe MenubarComponent, type: :component do
       ]
       render_inline(described_class.new(menus: menus_with_headings))
 
-      expect(page).to have_selector(".uppercase", text: "RECENT")
+      expect(page).to have_css(".uppercase", text: "RECENT")
     end
   end
 

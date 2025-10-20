@@ -39,14 +39,14 @@ gem "devise-jwt"
 gem "omniauth"
 gem "view_component"
 # gem "fiber-local"
+gem "concurrent-ruby"
+gem "paper_trail"
+gem "parallel"
 gem "phlex"
 gem "pundit"
 gem "rack-cors"
 gem "resend"
 gem "thor"
-gem "parallel"
-gem "concurrent-ruby"
-gem "paper_trail"
 
 group :development, :test do
   gem "brakeman", require: false

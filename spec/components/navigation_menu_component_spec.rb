@@ -38,8 +38,8 @@ RSpec.describe NavigationMenuComponent, type: :component do
     it "renders navigation menu structure" do
       render_inline(described_class.new(items: items))
 
-      expect(page).to have_selector("nav[aria-label='Main navigation']")
-      expect(page).to have_selector("[data-controller='navigation-menu']")
+      expect(page).to have_css("nav[aria-label='Main navigation']")
+      expect(page).to have_css("[data-controller='navigation-menu']")
     end
 
     it "renders navigation items" do
@@ -53,7 +53,7 @@ RSpec.describe NavigationMenuComponent, type: :component do
     it "renders separators" do
       render_inline(described_class.new(items: items))
 
-      expect(page).to have_selector("[role='separator']")
+      expect(page).to have_css("[role='separator']")
     end
 
     it "renders icons" do
@@ -68,7 +68,7 @@ RSpec.describe NavigationMenuComponent, type: :component do
       ]
       render_inline(described_class.new(items: items_with_badge))
 
-      expect(page).to have_selector(".rounded-full", text: "5")
+      expect(page).to have_css(".rounded-full", text: "5")
     end
   end
 
@@ -76,7 +76,7 @@ RSpec.describe NavigationMenuComponent, type: :component do
     it "renders breadcrumbs when provided" do
       render_inline(described_class.new(items: items, breadcrumbs: breadcrumbs))
 
-      expect(page).to have_selector("nav[aria-label='Breadcrumb']")
+      expect(page).to have_css("nav[aria-label='Breadcrumb']")
       expect(page).to have_link("Home", href: "/")
       expect(page).to have_link("Projects", href: "/projects")
     end
@@ -84,7 +84,7 @@ RSpec.describe NavigationMenuComponent, type: :component do
     it "does not render breadcrumbs when not provided" do
       render_inline(described_class.new(items: items))
 
-      expect(page).not_to have_selector("nav[aria-label='Breadcrumb']")
+      expect(page).to have_no_css("nav[aria-label='Breadcrumb']")
     end
   end
 
@@ -120,7 +120,7 @@ RSpec.describe NavigationMenuComponent, type: :component do
       render_inline(described_class.new(items: items_with_dropdown))
 
       expect(page).to have_button("Products")
-      expect(page).to have_selector("[data-controller='navigation-menu-dropdown']")
+      expect(page).to have_css("[data-controller='navigation-menu-dropdown']")
     end
 
     it "renders dropdown subitems" do
@@ -134,7 +134,7 @@ RSpec.describe NavigationMenuComponent, type: :component do
       render_inline(described_class.new(items: items_with_dropdown))
 
       products_button = page.find_button("Products")
-      expect(products_button).to have_selector("svg")
+      expect(products_button).to have_css("svg")
     end
 
     it "has proper aria-expanded attribute" do
@@ -188,13 +188,13 @@ RSpec.describe NavigationMenuComponent, type: :component do
     it "has navigation-menu controller" do
       render_inline(described_class.new(items: items))
 
-      expect(page).to have_selector("[data-controller='navigation-menu']")
+      expect(page).to have_css("[data-controller='navigation-menu']")
     end
 
     it "has navigation-menu-dropdown controller on dropdown items" do
       render_inline(described_class.new(items: items_with_dropdown))
 
-      expect(page).to have_selector("[data-controller='navigation-menu-dropdown']")
+      expect(page).to have_css("[data-controller='navigation-menu-dropdown']")
     end
   end
 
@@ -218,7 +218,7 @@ RSpec.describe NavigationMenuComponent, type: :component do
       ]
       render_inline(described_class.new(items: items_with_heading))
 
-      expect(page).to have_selector(".uppercase", text: "MAIN MENU")
+      expect(page).to have_css(".uppercase", text: "MAIN MENU")
     end
   end
 

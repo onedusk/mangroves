@@ -140,7 +140,7 @@ RSpec.describe TableComponent, type: :component do
         rendered = component.call
 
         # Should have 2 page buttons (3 items / 2 per page = 2 pages)
-        expect(rendered.scan(/px-3 py-1 rounded/).length).to be >= 2
+        expect(rendered.scan("px-3 py-1 rounded").length).to be >= 2
       end
     end
 

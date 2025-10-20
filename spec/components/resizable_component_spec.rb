@@ -7,14 +7,14 @@ RSpec.describe ResizableComponent, type: :component do
     context "with horizontal orientation" do
       it "renders a horizontal resizable container" do
         component = described_class.new(orientation: :horizontal, default_size: 50)
-        rendered = component.call { |panel|
+        rendered = component.call do |panel|
           case panel
           when :panel1
             "Panel 1 Content"
           when :panel2
             "Panel 2 Content"
           end
-        }
+        end
 
         expect(rendered).to include("flex flex-row")
         expect(rendered).to include("cursor-col-resize")
@@ -26,14 +26,14 @@ RSpec.describe ResizableComponent, type: :component do
     context "with vertical orientation" do
       it "renders a vertical resizable container" do
         component = described_class.new(orientation: :vertical, default_size: 60)
-        rendered = component.call { |panel|
+        rendered = component.call do |panel|
           case panel
           when :panel1
             "Panel 1 Content"
           when :panel2
             "Panel 2 Content"
           end
-        }
+        end
 
         expect(rendered).to include("flex flex-col")
         expect(rendered).to include("cursor-row-resize")

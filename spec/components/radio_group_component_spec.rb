@@ -37,7 +37,7 @@ RSpec.describe RadioGroupComponent, type: :component do
 
     context "with selected value" do
       it "marks the selected option as checked" do
-        options = [["a", "A"], ["b", "B"], ["c", "C"]]
+        options = [%w[a A], %w[b B], %w[c C]]
         component = described_class.new(
           name: "letter",
           options: options,
@@ -55,7 +55,7 @@ RSpec.describe RadioGroupComponent, type: :component do
       it "renders group label" do
         component = described_class.new(
           name: "size",
-          options: ["S", "M", "L"],
+          options: %w[S M L],
           label: "Select Size"
         )
         output = render(component)
@@ -69,7 +69,7 @@ RSpec.describe RadioGroupComponent, type: :component do
       it "uses strings as both value and label" do
         component = described_class.new(
           name: "color",
-          options: ["Red", "Blue", "Green"]
+          options: %w[Red Blue Green]
         )
         output = render(component)
 

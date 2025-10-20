@@ -4,7 +4,7 @@ require "rails_helper"
 
 RSpec.describe ToggleGroupComponent, type: :component do
   describe "#template" do
-    let(:items) { ["Left", "Center", "Right"] }
+    let(:items) { %w[Left Center Right] }
 
     it "renders a toggle group with default settings" do
       component = described_class.new(name: "alignment", items: items)
@@ -39,7 +39,7 @@ RSpec.describe ToggleGroupComponent, type: :component do
         component = described_class.new(
           name: "test",
           items: items,
-          selected: ["Left", "Right"],
+          selected: %w[Left Right],
           multiple: true
         )
         rendered = component.call
@@ -92,7 +92,7 @@ RSpec.describe ToggleGroupComponent, type: :component do
         rendered = component.call
 
         # All items should have disabled styling
-        disabled_count = rendered.scan(/opacity-50/).length
+        disabled_count = rendered.scan("opacity-50").length
         expect(disabled_count).to eq(items.length)
       end
     end

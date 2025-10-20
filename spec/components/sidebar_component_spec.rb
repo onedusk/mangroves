@@ -34,67 +34,73 @@ RSpec.describe SidebarComponent, type: :component do
     it "renders sidebar structure" do
       render_inline(described_class.new(sections: sections))
 
-      expect(page).to have_selector("aside[aria-label='Sidebar navigation']")
-      expect(page).to have_selector("[data-controller='sidebar']")
+      expect(page).to have_css("aside[aria-label='Sidebar navigation']")
+      expect(page).to have_css("[data-controller='sidebar']")
     end
 
     it "renders header" do
       render_inline(described_class.new(sections: sections))
 
-      expect(page).to have_selector("h2", text: "Mangroves")
+      expect(page).to have_css("h2", text: "Mangroves")
     end
 
     it "renders collapse button when collapsible" do
       render_inline(described_class.new(sections: sections, collapsible: true))
 
       expect(page).to have_button("Toggle sidebar")
-      expect(page).to have_selector("[data-sidebar-target='collapseButton']")
+      expect(page).to have_css("[data-sidebar-target='collapseButton']")
     end
 
     it "does not render collapse button when not collapsible" do
       render_inline(described_class.new(sections: sections, collapsible: false))
 
-      expect(page).not_to have_button("Toggle sidebar")
+      expect(page).to have_no_button("Toggle sidebar")
     end
 
     it "renders footer" do
       render_inline(described_class.new(sections: sections))
 
-      expect(page).to have_selector("[data-sidebar-target='footer']")
+      expect(page).to have_css("[data-sidebar-target='footer']")
     end
   end
 
   describe "workspace switcher" do
     it "renders workspace switcher when user and workspace provided" do
-      render_inline(described_class.new(
-        sections: sections,
-        current_user: user,
-        current_workspace: workspace,
-        show_workspace_switcher: true
-      ))
+      render_inline(
+        described_class.new(
+          sections: sections,
+          current_user: user,
+          current_workspace: workspace,
+          show_workspace_switcher: true
+        )
+      )
 
       # WorkspaceSwitcherComponent should be rendered
-      expect(page).to have_selector("[data-sidebar-target='workspaceSwitcher']")
+      expect(page).to have_css("[data-sidebar-target='workspaceSwitcher']")
     end
 
     it "does not render workspace switcher when show_workspace_switcher is false" do
-      render_inline(described_class.new(
-        sections: sections,
-        current_user: user,
-        current_workspace: workspace,
-        show_workspace_switcher: false
-      ))
+      render_inline(
+        described_class.new(
+          sections: sections,
+          current_user: user,
+          current_workspace: workspace,
+          show_workspace_switcher: false
+        )
+      )
 
-      expect(page).not_to have_selector("[data-sidebar-target='workspaceSwitcher']")
+      expect(page).to have_no_css("[data-sidebar-target='workspaceSwitcher']")
     end
 
     it "does not render workspace switcher when no user" do
-      render_inline(described_class.new(
-        sections: sections,
-        show_workspace_switcher: true
-      ))
+      render_inline(
+        described_class.new(
+          sections: sections,
+          show_workspace_switcher: true
+        )
+      )
 
-      expect(page).not_to have_selector("[data-sidebar-target='workspaceSwitcher']")
+      expect(page).to have_no_css("[data-sidebar-target='workspaceSwitcher']")
     end
   end
 
@@ -125,7 +131,7 @@ RSpec.describe SidebarComponent, type: :component do
     it "renders badges" do
       render_inline(described_class.new(sections: sections))
 
-      expect(page).to have_selector(".rounded-full", text: "Pro")
+      expect(page).to have_css(".rounded-full", text: "Pro")
     end
   end
 
@@ -155,7 +161,7 @@ RSpec.describe SidebarComponent, type: :component do
       render_inline(described_class.new(sections: sections))
 
       settings_header = page.find("button[data-section-id='settings']")
-      expect(settings_header).to have_selector("svg[data-sidebar-target='chevron']")
+      expect(settings_header).to have_css("svg[data-sidebar-target='chevron']")
     end
 
     it "sets aria-expanded to false when section is not expanded" do
@@ -225,7 +231,7 @@ RSpec.describe SidebarComponent, type: :component do
       ]
       render_inline(described_class.new(sections: sections_with_separator))
 
-      expect(page).to have_selector("[role='separator']")
+      expect(page).to have_css("[role='separator']")
     end
   end
 
@@ -256,7 +262,7 @@ RSpec.describe SidebarComponent, type: :component do
     it "has sidebar controller" do
       render_inline(described_class.new(sections: sections))
 
-      expect(page).to have_selector("[data-controller='sidebar']")
+      expect(page).to have_css("[data-controller='sidebar']")
     end
 
     it "has collapsible value set" do
@@ -283,11 +289,11 @@ RSpec.describe SidebarComponent, type: :component do
     it "has proper targets" do
       render_inline(described_class.new(sections: sections))
 
-      expect(page).to have_selector("[data-sidebar-target='logo']")
-      expect(page).to have_selector("[data-sidebar-target='navigation']")
-      expect(page).to have_selector("[data-sidebar-target='footer']")
-      expect(page).to have_selector("[data-sidebar-target='sectionContent']", count: 2)
-      expect(page).to have_selector("[data-sidebar-target='navItem']", count: 4)
+      expect(page).to have_css("[data-sidebar-target='logo']")
+      expect(page).to have_css("[data-sidebar-target='navigation']")
+      expect(page).to have_css("[data-sidebar-target='footer']")
+      expect(page).to have_css("[data-sidebar-target='sectionContent']", count: 2)
+      expect(page).to have_css("[data-sidebar-target='navItem']", count: 4)
     end
 
     it "has section_id on section content" do
@@ -302,14 +308,14 @@ RSpec.describe SidebarComponent, type: :component do
     it "renders section titles" do
       render_inline(described_class.new(sections: sections))
 
-      expect(page).to have_selector(".uppercase", text: "MAIN MENU")
-      expect(page).to have_selector(".uppercase", text: "SETTINGS")
+      expect(page).to have_css(".uppercase", text: "MAIN MENU")
+      expect(page).to have_css(".uppercase", text: "SETTINGS")
     end
 
     it "has sectionTitle target on titles" do
       render_inline(described_class.new(sections: sections))
 
-      expect(page).to have_selector("[data-sidebar-target='sectionTitle']", count: 2)
+      expect(page).to have_css("[data-sidebar-target='sectionTitle']", count: 2)
     end
   end
 
@@ -317,7 +323,7 @@ RSpec.describe SidebarComponent, type: :component do
     it "has itemLabel target on all navigation items" do
       render_inline(described_class.new(sections: sections))
 
-      expect(page).to have_selector("[data-sidebar-target='itemLabel']", count: 4)
+      expect(page).to have_css("[data-sidebar-target='itemLabel']", count: 4)
     end
   end
 end

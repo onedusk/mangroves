@@ -74,11 +74,11 @@ RSpec.configure do |config|
 
   # Configure PaperTrail for testing
   config.before(:each) do |example|
-    if example.metadata[:versioning]
-      PaperTrail.enabled = true
-    else
-      PaperTrail.enabled = false
-    end
+    PaperTrail.enabled = if example.metadata[:versioning]
+                           true
+                         else
+                           false
+                         end
   end
 
   config.after(:each) do

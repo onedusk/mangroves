@@ -32,7 +32,7 @@ module Analysis
 
     # Greedy-but-safe path finder for “app/models/foo.rb”, “spec/...”, etc.
     def extract_paths(text)
-      candidates = text.scan(%r{(?:^|\s)([A-Za-z0-9._/\-]+(?:\.[A-Za-z0-9]+))}).flatten
+      candidates = text.scan(%r{(?:^|\s)([A-Za-z0-9._/-]+(?:\.[A-Za-z0-9]+))}).flatten
       # Keep repo-like paths
       candidates.select { |p| p.include?("/") || p.start_with?("./") || p.start_with?("../") }
     end
@@ -42,7 +42,11 @@ module Analysis
         f.flock(File::LOCK_EX)
         f.puts(line)
       ensure
-        f.flock(File::LOCK_UN) rescue nil
+        begin
+          f.flock(File::LOCK_UN)
+        rescue
+          nil
+        end
       end
     end
   end
@@ -59,11 +63,12 @@ module Analysis
     def tasks
       ts = Array(@cfg["tasks"])
       return [] if ts.empty?
+
       ts.each_with_index.map do |t, idx|
         {
-          name: (t["name"] || "task-#{idx + 1}"),
+          name: t["name"] || "task-#{idx + 1}",
           glob: t.fetch("in"),
-          out_dir: (t["out"].to_s.empty? ? File.join(@defaults[:out], (t["name"] || "task-#{idx + 1}")) : t["out"]),
+          out_dir: (t["out"].to_s.empty? ? File.join(@defaults[:out], t["name"] || "task-#{idx + 1}") : t["out"]),
           log_name: (t["log"].to_s.empty? ? @defaults[:log] : t["log"]),
           prompt: (t["prompt"].to_s.empty? ? @defaults[:prompt] : t["prompt"])
         }
@@ -74,6 +79,7 @@ module Analysis
       tasks.flat_map do |t|
         files = Dir.glob(t[:glob], File::FNM_EXTGLOB | File::FNM_CASEFOLD)
         next [] if files.empty?
+
         log_path = File.join(t[:out_dir], t[:log_name])
         files.map do |f|
           Job.new(
@@ -105,15 +111,16 @@ module Analysis
 
     def jobs_for(obj)
       task_name = obj["task"] || obj["name"] || obj["id"] || "task"
-      project   = obj["project"] || task_name
-      subtasks  = Array(obj["subtasks"])
-      refs      = Array(obj["must_reference"])
+      project = obj["project"] || task_name
+      subtasks = Array(obj["subtasks"])
+      refs = Array(obj["must_reference"])
 
-      out_dir   = File.join(@defaults[:out], Util.slugify(project))
-      log_path  = File.join(out_dir, "progress.log")
+      out_dir = File.join(@defaults[:out], Util.slugify(project))
+      log_path = File.join(out_dir, "progress.log")
 
       reference_blobs = refs.filter_map do |r|
         next unless File.file?(r)
+
         "=== REFERENCE: #{r} ===\n" + Analysis::Util.read_limited(r)
       rescue => e
         "=== REFERENCE: #{r} (read error: #{e.message}) ==="
@@ -128,7 +135,7 @@ module Analysis
         if files.empty?
           # Synthetic job: no concrete file—send the subtask + refs as stdin
           synth_name = "#{task_name}-#{i + 1}"
-          body = +"=== TASK ===\n#{st}\n\n"
+          body = "=== TASK ===\n#{st}\n\n"
           body << "#{refs_section}\n" unless refs_section.empty?
 
           [
@@ -145,7 +152,7 @@ module Analysis
         else
           files.map do |f|
             base = File.basename(f)
-            body = +"=== TASK ===\n#{st}\n\n"
+            body = "=== TASK ===\n#{st}\n\n"
             body << "#{refs_section}\n\n" unless refs_section.empty?
             body << "=== FILE: #{f} ===\n"
             body << Analysis::Util.read_limited(f)
@@ -171,15 +178,16 @@ module Analysis
       @max_threads = [max_threads.to_i, 1].max
     end
 
-    def run(jobs, &block)
+    def run(jobs, &)
       if defined?(Parallel)
-        Parallel.each(jobs, in_threads: @max_threads, &block)
+        Parallel.each(jobs, in_threads: @max_threads, &)
       elsif defined?(Concurrent)
         pool = Concurrent::FixedThreadPool.new(@max_threads)
-        jobs.each { |j| pool.post { block.call(j) } }
-        pool.shutdown; pool.wait_for_termination
+        jobs.each { |j| pool.post { yield(j) } }
+        pool.shutdown
+        pool.wait_for_termination
       else
-        jobs.each { |j| block.call(j) }
+        jobs.each(&)
       end
     end
   end
@@ -189,15 +197,15 @@ class Analyzer < Thor
   default_command :execute
 
   desc "execute", "Analyze files/tasks from YAML configs and/or JSON task files"
-  option :config, type: :array,  desc: "One or more YAML config files (tasks[].in, prompt, out, log)"
-  option :json,   type: :array,  desc: "One or more JSON task files (Taskwarrior-style records)"
-  option :in,     type: :string, desc: "Fallback glob when no --config/--json provided"
-  option :out,    type: :string, default: "reports", desc: "Base output directory"
-  option :jobs,   type: :numeric, default: 10, desc: "Max concurrent jobs"
+  option :config, type: :array, desc: "One or more YAML config files (tasks[].in, prompt, out, log)"
+  option :json, type: :array, desc: "One or more JSON task files (Taskwarrior-style records)"
+  option :in, type: :string, desc: "Fallback glob when no --config/--json provided"
+  option :out, type: :string, default: "reports", desc: "Base output directory"
+  option :jobs, type: :numeric, default: 10, desc: "Max concurrent jobs"
   option :prompt, type: :string, default: Analysis::DEFAULT_PROMPT, desc: "Default/global prompt"
-  option :dry,    type: :boolean, default: false, desc: "Dry run (do not call gemini)"
+  option :dry, type: :boolean, default: false, desc: "Dry run (do not call gemini)"
   def execute
-    defaults = { out: options[:out], prompt: options[:prompt], log: "progress.log" }
+    defaults = {out: options[:out], prompt: options[:prompt], log: "progress.log"}
     jobs = []
 
     # YAML sources
@@ -216,7 +224,7 @@ class Analyzer < Thor
     if jobs.empty?
       glob = options[:in]
       abort "Provide --config/--json or --in GLOB" unless glob
-      cfg = { "tasks" => [{ "name" => "default", "in" => glob }] }
+      cfg = {"tasks" => [{"name" => "default", "in" => glob}]}
       jobs.concat Analysis::YAMLConfig.new(cfg, defaults).jobs
     end
 
@@ -224,27 +232,27 @@ class Analyzer < Thor
 
     # Prepare output dirs & logs
     jobs.map(&:out_dir).uniq.each { |d| FileUtils.mkdir_p(d) }
-    jobs.map(&:log_path).uniq.each  { |l| FileUtils.touch(l) }
+    jobs.map(&:log_path).uniq.each { |l| FileUtils.touch(l) }
 
     runner = Analysis::Runner.new(options[:jobs])
     runner.run(jobs) { |job| analyze_one(job, dry: options[:dry]) }
 
-    puts "All analyses complete."
+    Rails.logger.debug "All analyses complete."
   end
 
   desc "schema", "Print an example YAML config"
   def schema
     example = {
       "jobs" => 10,
-      "out"  => "reports",
-      "log"  => "progress.log",
+      "out" => "reports",
+      "log" => "progress.log",
       "prompt" => Analysis::DEFAULT_PROMPT,
       "tasks" => [
-        { "name" => "py-bugs", "in" => "src/**/*.py", "prompt" => Analysis::DEFAULT_PROMPT, "out" => "reports/py" },
-        { "name" => "js-refactor", "in" => "web/**/*.js", "prompt" => "Suggest refactors", "out" => "reports/js" }
+        {"name" => "py-bugs", "in" => "src/**/*.py", "prompt" => Analysis::DEFAULT_PROMPT, "out" => "reports/py"},
+        {"name" => "js-refactor", "in" => "web/**/*.js", "prompt" => "Suggest refactors", "out" => "reports/js"}
       ]
     }
-    puts example.to_yaml
+    Rails.logger.debug example.to_yaml
   end
 
   desc "schema_json", "Print an example JSON task (array form also supported)"
@@ -268,14 +276,14 @@ class Analyzer < Thor
         "mangroves/docs/rails_conventions.md"
       ]
     }
-    puts JSON.pretty_generate(example)
+    Rails.logger.debug JSON.pretty_generate(example)
   end
 
   private
 
   def analyze_one(job, dry:)
     out_file = File.join(job.out_dir, "#{job.base}.analysis")
-    puts "Analyzing #{job.file || job.base} (task: #{job.task_name})..."
+    Rails.logger.debug { "Analyzing #{job.file || job.base} (task: #{job.task_name})..." }
 
     if dry
       File.write(out_file, "(dry run) #{job.base} [#{job.task_name}]")
@@ -315,7 +323,7 @@ class Analyzer < Thor
   end
 
   def safe_load_yaml(path)
-    YAML.safe_load(File.read(path), permitted_classes: [], aliases: true) || {}
+    YAML.safe_load_file(path, permitted_classes: [], aliases: true) || {}
   rescue Psych::SyntaxError => e
     abort "Invalid YAML in #{path}: #{e.message}"
   end

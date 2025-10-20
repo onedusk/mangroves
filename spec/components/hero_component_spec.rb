@@ -14,10 +14,12 @@ RSpec.describe HeroComponent, type: :component do
     end
 
     it "renders with subtitle" do
-      output = render_inline(described_class.new(
-        title: "Title",
-        subtitle: "This is a subtitle"
-      ))
+      output = render_inline(
+        described_class.new(
+          title: "Title",
+          subtitle: "This is a subtitle"
+        )
+      )
       html = output.to_html
 
       expect(html).to include("This is a subtitle")
@@ -69,10 +71,12 @@ RSpec.describe HeroComponent, type: :component do
     end
 
     it "renders with background image" do
-      output = render_inline(described_class.new(
-        title: "Title",
-        background_image: "https://example.com/hero.jpg"
-      ))
+      output = render_inline(
+        described_class.new(
+          title: "Title",
+          background_image: "https://example.com/hero.jpg"
+        )
+      )
       html = output.to_html
 
       expect(html).to include("bg-cover bg-center")
@@ -105,10 +109,12 @@ RSpec.describe HeroComponent, type: :component do
 
   describe "CTA buttons" do
     it "renders primary CTA" do
-      output = render_inline(described_class.new(
-        title: "Title",
-        primary_cta: {text: "Get Started", url: "/signup"}
-      ))
+      output = render_inline(
+        described_class.new(
+          title: "Title",
+          primary_cta: {text: "Get Started", url: "/signup"}
+        )
+      )
       html = output.to_html
 
       expect(html).to include("Get Started")
@@ -117,10 +123,12 @@ RSpec.describe HeroComponent, type: :component do
     end
 
     it "renders secondary CTA" do
-      output = render_inline(described_class.new(
-        title: "Title",
-        secondary_cta: {text: "Learn More", url: "/about"}
-      ))
+      output = render_inline(
+        described_class.new(
+          title: "Title",
+          secondary_cta: {text: "Learn More", url: "/about"}
+        )
+      )
       html = output.to_html
 
       expect(html).to include("Learn More")
@@ -129,11 +137,13 @@ RSpec.describe HeroComponent, type: :component do
     end
 
     it "renders both CTAs" do
-      output = render_inline(described_class.new(
-        title: "Title",
-        primary_cta: {text: "Get Started", url: "/signup"},
-        secondary_cta: {text: "Learn More", url: "/about"}
-      ))
+      output = render_inline(
+        described_class.new(
+          title: "Title",
+          primary_cta: {text: "Get Started", url: "/signup"},
+          secondary_cta: {text: "Learn More", url: "/about"}
+        )
+      )
       html = output.to_html
 
       expect(html).to include("Get Started")
@@ -141,11 +151,13 @@ RSpec.describe HeroComponent, type: :component do
     end
 
     it "applies correct button colors for gradient background" do
-      output = render_inline(described_class.new(
-        title: "Title",
-        background_color: :gradient,
-        secondary_cta: {text: "Learn More", url: "/about"}
-      ))
+      output = render_inline(
+        described_class.new(
+          title: "Title",
+          background_color: :gradient,
+          secondary_cta: {text: "Learn More", url: "/about"}
+        )
+      )
       html = output.to_html
 
       expect(html).to include("text-white")
@@ -165,10 +177,12 @@ RSpec.describe HeroComponent, type: :component do
     end
 
     it "applies responsive text sizes to subtitle" do
-      output = render_inline(described_class.new(
-        title: "Title",
-        subtitle: "Subtitle"
-      ))
+      output = render_inline(
+        described_class.new(
+          title: "Title",
+          subtitle: "Subtitle"
+        )
+      )
       html = output.to_html
 
       expect(html).to include("text-lg")
@@ -177,10 +191,12 @@ RSpec.describe HeroComponent, type: :component do
     end
 
     it "applies responsive button sizing" do
-      output = render_inline(described_class.new(
-        title: "Title",
-        primary_cta: {text: "Click", url: "/"}
-      ))
+      output = render_inline(
+        described_class.new(
+          title: "Title",
+          primary_cta: {text: "Click", url: "/"}
+        )
+      )
       html = output.to_html
 
       expect(html).to include("px-6 sm:px-8")

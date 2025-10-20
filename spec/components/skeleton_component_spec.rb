@@ -93,7 +93,7 @@ RSpec.describe SkeletonComponent, type: :component do
         component = described_class.new
         output = render(component)
 
-        expect(output.scan(/animate-pulse/).count).to eq(1)
+        expect(output.scan("animate-pulse").count).to eq(1)
       end
 
       it "renders multiple skeletons with spacing" do
@@ -101,7 +101,7 @@ RSpec.describe SkeletonComponent, type: :component do
         output = render(component)
 
         expect(output).to include("space-y-2")
-        expect(output.scan(/animate-pulse/).count).to eq(3)
+        expect(output.scan("animate-pulse").count).to eq(3)
       end
 
       it "allows custom spacing" do
@@ -109,7 +109,7 @@ RSpec.describe SkeletonComponent, type: :component do
         output = render(component)
 
         expect(output).to include("space-y-4")
-        expect(output.scan(/animate-pulse/).count).to eq(4)
+        expect(output.scan("animate-pulse").count).to eq(4)
       end
     end
 

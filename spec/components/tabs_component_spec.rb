@@ -15,10 +15,10 @@ RSpec.describe TabsComponent, type: :component do
     it "renders tabs structure" do
       render_inline(described_class.new(tabs: tabs))
 
-      expect(page).to have_selector("[data-controller='tabs']")
-      expect(page).to have_selector("[role='tablist']")
-      expect(page).to have_selector("[role='tab']", count: 3)
-      expect(page).to have_selector("[role='tabpanel']", count: 3)
+      expect(page).to have_css("[data-controller='tabs']")
+      expect(page).to have_css("[role='tablist']")
+      expect(page).to have_css("[role='tab']", count: 3)
+      expect(page).to have_css("[role='tabpanel']", count: 3)
     end
 
     it "renders tab buttons" do
@@ -52,7 +52,7 @@ RSpec.describe TabsComponent, type: :component do
       ]
       render_inline(described_class.new(tabs: tabs_with_badges))
 
-      expect(page).to have_selector(".rounded-full", text: "5")
+      expect(page).to have_css(".rounded-full", text: "5")
     end
   end
 
@@ -88,15 +88,15 @@ RSpec.describe TabsComponent, type: :component do
     it "shows default panel" do
       render_inline(described_class.new(tabs: tabs))
 
-      account_panel = page.find("#panel-account")
+      account_panel = page.find_by_id("panel-account")
       expect(account_panel[:class]).not_to include("hidden")
     end
 
     it "hides non-default panels" do
       render_inline(described_class.new(tabs: tabs))
 
-      security_panel = page.find("#panel-security", visible: :all)
-      notifications_panel = page.find("#panel-notifications", visible: :all)
+      security_panel = page.find_by_id("panel-security", visible: :all)
+      notifications_panel = page.find_by_id("panel-notifications", visible: :all)
 
       expect(security_panel[:class]).to include("hidden")
       expect(notifications_panel[:class]).to include("hidden")
@@ -178,7 +178,7 @@ RSpec.describe TabsComponent, type: :component do
     it "has proper panel attributes" do
       render_inline(described_class.new(tabs: tabs))
 
-      account_panel = page.find("#panel-account")
+      account_panel = page.find_by_id("panel-account")
       expect(account_panel["role"]).to eq("tabpanel")
       expect(account_panel["aria-labelledby"]).to eq("tab-account")
       expect(account_panel["tabindex"]).to eq("0")
@@ -189,7 +189,7 @@ RSpec.describe TabsComponent, type: :component do
     it "has tabs controller" do
       render_inline(described_class.new(tabs: tabs))
 
-      expect(page).to have_selector("[data-controller='tabs']")
+      expect(page).to have_css("[data-controller='tabs']")
     end
 
     it "has default value set" do
@@ -244,7 +244,7 @@ RSpec.describe TabsComponent, type: :component do
     it "has panel_id data attribute" do
       render_inline(described_class.new(tabs: tabs))
 
-      account_panel = page.find("#panel-account")
+      account_panel = page.find_by_id("panel-account")
       expect(account_panel["data-panel-id"]).to eq("account")
     end
   end
@@ -260,7 +260,7 @@ RSpec.describe TabsComponent, type: :component do
       ]
       render_inline(described_class.new(tabs: tabs_with_proc))
 
-      expect(page).to have_selector(".test-class", text: "Dynamic content")
+      expect(page).to have_css(".test-class", text: "Dynamic content")
     end
   end
 end

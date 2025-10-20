@@ -14,10 +14,13 @@ RSpec.describe DropdownMenuComponent, type: :component do
 
   let(:nested_items) do
     [
-      {label: "File", items: [
-        {label: "New", href: "/new", shortcut: "Cmd+N"},
-        {label: "Open", href: "/open", shortcut: "Cmd+O"}
-      ]},
+      {
+        label: "File",
+        items: [
+          {label: "New", href: "/new", shortcut: "Cmd+N"},
+          {label: "Open", href: "/open", shortcut: "Cmd+O"}
+        ]
+      },
       {label: "Edit", href: "/edit"}
     ]
   end
@@ -26,9 +29,9 @@ RSpec.describe DropdownMenuComponent, type: :component do
     it "renders basic dropdown menu structure" do
       render_inline(described_class.new(items: basic_items, trigger_text: "Menu"))
 
-      expect(page).to have_selector("[data-controller='dropdown-menu']")
+      expect(page).to have_css("[data-controller='dropdown-menu']")
       expect(page).to have_button("Menu")
-      expect(page).to have_selector("[role='menu']")
+      expect(page).to have_css("[role='menu']")
     end
 
     it "renders menu items" do
@@ -42,7 +45,7 @@ RSpec.describe DropdownMenuComponent, type: :component do
     it "renders separators" do
       render_inline(described_class.new(items: basic_items))
 
-      expect(page).to have_selector("[role='separator']")
+      expect(page).to have_css("[role='separator']")
     end
 
     it "applies destructive styles to destructive items" do
@@ -73,15 +76,15 @@ RSpec.describe DropdownMenuComponent, type: :component do
     it "renders keyboard shortcuts" do
       render_inline(described_class.new(items: nested_items))
 
-      expect(page).to have_selector("kbd", text: "Cmd+N")
-      expect(page).to have_selector("kbd", text: "Cmd+O")
+      expect(page).to have_css("kbd", text: "Cmd+N")
+      expect(page).to have_css("kbd", text: "Cmd+O")
     end
 
     it "renders chevron icon for submenus" do
       render_inline(described_class.new(items: nested_items))
 
       file_button = page.find_button("File")
-      expect(file_button).to have_selector("svg")
+      expect(file_button).to have_css("svg")
     end
   end
 
@@ -93,7 +96,7 @@ RSpec.describe DropdownMenuComponent, type: :component do
       ]
       render_inline(described_class.new(items: items))
 
-      expect(page).to have_selector(".uppercase", text: "ACCOUNT")
+      expect(page).to have_css(".uppercase", text: "ACCOUNT")
     end
   end
 
@@ -132,13 +135,13 @@ RSpec.describe DropdownMenuComponent, type: :component do
     it "has menuitem role on items" do
       render_inline(described_class.new(items: basic_items))
 
-      expect(page).to have_selector("[role='menuitem']", count: 3)
+      expect(page).to have_css("[role='menuitem']", count: 3)
     end
 
     it "has proper tabindex on items" do
       render_inline(described_class.new(items: basic_items))
 
-      page.all("[role='menuitem']").each do |item|
+      page.all("[role='menuitem']").find_each do |item|
         expect(item["tabindex"]).to eq("-1")
       end
     end
@@ -148,7 +151,7 @@ RSpec.describe DropdownMenuComponent, type: :component do
     it "has dropdown-menu controller" do
       render_inline(described_class.new(items: basic_items))
 
-      expect(page).to have_selector("[data-controller='dropdown-menu']")
+      expect(page).to have_css("[data-controller='dropdown-menu']")
     end
 
     it "has toggle action on trigger" do

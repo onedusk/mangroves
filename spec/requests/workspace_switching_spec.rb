@@ -143,9 +143,9 @@ RSpec.describe "Workspace Switching", type: :request do
 
   describe "audit logging", :aggregate_failures do
     it "logs account switch event" do
-      expect {
+      expect do
         post switch_account_path(account)
-      }.to change(AuditEvent, :count).by(1)
+      end.to change(AuditEvent, :count).by(1)
 
       event = AuditEvent.last
       expect(event.action).to eq(AuditEvent::ACTION_ACCOUNT_SWITCH)
@@ -155,9 +155,9 @@ RSpec.describe "Workspace Switching", type: :request do
     end
 
     it "logs workspace switch event" do
-      expect {
+      expect do
         post switch_account_workspace_path(account, workspace2)
-      }.to change(AuditEvent, :count).by(1)
+      end.to change(AuditEvent, :count).by(1)
 
       event = AuditEvent.last
       expect(event.action).to eq(AuditEvent::ACTION_WORKSPACE_SWITCH)

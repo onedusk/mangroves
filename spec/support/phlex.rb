@@ -4,8 +4,8 @@ require "capybara/rspec"
 
 # Helper method for testing Phlex components
 module PhlexComponentHelper
-  def render_inline(component, &block)
-    html = component.call(&block)
+  def render_inline(component, &)
+    html = component.call(&)
     @page = Capybara.string(html)
   end
 
