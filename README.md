@@ -69,3 +69,34 @@ bin/rake fix
 > A small number of Rubocop's auto-corrections are considered "unsafe" and may
 > occasionally produce incorrect results. After running `fix`, you should
 > review the changes and make sure the code still works as intended.
+
+---
+
+```shell
+mangroves main
+❯❯ rails stats
++----------------------+--------+--------+---------+---------+-----+-------+
+| Name                 |  Lines |    LOC | Classes | Methods | M/C | LOC/M |
++----------------------+--------+--------+---------+---------+-----+-------+
+| Controllers          |    364 |    273 |       7 |      41 |   5 |     4 |
+| Helpers              |     12 |      6 |       0 |       0 |   0 |     0 |
+| Jobs                 |     33 |     13 |       1 |       0 |   0 |     0 |
+| Models               |    707 |    334 |      10 |      34 |   3 |     7 |
+| Mailers              |     57 |     23 |       1 |       3 |   3 |     5 |
+| Views                |    802 |    627 |       0 |       1 |   0 |   625 |
+| Stylesheets          |     10 |     10 |       0 |       0 |   0 |     0 |
+| JavaScript           |   2809 |   2250 |       0 |       0 |   0 |     0 |
+| Libraries            |  69855 |  54447 |     402 |    3268 |   8 |    14 |
+| Component specs      |   4449 |   3509 |       0 |       7 |   0 |   499 |
+| Job specs            |    122 |     80 |       2 |       2 |   1 |    38 |
+| Mailer specs         |    182 |    133 |       1 |       1 |   1 |   131 |
+| Model specs          |    549 |    229 |       0 |       3 |   0 |    74 |
+| Policy specs         |    581 |    462 |       0 |       0 |   0 |     0 |
+| Request specs        |    675 |    524 |       0 |       0 |   0 |     0 |
+| Tool specs           |     26 |     19 |       0 |       0 |   0 |     0 |
+| Policies             |    236 |    153 |       8 |      39 |   4 |     1 |
++----------------------+--------+--------+---------+---------+-----+-------+
+| Total                |  81469 |  63092 |     432 |    3399 |   7 |    16 |
++----------------------+--------+--------+---------+---------+-----+-------+
+  Code LOC: 58136     Test LOC: 4956     Code to Test Ratio: 1:0.1
+```
