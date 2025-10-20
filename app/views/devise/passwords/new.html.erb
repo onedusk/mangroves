@@ -1,0 +1,45 @@
+<!-- ========== MAIN CONTENT ========== -->
+<main id="content" class="min-h-screen dark:bg-neutral-900 flex items-center justify-center pb-23 sm:pb-16">
+  <div class="py-10 lg:py-20 w-full max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto">
+    <div class="w-full max-w-sm mx-auto">
+      <!-- Forgot Password Details -->
+      <div class="space-y-8">
+        <div class="text-center">
+          <h2 class="font-light text-2xl text-gray-900 dark:text-neutral-200">
+            Forgot Your Password?
+          </h2>
+          <p class="mt-2 text-sm text-gray-600 dark:text-neutral-400">
+            Enter your email address below and we'll send you instructions on how to reset your password.
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+            <!-- Display Error Messages -->
+            <%= render "devise/shared/error_messages", resource: resource %>
+
+            <!-- Email Input -->
+            <div>
+              <label for="hs-pro-forgot-email" class="sr-only">
+                Email
+              </label>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", id: "hs-pro-forgot-email", class: "bg-white dark:shadow-gray-200 py-3 px-4 block w-full border-stone-500 shadow-inner rounded-lg sm:text-sm placeholder:text-gray-400 focus:border-indigo-500 focus:ring-indigo-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:placeholder:text-white/60 dark:focus:ring-neutral-600" %>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="mt-8 flex gap-4">
+              <%= link_to "Cancel", root_path, class: "dark:shadow-gray-200 py-3 px-4 flex-1 inline-flex justify-center items-center gap-x-1.5 sm:text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-300" %>
+
+              <%= f.submit "Send Reset Instructions", class: "dark:shadow-gray-200 py-3 px-4 flex-1 inline-flex justify-center items-center gap-x-1.5 sm:text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-300" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <!-- End Forgot Password Details -->
+    </div>
+  </div>
+</main>
+<!-- ========== END MAIN CONTENT ========== -->
+
+<!-- Optional: Render Devise Shared Links if needed -->
+<%= render "devise/shared/links" %>

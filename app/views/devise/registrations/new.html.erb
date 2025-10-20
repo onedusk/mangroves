@@ -1,0 +1,142 @@
+<!-- ========== MAIN CONTENT ========== -->
+<main id="content"
+  class="relative min-h-screen overflow-hidden flex items-center justify-center text-neutral-100 dusk-bg">
+
+  <!-- Optional horizon glow (matches the reference photo) -->
+  <div class="pointer-events-none absolute left-1/2 top-[48%] -translate-x-1/2 -translate-y-1/2
+              w-[160vmax] h-[70vmax] rounded-[9999px] blur-3xl opacity-70
+              bg-[radial-gradient(ellipse_at_center,rgba(234,98,38,0.22)0%,rgba(235,178,168,0.18)20%,transparent_60%)]">
+  </div>
+
+  <div class="relative z-10 w-full max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto py-10 lg:py-20">
+    <div class="mx-auto w-full max-w-md">
+      <!-- Card -->
+      <div class="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 shadow-[0_0_1px_1px_rgba(255,255,255,0.04)]">
+        <div class="text-center space-y-2">
+          <h2 class="font-light text-3xl tracking-tight">Sign Up</h2>
+          <p class="text-sm text-white/60">Calm, focused tooling — welcome to Dusk.</p>
+        </div>
+
+        <div class="mt-8 space-y-5">
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <!-- Errors -->
+            <%= render "devise/shared/error_messages", resource: resource %>
+
+            <!-- Email -->
+            <div>
+              <label for="hs-pro-signup-email" class="sr-only">Email</label>
+              <%= f.email_field :email,
+                  autofocus: true,
+                  autocomplete: "email",
+                  placeholder: "Email",
+                  id: "hs-pro-signup-email",
+                  class: "block w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white
+                          placeholder-white/40 outline-none transition focus:border-[#F27405]/50 focus:ring-2 focus:ring-[#F27405]/40" %>
+            </div>
+
+            <!-- Password -->
+            <div>
+              <label for="hs-pro-signup-password" class="sr-only">Password</label>
+              <div class="relative">
+                <%= f.password_field :password,
+                    autocomplete: "new-password",
+                    placeholder: "Password",
+                    id: "hs-pro-signup-password",
+                    class: "block w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white
+                            placeholder-white/40 outline-none transition focus:border-[#F27405]/50 focus:ring-2 focus:ring-[#F27405]/40" %>
+                <button type="button"
+                        data-hs-toggle-password='{"target":"#hs-pro-signup-password"}'
+                        class="absolute inset-y-0 end-0 flex items-center px-3 text-white/50 hover:text-white/80 focus:outline-none">
+                  <!-- Eye icon slot -->
+                </button>
+              </div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div>
+              <label for="hs-pro-signup-password-confirmation" class="sr-only">Password Confirmation</label>
+              <div class="relative">
+                <%= f.password_field :password_confirmation,
+                    autocomplete: "new-password",
+                    placeholder: "Confirm Password",
+                    id: "hs-pro-signup-password-confirmation",
+                    class: "block w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white
+                            placeholder-white/40 outline-none transition focus:border-[#F27405]/50 focus:ring-2 focus:ring-[#F27405]/40" %>
+                <button type="button"
+                        data-hs-toggle-password='{"target":"#hs-pro-signup-password-confirmation"}'
+                        class="absolute inset-y-0 end-0 flex items-center px-3 text-white/50 hover:text-white/80 focus:outline-none">
+                  <!-- Eye icon slot -->
+                </button>
+              </div>
+            </div>
+
+            <% if devise_mapping.confirmable? %>
+              <div class="mt-2">
+                <%= f.hidden_field :confirmation_token %>
+              </div>
+            <% end %>
+
+            <!-- Actions -->
+            <div class="mt-6 grid grid-cols-2 gap-3">
+              <%= link_to "Log in",
+                  new_session_path(resource_name),
+                  class: "inline-flex justify-center items-center rounded-xl border border-white/15 bg-transparent px-4 py-3 text-sm font-medium text-white/90
+                          hover:bg-white/[0.04] transition focus:outline-none focus:ring-2 focus:ring-white/20" %>
+
+              <%= f.submit "Sign up",
+                  class: "inline-flex justify-center items-center rounded-xl px-4 py-3 text-sm font-medium text-white
+                          bg-gradient-to-r from-[#F27405] via-[#D06214] to-[#BF7950]
+                          hover:brightness-110 transition shadow ring-1 ring-white/10 focus:outline-none focus:ring-2 focus:ring-[#F27405]/40" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <!-- /Card -->
+    </div>
+  </div>
+</main>
+<!-- ========== END MAIN CONTENT ========== -->
+
+<!-- Optional: Devise shared links -->
+<%= render "devise/shared/links" %>
+
+<!-- Smooth dusk background (sRGB fallback + OKLCH when supported) -->
+<style>
+  .dusk-bg{
+    background:
+      linear-gradient(
+        to bottom,
+        #000805 0%,
+        #012232 20%,
+        #2e4c70 32%,
+        #736f93 38%,
+        #bf97b1 43%,
+        #ebb2a8 47%,
+        #ea6226 52%,
+        #0b1216 78%,
+        #000501 100%
+      );
+    background-color:#000805;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+  }
+
+  @supports (background: linear-gradient(in oklch, white, black)) {
+    .dusk-bg{
+      background:
+        linear-gradient(
+          in oklch, to bottom,
+          oklch(6% 0.015 190) 0%,
+          oklch(18% 0.04 220) 20%,
+          oklch(38% 0.07 255) 32%,
+          oklch(55% 0.08 300) 38%,
+          oklch(74% 0.07 20) 47%,
+          oklch(65% 0.15 45) 52%,
+          oklch(12% 0.02 200) 78%,
+          oklch(4% 0.005 180) 100%
+        );
+      background-repeat:no-repeat;
+      background-attachment:fixed;
+    }
+  }
+</style>

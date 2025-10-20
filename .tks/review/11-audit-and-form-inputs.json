@@ -1,0 +1,22 @@
+{
+  "id": "11",
+  "task": "Audit existing components and create form input components",
+  "entry": "2025-10-17",
+  "modified": "2025-10-17",
+  "priority": "M",
+  "project": "mangroves-multi-tenant",
+  "status": "pending",
+  "uuid": "k1l2m3n4-o5p6-4789-k0l1-m2n3o4p5q6r7",
+  "urgency": "4",
+  "subtasks": [
+    "Audit accordion_component.rb, alert_component.rb, alert_dialog_component.rb verifying Phlex template, Stimulus controller, and Tailwind classes are complete",
+    "Audit avatar_component.rb, badge_component.rb, breadcrumb_component.rb, button_component.rb, calendar_component.rb for completeness",
+    "Audit card_component.rb, carousel_component.rb, chart_component.rb, checkbox_component.rb for proper integration",
+    "Audit collapsible_component.rb, command_component.rb, context_menu_component.rb, dialog_component.rb, drawer_component.rb for functionality",
+    "Create app/components/input_component.rb with Phlex template and Stimulus controller for text input with validation states",
+    "Create app/components/textarea_component.rb with resize options and character count functionality",
+    "Create app/components/label_component.rb with proper for attribute and required indicator",
+    "Create app/components/select_component.rb with dropdown menu, search, and multi-select variants"
+  ],
+  "must_reference": ["mangroves/docs/rails_conventions.md"]
+}

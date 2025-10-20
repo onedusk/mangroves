@@ -1,0 +1,154 @@
+<% provide(:title, "Home") %>
+
+<div data-controller="home">
+  <h1 class="text-2xl font-bold mb-4">Accordion Component</h1>
+
+  <%= render AccordionComponent.new(items: [
+    { title: "Item 1", content: "This is the content of item 1." },
+    { title: "Item 2", content: "This is the content of item 2." },
+    { title: "Item 3", content: "This is the content of item 3." }
+  ]) %>
+
+  <h1 class="text-2xl font-bold my-4">Alert Dialog Component</h1>
+
+  <button data-action="home#showAlertDialog" class="px-4 py-2 bg-blue-500 text-white rounded-md">Show Alert Dialog</button>
+
+  <div data-home-target="dialogContainer"></div>
+
+  <h1 class="text-2xl font-bold my-4">Dialog Component</h1>
+
+  <button data-action="home#showDialog" class="px-4 py-2 bg-blue-500 text-white rounded-md">Show Dialog</button>
+
+  <div data-home-target="dialogContainer2"></div>
+
+  <h1 class="text-2xl font-bold my-4">Drawer Component</h1>
+
+  <button data-action="home#showDrawer" class="px-4 py-2 bg-blue-500 text-white rounded-md">Show Drawer</button>
+
+  <div data-home-target="drawerContainer"></div>
+
+  <h1 class="text-2xl font-bold my-4">Alert Component</h1>
+
+  <div class="space-y-4">
+    <%= render AlertComponent.new("This is an informational message.") %>
+    <%= render AlertComponent.new("This is a success message.", type: :success) %>
+    <%= render AlertComponent.new("This is an error message.", type: :error) %>
+    <%= render AlertComponent.new("This is a warning message.", type: :warning) %>
+  </div>
+
+  <h1 class="text-2xl font-bold my-4">Aspect Ratio</h1>
+
+  <div class="w-full max-w-sm">
+    <div class="aspect-w-16 aspect-h-9 bg-gray-200 rounded-md flex items-center justify-center">
+      <p class="text-gray-500">16:9</p>
+    </div>
+  </div>
+
+  <h1 class="text-2xl font-bold my-4">Avatar Component</h1>
+
+  <div class="flex items-center space-x-4">
+    <%= render AvatarComponent.new(initials: "JD") %>
+    <%= render AvatarComponent.new(initials: "JD", size: :sm) %>
+    <%= render AvatarComponent.new(initials: "JD", size: :lg) %>
+    <%= render AvatarComponent.new(src: "https://i.pravatar.cc/150?u=a042581f4e29026704d") %>
+  </div>
+
+  <h1 class="text-2xl font-bold my-4">Badge Component</h1>
+
+  <div class="flex items-center space-x-4">
+    <%= render BadgeComponent.new("Default") %>
+    <%= render BadgeComponent.new("Dark", color: :dark) %>
+    <%= render BadgeComponent.new("Red", color: :red) %>
+    <%= render BadgeComponent.new("Green", color: :green) %>
+    <%= render BadgeComponent.new("Yellow", color: :yellow) %>
+    <%= render BadgeComponent.new("Indigo", color: :indigo) %>
+    <%= render BadgeComponent.new("Purple", color: :purple) %>
+    <%= render BadgeComponent.new("Pink", color: :pink) %>
+  </div>
+
+  <h1 class="text-2xl font-bold my-4">Breadcrumb Component</h1>
+
+  <%= render BreadcrumbComponent.new([
+    { name: "Home", href: "#" },
+    { name: "Projects", href: "#" },
+    { name: "Flowbite", href: "#" }
+  ]) %>
+
+  <h1 class="text-2xl font-bold my-4">Button Component</h1>
+
+  <div class="flex items-center space-x-4">
+    <%= render ButtonComponent.new("Default") %>
+    <%= render ButtonComponent.new("Primary", variant: :primary) %>
+    <%= render ButtonComponent.new("Secondary", variant: :secondary) %>
+    <%= render ButtonComponent.new("Danger", variant: :danger) %>
+    <%= render ButtonComponent.new("Disabled", disabled: true) %>
+  </div>
+
+  <h1 class="text-2xl font-bold my-4">Calendar Component</h1>
+
+  <%= render CalendarComponent.new %>
+
+  <h1 class="text-2xl font-bold my-4">Card Component</h1>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <%= render CardComponent.new(title: "Card Title") do %>
+      <p>This is the card content.</p>
+    <% end %>
+
+    <%= render CardComponent.new do %>
+      <p>This is a card without a title.</p>
+    <% end %>
+
+    <%= render CardComponent.new(title: "Card with Footer", footer: "Card Footer") do %>
+      <p>This card has a footer.</p>
+    <% end %>
+  </div>
+
+  <h1 class="text-2xl font-bold my-4">Carousel Component</h1>
+
+  <%= render CarouselComponent.new([
+    "Slide 1",
+    "Slide 2",
+    "Slide 3"
+  ]) %>
+
+  <h1 class="text-2xl font-bold my-4">Chart Component</h1>
+
+  <div class="w-full max-w-sm">
+    <%= render ChartComponent.new %>
+  </div>
+
+  <h1 class="text-2xl font-bold my-4">Checkbox Component</h1>
+
+  <div class="flex flex-col space-y-2">
+    <%= render CheckboxComponent.new(label: "Default checkbox") %>
+    <%= render CheckboxComponent.new(label: "Checked checkbox", checked: true) %>
+  </div>
+
+  <h1 class="text-2xl font-bold my-4">Collapsible Component</h1>
+
+  <%= render CollapsibleComponent.new(title: "Collapsible Title") do %>
+    <p>This is the collapsible content.</p>
+  <% end %>
+
+  <h1 class="text-2xl font-bold my-4">Command Component</h1>
+
+  <%= render CommandComponent.new([
+    { name: "Create a new post", href: "#" },
+    { name: "View all posts", href: "#" },
+    { name: "Settings", href: "#" },
+    { name: "Logout", href: "#" }
+  ]) %>
+
+  <h1 class="text-2xl font-bold my-4">Context Menu Component</h1>
+
+  <%= render ContextMenuComponent.new([
+    { name: "Copy", href: "#" },
+    { name: "Paste", href: "#" },
+    { name: "Cut", href: "#" }
+  ]) do %>
+    <div class="w-full h-32 bg-gray-200 rounded-md flex items-center justify-center">
+      <p class="text-gray-500">Right-click me</p>
+    </div>
+  <% end %>
+</div>

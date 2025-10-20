@@ -1,0 +1,66 @@
+<!-- ========== MAIN CONTENT ========== -->
+<main id="content" class="min-h-screen dark:bg-neutral-900 flex items-center justify-center pb-23 sm:pb-16">
+  <div class="py-10 lg:py-20 w-full max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto">
+    <div class="w-full max-w-sm mx-auto">
+      <!-- Change Password Details -->
+      <div class="space-y-8">
+        <div class="text-center">
+          <h2 class="font-light text-2xl text-gray-900 dark:text-neutral-200">
+            Change Your Password
+          </h2>
+        </div>
+
+        <div class="space-y-3">
+          <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+            <!-- Display Error Messages -->
+            <%= render "devise/shared/error_messages", resource: resource %>
+            <%= f.hidden_field :reset_password_token %>
+
+            <!-- New Password Input with Toggle -->
+            <div>
+              <label for="hs-pro-new-password" class="sr-only">
+                New Password
+              </label>
+              <div class="relative mt-5">
+                <%= f.password_field :password, autofocus: true, autocomplete: "new-password", placeholder: "New Password", id: "hs-pro-new-password", class: "bg-white dark:shadow-gray-200 py-3 px-4 block w-full border-stone-300 shadow-inner rounded-lg sm:text-sm placeholder:text-gray-400 focus:border-indigo-500 focus:ring-indigo-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:placeholder:text-white/60 dark:focus:ring-neutral-600" %>
+                <button type="button" data-hs-toggle-password='{ "target": "#hs-pro-new-password" }' class="absolute inset-y-0 end-0 flex items-center z-20 px-3 cursor-pointer text-gray-400 rounded-e-md focus:outline-hidden focus:text-indigo-600 dark:text-neutral-600 dark:focus:text-indigo-500">
+                  <!-- Optional: Add an eye icon here -->
+                </button>
+              </div>
+              <% if @minimum_password_length %>
+                <p class="mt-1 text-xs text-gray-500 dark:text-neutral-400">
+                  Must be at least <%= @minimum_password_length %> characters.
+                </p>
+              <% end %>
+            </div>
+
+            <!-- Confirm New Password Input with Toggle -->
+            <div>
+              <label for="hs-pro-confirm-password" class="sr-only">
+                Confirm New Password
+              </label>
+              <div class="relative mt-5">
+                <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm New Password", id: "hs-pro-confirm-password", class: "bg-white dark:shadow-gray-200 py-3 px-4 block w-full border-stone-300 shadow-inner rounded-lg sm:text-sm placeholder:text-gray-400 focus:border-indigo-500 focus:ring-indigo-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:placeholder:text-white/60 dark:focus:ring-neutral-600" %>
+                <button type="button" data-hs-toggle-password='{ "target": "#hs-pro-confirm-password" }' class="absolute inset-y-0 end-0 flex items-center z-20 px-3 cursor-pointer text-gray-400 rounded-e-md focus:outline-hidden focus:text-indigo-600 dark:text-neutral-600 dark:focus:text-indigo-500">
+                  <!-- Optional: Add an eye icon here -->
+                </button>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="mt-8 flex gap-4">
+              <%= link_to "Cancel", root_path, class: "dark:shadow-gray-200 py-3 px-4 flex-1 inline-flex justify-center items-center gap-x-1.5 sm:text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-300" %>
+
+              <%= f.submit "Change Password", class: "dark:shadow-gray-200 py-3 px-4 flex-1 inline-flex justify-center items-center gap-x-1.5 sm:text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-300" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <!-- End Change Password Details -->
+    </div>
+  </div>
+</main>
+<!-- ========== END MAIN CONTENT ========== -->
+
+<!-- Optional: Render Devise Shared Links if needed -->
+<%= render "devise/shared/links" %>

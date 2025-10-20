@@ -1,0 +1,22 @@
+{
+  "id": "4",
+  "task": "Create Pundit authorization policies for all tenant models",
+  "entry": "2025-10-17",
+  "modified": "2025-10-17",
+  "priority": "H",
+  "project": "mangroves-multi-tenant",
+  "status": "pending",
+  "uuid": "d4e5f6g7-h8i9-4012-d3e4-f5g6h7i8j9k0",
+  "urgency": "9",
+  "subtasks": [
+    "Create app/policies/ directory and add application_policy.rb with base Pundit::Policy class",
+    "Define initialize, index?, show?, create?, update?, destroy? methods in ApplicationPolicy with false defaults",
+    "Create app/policies/account_policy.rb inheriting from ApplicationPolicy with role-based permissions",
+    "Create app/policies/workspace_policy.rb checking user has account_membership before allowing access",
+    "Create app/policies/team_policy.rb verifying user has workspace_membership",
+    "Add 'include Pundit::Authorization' to ApplicationController after Authentication include",
+    "Add 'rescue_from Pundit::NotAuthorizedError' handler redirecting to root with alert message",
+    "Create spec/policies/account_policy_spec.rb testing all roles (viewer, member, admin, owner) permissions"
+  ],
+  "must_reference": ["mangroves/docs/rails_conventions.md"]
+}

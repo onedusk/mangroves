@@ -1,0 +1,22 @@
+{
+  "id": "3",
+  "task": "Fix tenant context preservation in background jobs",
+  "entry": "2025-10-17",
+  "modified": "2025-10-17",
+  "priority": "H",
+  "project": "mangroves-multi-tenant",
+  "status": "pending",
+  "uuid": "c3d4e5f6-g7h8-4901-c2d3-e4f5g6h7i8j9",
+  "urgency": "10",
+  "subtasks": [
+    "Open app/jobs/application_job.rb and add before_perform callback to extract account_id from job arguments",
+    "Add Current.account assignment in before_perform using Account.find(account_id) if account_id present",
+    "Add around_perform block that ensures Current.reset is called after job execution",
+    "Create spec/jobs/application_job_spec.rb to test tenant context preservation",
+    "Write test 'restores Current.account from job arguments' verifying context is set",
+    "Write test 'resets Current.account after job completes' ensuring cleanup happens",
+    "Add documentation comment explaining tenant context pattern for future job creation",
+    "Run 'bundle exec rspec spec/jobs/application_job_spec.rb' to verify implementation"
+  ],
+  "must_reference": ["mangroves/docs/rails_conventions.md"]
+}

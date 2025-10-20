@@ -1,0 +1,22 @@
+{
+  "id": "7",
+  "task": "Fix tenant context in ApplicationMailer and email templates",
+  "entry": "2025-10-17",
+  "modified": "2025-10-17",
+  "priority": "H",
+  "project": "mangroves-multi-tenant",
+  "status": "pending",
+  "uuid": "g7h8i9j0-k1l2-4345-g6h7-i8j9k0l1m2n3",
+  "urgency": "7",
+  "subtasks": [
+    "Open app/mailers/application_mailer.rb and add default_url_options method",
+    "Set default_url_options to include account_id from Current.account if present",
+    "Add before_action callback to set @account instance variable from Current.account",
+    "Update default from address to use tenant-specific email if Current.account.email present",
+    "Create spec/mailers/application_mailer_spec.rb testing URL generation includes account context",
+    "Write test 'generates URLs with account_id parameter when Current.account is set'",
+    "Add documentation comment explaining mailer tenant context pattern",
+    "Run 'bundle exec rspec spec/mailers/' to verify all mailer tests pass"
+  ],
+  "must_reference": ["mangroves/docs/rails_conventions.md"]
+}

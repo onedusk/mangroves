@@ -1,0 +1,22 @@
+{
+  "id": "9",
+  "task": "Create development console helpers and rake tasks for tenant management",
+  "entry": "2025-10-17",
+  "modified": "2025-10-17",
+  "priority": "H",
+  "project": "mangroves-multi-tenant",
+  "status": "pending",
+  "uuid": "i9j0k1l2-m3n4-4567-i8j9-k0l1m2n3o4p5",
+  "urgency": "6",
+  "subtasks": [
+    "Create lib/tasks/tenant.rake with 'namespace :tenant' block",
+    "Add 'tenant:list' task displaying all accounts with slug, name, and status",
+    "Add 'tenant:switch[slug]' task setting Current.account from account slug argument",
+    "Add 'tenant:create[name]' task for quickly creating test accounts with default workspace",
+    "Create lib/console_helpers.rb with TenantContext module",
+    "Add 'with_tenant(account, &block)' helper method preserving previous context",
+    "Add 'without_tenant(&block)' helper method temporarily clearing Current.account",
+    "Test rake tasks by running 'rake tenant:list' and 'rake tenant:switch[test-account]'"
+  ],
+  "must_reference": ["mangroves/docs/rails_conventions.md"]
+}

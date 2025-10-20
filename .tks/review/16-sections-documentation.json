@@ -1,0 +1,21 @@
+{
+  "id": "16",
+  "task": "Create layout section components and comprehensive documentation",
+  "entry": "2025-10-17",
+  "modified": "2025-10-17",
+  "priority": "M",
+  "project": "mangroves-multi-tenant",
+  "status": "pending",
+  "uuid": "p6q7r8s9-t0u1-4234-p5q6-r7s8t9u0v1w2",
+  "urgency": "4",
+  "subtasks": [
+    "Create app/components/content_section_component.rb with container, padding, and background variants",
+    "Create app/components/footer_component.rb with multi-column layout and tenant branding support",
+    "Create app/components/hero_component.rb with image background, CTA buttons, and responsive text sizing",
+    "Create app/components/navigation_component.rb for main site navigation with logo, menu, and user dropdown",
+    "Write spec/components/ tests for all section components verifying responsive behavior and tenant context",
+    "Create app/components/README.md documenting all 48 components with usage examples, props, variants, and Tailwind classes",
+    "Document tenant-scoped component patterns showing how to pass Current.account data to components for multi-tenant UIs"
+  ],
+  "must_reference": ["mangroves/docs/rails_conventions.md"]
+}

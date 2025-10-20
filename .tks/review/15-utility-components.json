@@ -1,0 +1,22 @@
+{
+  "id": "15",
+  "task": "Create utility and interactive components",
+  "entry": "2025-10-17",
+  "modified": "2025-10-17",
+  "priority": "M",
+  "project": "mangroves-multi-tenant",
+  "status": "pending",
+  "uuid": "o5p6q7r8-s9t0-4123-o4p5-q6r7s8t9u0v1",
+  "urgency": "4",
+  "subtasks": [
+    "Create app/components/separator_component.rb with horizontal and vertical divider styles",
+    "Create app/components/resizable_component.rb with drag handles for resizing panels using Stimulus",
+    "Create app/components/scroll_area_component.rb with custom scrollbar styling and smooth scrolling",
+    "Create app/components/slider_component.rb with single and range value selection using Stimulus",
+    "Create app/components/toggle_component.rb for binary on/off state with icon support",
+    "Create app/components/toggle_group_component.rb for mutually exclusive or multiple toggle selections",
+    "Create app/components/table_component.rb with sortable columns, row selection, and tenant-scoped data display",
+    "Write spec/components/ tests for all utility components verifying interactive behavior"
+  ],
+  "must_reference": ["mangroves/docs/rails_conventions.md"]
+}

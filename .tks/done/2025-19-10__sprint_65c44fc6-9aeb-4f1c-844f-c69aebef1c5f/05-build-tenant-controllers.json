@@ -1,0 +1,22 @@
+{
+  "id": "5",
+  "task": "Build CRUD controllers for tenant management",
+  "entry": "2025-10-17",
+  "modified": "2025-10-17",
+  "priority": "H",
+  "project": "mangroves-multi-tenant",
+  "status": "pending",
+  "uuid": "e5f6g7h8-i9j0-4123-e4f5-g6h7i8j9k0l1",
+  "urgency": "8",
+  "subtasks": [
+    "Generate AccountsController with 'rails g controller Accounts index show new create edit update' and add 'authorize @account' calls in all actions using Pundit",
+    "Generate WorkspacesController with 'rails g controller Workspaces index show new create edit update destroy' and add 'before_action :set_account' loading account from params[:account_id]",
+    "Add Authentication guards including 'before_action :require_account!' and authorize_account_access!/authorize_workspace_access! checks in both controllers",
+    "Add nested resource routes in config/routes.rb: 'resources :accounts do resources :workspaces end'",
+    "Remove 'devise_for :members' from routes.rb and delete app/models/member.rb with migration if model is unused",
+    "Create spec/requests/accounts_spec.rb testing authorization for all AccountsController actions",
+    "Add request specs covering unauthorized users ensuring Authentication guards properly redirect or return 403 status",
+    "Write request spec testing User in Account A cannot access Account B workspaces or data returning 404"
+  ],
+  "must_reference": ["mangroves/docs/rails_conventions.md"]
+}

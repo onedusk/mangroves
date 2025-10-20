@@ -1,0 +1,22 @@
+{
+  "id": "8",
+  "task": "Add audit logging system for security and compliance",
+  "entry": "2025-10-17",
+  "modified": "2025-10-17",
+  "priority": "H",
+  "project": "mangroves-multi-tenant",
+  "status": "pending",
+  "uuid": "h8i9j0k1-l2m3-4456-h7i8-j9k0l1m2n3o4",
+  "urgency": "7",
+  "subtasks": [
+    "Add 'gem paper_trail' to Gemfile and run 'bundle install'",
+    "Run 'bundle exec rails generate paper_trail:install' to create versions table migration",
+    "Run 'bundle exec rails db:migrate' to apply audit logging schema",
+    "Add 'has_paper_trail' to Account, Workspace, Team, and User models",
+    "Create app/models/audit_event.rb for custom audit logging of tenant switches",
+    "Add after_action in AccountsController#switch to log AuditEvent.create for tenant switch",
+    "Create spec/models/audit_event_spec.rb testing audit trail creation",
+    "Add audit log viewer to future admin interface requirements document"
+  ],
+  "must_reference": ["mangroves/docs/rails_conventions.md"]
+}

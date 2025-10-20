@@ -1,0 +1,21 @@
+{
+  "id": "13",
+  "task": "Create overlay, popover, and tooltip components",
+  "entry": "2025-10-17",
+  "modified": "2025-10-17",
+  "priority": "M",
+  "project": "mangroves-multi-tenant",
+  "status": "pending",
+  "uuid": "m3n4o5p6-q7r8-4901-m2n3-o4p5q6r7s8t9",
+  "urgency": "4",
+  "subtasks": [
+    "Create app/components/popover_component.rb with auto-positioning logic and click-outside-to-close using Stimulus",
+    "Create app/components/hover_card_component.rb with delayed show/hide and rich content support",
+    "Create app/components/sheet_component.rb as slide-over panel with left/right/top/bottom positions",
+    "Create app/components/tooltip_component.rb with hover behavior, arrow pointer, and multiple positions",
+    "Create app/components/aspect_ratio_component.rb for maintaining image/video aspect ratios (16:9, 4:3, 1:1)",
+    "Add JavaScript positioning utilities in app/javascript/controllers/positioning_controller.js for overlay components",
+    "Write spec/components/ tests for all overlay components verifying positioning and interaction behavior"
+  ],
+  "must_reference": ["mangroves/docs/rails_conventions.md"]
+}

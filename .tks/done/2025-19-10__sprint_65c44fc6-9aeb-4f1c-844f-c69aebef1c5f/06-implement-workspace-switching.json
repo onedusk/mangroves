@@ -1,0 +1,22 @@
+{
+  "id": "6",
+  "task": "Implement workspace switching mechanism for multi-tenant users",
+  "entry": "2025-10-17",
+  "modified": "2025-10-17",
+  "priority": "H",
+  "project": "mangroves-multi-tenant",
+  "status": "pending",
+  "uuid": "f6g7h8i9-j0k1-4234-f5g6-h7i8j9k0l1m2",
+  "urgency": "8",
+  "subtasks": [
+    "Add 'switch' action to AccountsController checking user has account_membership before switch",
+    "Add 'switch' action to WorkspacesController verifying user has workspace_membership",
+    "Update current_user.current_workspace_id with params[:id] in workspace switch action",
+    "Store selected account_id and workspace_id in session for persistence across requests",
+    "Add after_action callback to update Current.account and Current.workspace after switch",
+    "Add 'post accounts/:id/switch' and 'post workspaces/:id/switch' routes",
+    "Create app/components/workspace_switcher_component.rb displaying user's accessible workspaces",
+    "Write spec/requests/workspace_switching_spec.rb testing switch updates Current.workspace correctly"
+  ],
+  "must_reference": ["mangroves/docs/rails_conventions.md"]
+}

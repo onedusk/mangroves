@@ -1,0 +1,21 @@
+{
+  "id": "14",
+  "task": "Create navigation, menu, and pagination components",
+  "entry": "2025-10-17",
+  "modified": "2025-10-17",
+  "priority": "M",
+  "project": "mangroves-multi-tenant",
+  "status": "pending",
+  "uuid": "n4o5p6q7-r8s9-4012-n3o4-p5q6r7s8t9u0",
+  "urgency": "4",
+  "subtasks": [
+    "Create app/components/dropdown_menu_component.rb with keyboard navigation and nested submenu support",
+    "Create app/components/menubar_component.rb for horizontal menu bar with dropdown triggers",
+    "Create app/components/navigation_menu_component.rb with active state highlighting and breadcrumb integration",
+    "Create app/components/pagination_component.rb with first/last/prev/next controls and page number display",
+    "Create app/components/tabs_component.rb with horizontal/vertical orientations and keyboard navigation",
+    "Create app/components/sidebar_component.rb with collapsible sections and tenant workspace switcher integration",
+    "Write spec/components/ tests for all navigation components including keyboard accessibility"
+  ],
+  "must_reference": ["mangroves/docs/rails_conventions.md"]
+}

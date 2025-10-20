@@ -1,0 +1,24 @@
+{
+  "id": "1",
+  "task": "Apply TenantScoped concern to core models",
+  "entry": "2025-10-17",
+  "modified": "2025-10-17",
+  "priority": "H",
+  "project": "mangroves-multi-tenant",
+  "status": "completed",
+  "uuid": "a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5g6h7",
+  "urgency": "10",
+  "subtasks": [
+    "Open app/models/workspace.rb, add 'include TenantScoped' after class declaration, and verify 'belongs_to :account' association exists",
+    "Open app/models/team.rb, add 'include TenantScoped', ensure account_id is synced from workspace, and keep account/workspace validation in place",
+    "Run 'bundle exec rspec spec/models/workspace_spec.rb spec/models/team_spec.rb' to verify no errors introduced",
+    "Add inline comments documenting TenantScoped behavior in both Workspace and Team models",
+    "Create spec/tools/tenant_scoping_guard_spec.rb that fails when ActiveRecord model with account_id column lacks TenantScoped",
+    "Document tenant scoping guard in docs/rails_conventions.txt explaining future models must adopt the concern by default",
+    "Run full test suite with 'bundle exec rspec' to verify all tests pass",
+    "Commit changes with message 'Add TenantScoped concern to Workspace and Team models'"
+  ],
+  "must_reference": [
+    "mangroves/docs/rails_conventions.md"
+  ]
+}

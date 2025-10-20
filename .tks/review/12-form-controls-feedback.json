@@ -1,0 +1,22 @@
+{
+  "id": "12",
+  "task": "Create form control and user feedback components",
+  "entry": "2025-10-17",
+  "modified": "2025-10-17",
+  "priority": "M",
+  "project": "mangroves-multi-tenant",
+  "status": "pending",
+  "uuid": "l2m3n4o5-p6q7-4890-l1m2-n3o4p5q6r7s8",
+  "urgency": "4",
+  "subtasks": [
+    "Create app/components/radio_group_component.rb with horizontal and vertical layout options",
+    "Create app/components/switch_component.rb with toggle state and label positioning using Stimulus",
+    "Create app/components/toast_component.rb with variants (success, error, warning, info) and auto-dismiss timer",
+    "Create app/components/toaster_component.rb as container managing multiple toast notifications with positioning",
+    "Create app/components/sonner_component.rb for rich notifications with actions and undo functionality",
+    "Create app/components/progress_component.rb with determinate and indeterminate states",
+    "Create app/components/skeleton_component.rb for content loading placeholders with various shapes",
+    "Write spec/components/ tests for all form control and feedback components created"
+  ],
+  "must_reference": ["mangroves/docs/rails_conventions.md"]
+}

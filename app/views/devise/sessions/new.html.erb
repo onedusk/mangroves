@@ -1,0 +1,59 @@
+<!-- ========== MAIN CONTENT ========== -->
+<main id="content" class="min-h-screen dark:bg-neutral-900 flex items-center justify-center pb-23 sm:pb-16">
+  <div class="py-10 lg:py-20 w-full max-w-[85rem] px-4  sm:px-6 lg:px-8 mx-auto">
+    <div class="w-full max-w-sm mx-auto">
+      <!-- Log In Details -->
+      <div class="space-y-8">
+        <div class="text-center">
+          <h2 class="font-light text-2xl text-gray-900 dark:text-neutral-200">
+            Log In
+          </h2>
+        </div>
+        <div class="space-y-3">
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <!-- Email Input -->
+            <div>
+              <label for="hs-pro-shlgfem" class="sr-only">
+                Email
+              </label>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", id: "hs-pro-shlgfem", class: "bg-white dark:shadow-gray-200 py-3 px-4 block w-full border-stone-500 shadow-inner rounded-lg sm:text-sm placeholder:text-gray-400 focus:border-indigo-500 focus:ring-indigo-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:placeholder:text-white/60 dark:focus:ring-neutral-600" %>
+            </div>
+
+            <!-- Password Input with Toggle -->
+            <div>
+              <label for="hs-pro-shlgfps" class="sr-only">
+                Password
+              </label>
+              <div class="relative mt-5">
+                <%= f.password_field :password, autocomplete: "current-password", placeholder: "Password", id: "hs-pro-shlgfps", class: "bg-white dark:shadow-gray-200 py-3 px-4 block w-full border-stone-300 shadow-inner rounded-lg sm:text-sm placeholder:text-gray-400 focus:border-indigo-500 focus:ring-indigo-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:placeholder:text-white/60 dark:focus:ring-neutral-600" %>
+                <button type="button" data-hs-toggle-password='{ "target": "#hs-pro-shlgfps" }' class="absolute inset-y-0 end-0 flex items-center z-20 px-3 cursor-pointer text-gray-400 rounded-e-md focus:outline-hidden focus:text-indigo-600 dark:text-neutral-600 dark:focus:text-indigo-500">
+
+                </button>
+              </div>
+            </div>
+
+            <!-- Remember me and Forgot Password -->
+            <% if devise_mapping.rememberable? %>
+              <div class="mt-8 flex flex-wrap justify-between items-center gap-3">
+                <div class="flex gap-x-2">
+                  <%= f.check_box :remember_me, id: "hs-pro-shlgfemch", class: "shrink-0 border-stone-300 size-4.5 rounded-sm text-indigo-600 checked:border-indigo-600 focus:ring-indigo-600 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-600 dark:checked:bg-indigo-500 dark:checked:border-indigo-500 dark:focus:ring-offset-neutral-800" %>
+                  <%= f.label :remember_me, "Remember me", class: "text-[13px] text-gray-500 dark:text-neutral-400", for: "hs-pro-shlgfemch" %>
+                </div>
+                <%= link_to "Forgot your password?", new_password_path(resource_name), class: "text-[13px] text-gray-500 underline underline-offset-4 hover:text-indigo-600 focus:outline-hidden focus:text-indigo-600 dark:text-neutral-500 dark:hover:text-indigo-400 dark:focus:text-indigo-400" %>
+              </div>
+            <% end %>
+
+            <!-- Buttons in Line with extra spacing -->
+            <div class="mt-8 flex gap-4">
+              <%= link_to "Create account", new_registration_path(resource_name), class: "dark:shadow-gray-200 py-3 px-4 flex-1 inline-flex justify-center items-center gap-x-1.5 sm:text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-300" %>
+
+              <%= f.submit "Log in", class: "dark:shadow-gray-200 py-3 px-4 flex-1 inline-flex justify-center items-center gap-x-1.5 sm:text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:shadow-inner focus:outline-hidden focus:bg-gray-50 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-300" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <!-- End Log In Details -->
+    </div>
+  </div>
+</main>
+<!-- ========== END MAIN CONTENT ========== -->
