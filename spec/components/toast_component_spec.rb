@@ -103,7 +103,7 @@ RSpec.describe ToastComponent, type: :component do
       output = render(component)
 
       expect(output).to include("<svg")
-      expect(output).to include("viewBox=\"0 0 20 20\"")
+      expect(output).to include("viewbox=\"0 0 20 20\"")
       expect(output).to include("fill=\"currentColor\"")
     end
   end

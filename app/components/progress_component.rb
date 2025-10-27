@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ProgressComponent < Phlex::HTML
+class ProgressComponent < ApplicationComponent
   def initialize(value: 0, max: 100, variant: :default, size: :md, indeterminate: false, label: nil)
     @value = value
     @max = max
@@ -17,14 +17,15 @@ class ProgressComponent < Phlex::HTML
       div(
         class: container_classes.to_s,
         role: "progressbar",
-        aria_valuenow: @indeterminate ? nil : @value,
-        aria_valuemin: @indeterminate ? nil : 0,
-        aria_valuemax: @indeterminate ? nil : @max,
-        aria_label: @label || "Progress"
+        aria: progressbar_aria_attributes,
+        data: {
+          controller: "progress",
+          progress_target: "bar"
+        }
       ) do
         div(
           class: bar_classes.to_s,
-          style: @indeterminate ? nil : "width: #{percentage}%"
+          style: @indeterminate ? nil : "width: #{percentage.to_i}%"
         )
       end
     end
@@ -32,9 +33,28 @@ class ProgressComponent < Phlex::HTML
 
   private
 
+  def progressbar_aria_attributes
+    attrs = {
+      label: @label || "Progress"
+    }
+
+    unless @indeterminate
+      attrs[:valuenow] = @value.to_s
+      attrs[:valuemin] = "0"
+      attrs[:valuemax] = @max.to_s
+      attrs[:valuetext] = "#{percentage.round}%"
+    end
+
+    # NOTE: ARIA live region for dynamic progress updates
+    attrs[:live] = "polite"
+    attrs[:atomic] = "false"
+
+    attrs
+  end
+
   def render_label
     div(class: "flex justify-between items-center mb-2") do
-      span(class: "text-sm font-medium text-gray-700") { @label }
+      span(class: "text-sm font-medium text-gray-700") { plain @label }
       span(class: "text-sm font-medium text-gray-700") { "#{percentage.round}%" } unless @indeterminate
     end
   end

@@ -1,0 +1,24 @@
+{
+  "id": "22",
+  "task": "Add server-side validation and security hardening",
+  "entry": "2025-10-20",
+  "modified": "2025-10-20",
+  "priority": "H",
+  "project": "mangroves-multi-tenant",
+  "status": "pending",
+  "uuid": "f6g7h8i9-j0k1-4222-f3g4-h5i6j7k8l9m0",
+  "urgency": "10",
+  "subtasks": [
+    "Add server-side validation for all form inputs in models - email format, URL validation, length constraints",
+    "Implement safe_url, validate_url, allowed_domain? helpers in ApplicationHelper for URL validation",
+    "Add Rack::Attack rate limiting to OnboardingController (5 attempts/hour) and account creation endpoints",
+    "Implement audit logging for tenant switches, workspace changes, sensitive operations via AuditEvent model",
+    "Add input validation to all component initialize methods - validate enums, ranges, required params",
+    "Replace SonnerComponent new Function() with safe callback registry using predefined function mapping",
+    "Add Content-Security-Policy headers to ApplicationController preventing inline script execution",
+    "Write security tests for validation bypass, XSS injection, CSRF, SQL injection, open redirect attempts"
+  ],
+  "must_reference": [
+    "mangroves/docs/rails_conventions.md"
+  ]
+}

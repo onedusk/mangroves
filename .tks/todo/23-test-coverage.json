@@ -1,0 +1,24 @@
+{
+  "id": "23",
+  "task": "Add comprehensive test coverage for all components and features",
+  "entry": "2025-10-20",
+  "modified": "2025-10-20",
+  "priority": "M",
+  "project": "mangroves-multi-tenant",
+  "status": "pending",
+  "uuid": "g7h8i9j0-k1l2-4323-g4h5-i6j7k8l9m0n1",
+  "urgency": "5",
+  "subtasks": [
+    "Add component specs for all 49 Phlex components testing rendering, variants, XSS protection",
+    "Add Stimulus controller specs for all 27 JavaScript controllers testing connect/disconnect/actions",
+    "Add request specs for OnboardingController, tenant switching, workspace management authorization flows",
+    "Add system specs for keyboard navigation, screen reader announcements, focus management using Capybara",
+    "Add integration specs for cross-tenant isolation - verify queries, updates, deletes respect boundaries",
+    "Add performance tests for TableComponent with 1000+ rows, PaginationComponent with 100+ pages",
+    "Add concurrent operation tests for slug generation, account creation, workspace switching race conditions",
+    "Configure CI pipeline (GitHub Actions) to run all tests, linters, security scans on every commit"
+  ],
+  "must_reference": [
+    "mangroves/docs/rails_conventions.md"
+  ]
+}

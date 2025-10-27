@@ -1,0 +1,21 @@
+# NO MORE than 6-8 operations/subtasks per task - if more, create new file
+id: "test-fix-004"
+task: "Fix ContentSectionComponent CSS class rendering"
+entry: "2025-10-20"
+modified: "2025-10-20"
+priority: "M"
+project: "mangroves"
+status: "completed"
+uuid: "css-render-004"
+urgency: "6.5"
+subtasks:
+  - "Review ContentSectionComponent template method in app/components/content_section_component.rb"
+  - "Verify container variant logic applies correct Tailwind classes (narrow, wide, full, default)"
+  - "Verify padding variant logic applies correct responsive classes"
+  - "Verify background variant logic applies correct color classes"
+  - "Check class concatenation is not being stripped or overridden"
+  - "Run spec/components/content_section_component_spec.rb and verify 18+ failures resolve"
+must_reference:
+  - "docs/rails_conventions.md"
+  - "app/components/content_section_component.rb"
+  - "spec/components/content_section_component_spec.rb"

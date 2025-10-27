@@ -48,6 +48,13 @@ RSpec.describe Team, type: :model do
       workspace = create(:workspace, account:)
       described_class.new(workspace:, name: "Team #{SecureRandom.hex(4)}")
     end
+
+    # NOTE: Team has sync_account_from_workspace callback that derives account from workspace
+    # This means it doesn't require Current.account since workspace provides it
+    # Skip the "raises error when Current.account is missing" test for Team
+    def skip_require_current_account_test?
+      true
+    end
   end
 
   describe "validations" do

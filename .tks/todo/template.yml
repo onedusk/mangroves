@@ -1,0 +1,57 @@
+# NO MORE than 6-8 operations/subtasks per task - if more, create new file
+#
+id: ""
+task: ""
+entry: ""
+modified: ""
+priority: ""
+project: ""
+status: ""
+uuid: ""
+urgency: ""
+subtasks:
+  - ""
+  - ""
+  - ""
+must_reference:
+  - ""
+#
+# WHEN todo files hit a cap of 5 todo files, trigger => agentic workflow to process todo's
+#
+# agentic_workflow:
+#
+# EACH workflow is assigned [1]-orchestrator
+# EACH orchestrator is assigned [x]-amount-of-agents
+#   => [ all depends on complexities ]
+# EACH agent is assigned [1]-todo file
+# EACH todo file contains [1]-task
+# EACH task contains [6]-[8]-subtasks maximum
+#   => [ referenced above ]
+#
+# AFTER each agent completes their assignments / todo's
+# orchestrator MUST run the code-review agents following the same patterns above
+#
+# code-review agents MUST write a BLUF report of their findings
+# path: .tks/review/[date]/*.md
+#
+# BLUF - bottom line up-front
+# One sentence that states:
+# - the decision or ask,
+# - the deadline (use "by" or an explicit time window),
+# - the single most critical constraint or tradeoff.
+#
+# Keep it to one line. End with a period.
+#
+# Details
+# - Risk: one bullet.
+# - Impact: one bullet (who/what changes).
+# - Next step: one bullet (ownerless imperative).
+#
+# Links
+# - One link per line, only if essential.
+#
+# Notes
+# - If the BLUF cannot stand alone, rewrite it.
+# - If Details exceed three bullets, split into a separate doc. or section
+#
+#

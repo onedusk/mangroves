@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class HoverCardComponent < Phlex::HTML
+class HoverCardComponent < ApplicationComponent
   def initialize(trigger_content:, align: "center", side: "top", offset: 8, open_delay: 700, close_delay: 300)
     @trigger_content = trigger_content
     @align = align

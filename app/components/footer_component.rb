@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class FooterComponent < Phlex::HTML
+class FooterComponent < ApplicationComponent
   def initialize(
     account: nil,
     columns: [],
@@ -15,7 +15,7 @@ class FooterComponent < Phlex::HTML
     @social_links = social_links
   end
 
-  def template
+  def view_template
     footer(class: "bg-gray-900 text-white") do
       div(class: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16") do
         render_footer_content
@@ -36,14 +36,16 @@ class FooterComponent < Phlex::HTML
   def render_branding_column
     div(class: "col-span-1 md:col-span-2 lg:col-span-1") do
       if @logo_url
-        img(src: @logo_url, alt: "Logo", class: "h-8 mb-4")
+        # NOTE: XSS Protection - Sanitize logo URL
+        img(src: safe_url(@logo_url), alt: "Logo", class: "h-8 mb-4")
       elsif @account
-        div(class: "text-xl font-bold mb-4") { @account.name }
+        div(class: "text-xl font-bold mb-4") { plain @account.name }
       end
 
       if @account&.settings&.dig("footer_description")
         p(class: "text-gray-400 text-sm mb-4") do
-          @account.settings["footer_description"]
+          # NOTE: XSS Protection - Sanitize tenant-controlled content
+          plain @account.settings["footer_description"]
         end
       end
 
@@ -55,15 +57,15 @@ class FooterComponent < Phlex::HTML
     @columns.each do |column|
       div(class: "col-span-1") do
         h3(class: "text-sm font-semibold uppercase tracking-wider mb-4") do
-          column[:title]
+          plain column[:title]
         end
         ul(class: "space-y-3") do
           column[:links]&.each do |link|
             li do
               a(
-                href: link[:url],
+                href: safe_url(link[:url]),
                 class: "text-gray-400 hover:text-white transition-colors duration-200 text-sm"
-              ) { link[:text] }
+              ) { plain link[:text] }
             end
           end
         end
@@ -77,11 +79,11 @@ class FooterComponent < Phlex::HTML
     div(class: "flex space-x-4") do
       @social_links.each do |social|
         a(
-          href: social[:url],
+          href: safe_url(social[:url]),
           class: "text-gray-400 hover:text-white transition-colors duration-200",
           target: "_blank",
           rel: "noopener noreferrer",
-          aria_label: social[:label]
+          aria_label: sanitize_text(social[:label])
         ) do
           render_social_icon(social[:icon])
         end
@@ -112,11 +114,11 @@ class FooterComponent < Phlex::HTML
   def render_copyright
     p(class: "text-gray-400 text-sm mb-4 sm:mb-0") do
       if @copyright_text
-        @copyright_text
+        plain @copyright_text
       elsif @account
-        "© #{Time.current.year} #{@account.name}. All rights reserved."
+        plain "© #{Time.current.year} #{@account.name}. All rights reserved."
       else
-        "© #{Time.current.year} All rights reserved."
+        plain "© #{Time.current.year} All rights reserved."
       end
     end
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_19_193003) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_20_175812) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -32,6 +32,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_19_193003) do
     t.index ["invited_by_id"], name: "index_account_memberships_on_invited_by_id"
     t.index ["role"], name: "index_account_memberships_on_role"
     t.index ["status"], name: "index_account_memberships_on_status"
+    t.index ["user_id", "account_id"], name: "index_account_memberships_on_user_id_and_account_id"
     t.index ["user_id"], name: "index_account_memberships_on_user_id"
   end
 
@@ -89,6 +90,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_19_193003) do
     t.index ["status"], name: "index_team_memberships_on_status"
     t.index ["team_id", "user_id"], name: "index_team_memberships_on_team_id_and_user_id", unique: true
     t.index ["team_id"], name: "index_team_memberships_on_team_id"
+    t.index ["user_id", "team_id"], name: "index_team_memberships_on_user_id_and_team_id"
     t.index ["user_id"], name: "index_team_memberships_on_user_id"
   end
 
@@ -176,6 +178,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_19_193003) do
     t.index ["invited_by_id"], name: "index_workspace_memberships_on_invited_by_id"
     t.index ["role"], name: "index_workspace_memberships_on_role"
     t.index ["status"], name: "index_workspace_memberships_on_status"
+    t.index ["user_id", "workspace_id"], name: "index_workspace_memberships_on_user_id_and_workspace_id"
     t.index ["user_id"], name: "index_workspace_memberships_on_user_id"
     t.index ["workspace_id", "user_id"], name: "index_workspace_memberships_on_workspace_id_and_user_id", unique: true
     t.index ["workspace_id"], name: "index_workspace_memberships_on_workspace_id"

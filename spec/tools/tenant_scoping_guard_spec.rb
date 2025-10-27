@@ -15,7 +15,12 @@ RSpec.describe "Tenant scoping guard" do
       model.column_names.include?("account_id")
     end
 
-    exemptions = [Account]
+    # Exemptions: Models with special scoping requirements
+    exemptions = [
+      Account,  # Top-level tenant model
+      AuditEvent,  # Can exist without account context (pre-login events, global actions)
+      PaperTrail::Version  # Gem-managed model with custom scoping
+    ]
     offenders = models_with_account.reject do |model|
       model.in?(exemptions) || model < TenantScoped
     end

@@ -44,6 +44,7 @@ gem "paper_trail"
 gem "parallel"
 gem "phlex"
 gem "pundit"
+gem "rack-attack"
 gem "rack-cors"
 gem "resend"
 gem "thor"
@@ -73,8 +74,10 @@ end
 group :test do
   gem "capybara", require: false
   gem "capybara-lockstep", require: false
+  gem "rspec_junit_formatter", require: false
   gem "selenium-webdriver", require: false
   gem "shoulda-matchers"
+  gem "simplecov", require: false
   gem "vcr"
   gem "webmock"
 end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class TabsComponent < Phlex::HTML
+class TabsComponent < ApplicationComponent
   def initialize(tabs:, default_tab: nil, orientation: :horizontal)
     @tabs = tabs
     @default_tab = default_tab || tabs.first[:id]

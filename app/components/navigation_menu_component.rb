@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class NavigationMenuComponent < Phlex::HTML
+class NavigationMenuComponent < ApplicationComponent
   def initialize(items:, current_path: nil, breadcrumbs: nil, orientation: :horizontal)
     @items = items
     @current_path = current_path

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-class ContextMenuComponent < Phlex::HTML
+class ContextMenuComponent < ApplicationComponent
   def initialize(items)
     @items = items
   end
 
-  def template(&)
+  def view_template(&)
     div(data: {controller: "context-menu"}) do
       div(data: {action: "contextmenu->context-menu#show"}, &)
       div(data: {context_menu_target: "menu"}, class: "hidden absolute bg-white border rounded-md shadow-lg") do

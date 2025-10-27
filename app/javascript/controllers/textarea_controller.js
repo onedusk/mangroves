@@ -1,6 +1,7 @@
-import { Controller } from "@hotwired/stimulus"
+import ValidationController from "./validation_controller"
 
-export default class extends Controller {
+// NOTE: Extends ValidationController to avoid code duplication
+export default class extends ValidationController {
   static targets = ["field", "counter", "error"]
   static values = {
     maxLength: Number,
@@ -35,77 +36,14 @@ export default class extends Controller {
     // Clear previous validation state
     this.clearValidationState(field)
 
-    // Required field validation
-    if (field.required && !value.trim()) {
-      this.setValidationState(field, "error", "This field is required")
-      return
-    }
-
-    // Min length validation
-    if (field.minLength && value.length < field.minLength) {
-      this.setValidationState(
-        field,
-        "error",
-        `Minimum length is ${field.minLength} characters`
-      )
-      return
-    }
-
-    // Max length validation
-    if (field.maxLength && value.length > field.maxLength) {
-      this.setValidationState(
-        field,
-        "error",
-        `Maximum length is ${field.maxLength} characters`
-      )
-      return
-    }
+    // Run validations using base class methods
+    if (!this.validateRequired(field, value)) return
+    if (!this.validateMinLength(field, value)) return
+    if (!this.validateMaxLength(field, value)) return
 
     // If all validations pass and field has value
     if (value.trim()) {
       this.setValidationState(field, "success")
-    }
-  }
-
-  setValidationState(field, state, message = null) {
-    // Remove all validation classes
-    field.classList.remove(
-      "border-red-300", "text-red-900", "placeholder-red-300",
-      "focus:ring-red-500", "focus:border-red-500",
-      "border-green-300", "text-green-900",
-      "focus:ring-green-500", "focus:border-green-500",
-      "border-gray-300", "focus:ring-blue-500", "focus:border-blue-500"
-    )
-
-    // Add state-specific classes
-    if (state === "error") {
-      field.classList.add(
-        "border-red-300", "text-red-900", "placeholder-red-300",
-        "focus:ring-red-500", "focus:border-red-500"
-      )
-      if (this.hasErrorTarget && message) {
-        this.errorTarget.textContent = message
-        this.errorTarget.classList.remove("hidden")
-      }
-    } else if (state === "success") {
-      field.classList.add(
-        "border-green-300", "text-green-900",
-        "focus:ring-green-500", "focus:border-green-500"
-      )
-    }
-  }
-
-  clearValidationState(field) {
-    field.classList.remove(
-      "border-red-300", "text-red-900", "placeholder-red-300",
-      "focus:ring-red-500", "focus:border-red-500",
-      "border-green-300", "text-green-900",
-      "focus:ring-green-500", "focus:border-green-500"
-    )
-    field.classList.add("border-gray-300", "focus:ring-blue-500", "focus:border-blue-500")
-
-    if (this.hasErrorTarget) {
-      this.errorTarget.classList.add("hidden")
     }
   }
 }

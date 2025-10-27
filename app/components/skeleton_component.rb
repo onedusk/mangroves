@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SkeletonComponent < Phlex::HTML
+class SkeletonComponent < ApplicationComponent
   def initialize(variant: :text, width: nil, height: nil, count: 1, space_y: 2)
     @variant = variant
     @width = width

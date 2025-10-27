@@ -29,6 +29,17 @@ class AccountsController < ApplicationController
       # Create owner membership for current user
       @account.account_memberships.create!(user: current_user, role: :owner, status: :active)
       @account.update!(owner: current_user)
+
+      # SECURITY: Audit log account creation
+      AuditEvent.log(
+        action: AuditEvent::ACTION_ACCOUNT_CREATE,
+        auditable: @account,
+        metadata: {
+          ip_address: request.remote_ip,
+          user_agent: request.user_agent
+        }
+      )
+
       redirect_to @account, notice: "Account was successfully created."
     else
       render :new, status: :unprocessable_entity
@@ -39,6 +50,17 @@ class AccountsController < ApplicationController
     authorize @account
 
     if @account.update(account_params)
+      # SECURITY: Audit log account updates
+      AuditEvent.log(
+        action: AuditEvent::ACTION_ACCOUNT_UPDATE,
+        auditable: @account,
+        metadata: {
+          ip_address: request.remote_ip,
+          user_agent: request.user_agent,
+          changes: @account.previous_changes
+        }
+      )
+
       redirect_to @account, notice: "Account was successfully updated."
     else
       render :edit, status: :unprocessable_entity

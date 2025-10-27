@@ -1,0 +1,20 @@
+# NO MORE than 6-8 operations/subtasks per task - if more, create new file
+id: "test-fix-006"
+task: "Fix ambiguous element matches in PaginationComponent specs"
+entry: "2025-10-20"
+modified: "2025-10-20"
+priority: "L"
+project: "mangroves"
+status: "completed"
+uuid: "pag-ambig-006"
+urgency: "4.0"
+subtasks:
+  - "Add more specific selectors for 'current page' assertions (use :first or unique attribute)"
+  - "Make rel='prev' selector more specific to target only navigation controls"
+  - "Make rel='next' selector more specific to avoid matching duplicates"
+  - "Make rel='first' and rel='last' selectors more specific"
+  - "Fix invalid option error for :rel parameter in have_link matcher"
+  - "Run spec/components/pagination_component_spec.rb and verify 8 failures resolve"
+must_reference:
+  - "docs/rails_conventions.md"
+  - "spec/components/pagination_component_spec.rb"

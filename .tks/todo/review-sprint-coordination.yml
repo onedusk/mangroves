@@ -1,0 +1,20 @@
+# Sprint review coordination task
+id: "review-coord"
+task: "Coordinate sprint review and move completed tasks"
+entry: "2025-10-20"
+modified: "2025-10-20"
+priority: "H"
+project: "mangroves-multi-tenant"
+status: "pending"
+uuid: "revco-j0k1-l2m3-n4o5-p6q7r8s9t0u1"
+urgency: "8"
+subtasks:
+  - "Complete all individual task reviews (review-02 through review-16)"
+  - "Run full test suite with bundle exec rspec to verify no regressions"
+  - "Generate summary report of task completion status"
+  - "Move completed tasks from review/2025-19-10/ to done/2025-19-10__sprint/"
+  - "Move completed review reports from review/reports/2025-20-10__sprint/ to review/reports/2025-19-10__sprint/"
+  - "Update task JSON files with final status and completion dates"
+must_reference:
+  - "review/2025-19-10/"
+  - "done/2025-19-10__sprint/"

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class HeroComponent < Phlex::HTML
+class HeroComponent < ApplicationComponent
   def initialize(
     title:,
     subtitle: nil,
@@ -21,7 +21,7 @@ class HeroComponent < Phlex::HTML
     @height = height
   end
 
-  def template
+  def view_template
     section(class: "relative #{height_classes} #{background_classes}") do
       render_background_overlay if @background_image
       render_hero_content
@@ -61,9 +61,11 @@ class HeroComponent < Phlex::HTML
   end
 
   def render_background_overlay
+    # NOTE: XSS Protection - Sanitize background image URL
+    safe_bg_url = safe_url(@background_image)
     div(
       class: "absolute inset-0 bg-black bg-opacity-50",
-      style: @background_image ? "background-image: url(#{@background_image});" : nil
+      style: safe_bg_url ? "background-image: url(#{safe_bg_url});" : nil
     )
   end
 
@@ -89,7 +91,7 @@ class HeroComponent < Phlex::HTML
   end
 
   def render_title
-    h1(class: title_classes) { @title }
+    h1(class: title_classes) { plain @title }
   end
 
   def title_classes
@@ -102,7 +104,7 @@ class HeroComponent < Phlex::HTML
   def render_subtitle
     return unless @subtitle
 
-    p(class: subtitle_classes) { @subtitle }
+    p(class: subtitle_classes) { plain @subtitle }
   end
 
   def subtitle_classes
@@ -135,23 +137,23 @@ class HeroComponent < Phlex::HTML
 
   def render_primary_cta
     a(
-      href: @primary_cta[:url],
+      href: safe_url(@primary_cta[:url]),
       class: "inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 " \
              "text-base sm:text-lg font-medium rounded-lg text-white bg-blue-600 " \
              "hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 " \
              "transition-colors duration-200"
-    ) { @primary_cta[:text] }
+    ) { plain @primary_cta[:text] }
   end
 
   def render_secondary_cta
     a(
-      href: @secondary_cta[:url],
+      href: safe_url(@secondary_cta[:url]),
       class: "inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 " \
              "text-base sm:text-lg font-medium rounded-lg " \
              "#{secondary_cta_color_classes} " \
              "focus:outline-none focus:ring-4 focus:ring-gray-300 " \
              "transition-colors duration-200"
-    ) { @secondary_cta[:text] }
+    ) { plain @secondary_cta[:text] }
   end
 
   def secondary_cta_color_classes

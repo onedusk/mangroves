@@ -1,0 +1,24 @@
+{
+  "id": "18",
+  "task": "Fix tenant isolation and authorization security issues",
+  "entry": "2025-10-20",
+  "modified": "2025-10-20",
+  "priority": "H",
+  "project": "mangroves-multi-tenant",
+  "status": "pending",
+  "uuid": "b2c3d4e5-f6g7-4818-b9c0-d1e2f3g4h5i6",
+  "urgency": "10",
+  "subtasks": [
+    "Fix TenantScoped default scope to return where('1=0') when Current.account is nil instead of all records",
+    "Add validates :account, presence: true to TenantScoped concern for explicit validation enforcement",
+    "Fix Workspace#generate_slug with nil guard and timestamp-based unique suffix to prevent race conditions",
+    "Remove Team#sync_account_from_workspace callback, add strict Current.account validation on create",
+    "Add authorization checks to WorkspaceSwitcherComponent verifying user can access each account/workspace",
+    "Add form_authenticity_token hidden input to workspace switcher form for CSRF protection",
+    "Add tenant validation to TableComponent ensuring all data rows belong to Current.account",
+    "Write comprehensive tenant isolation tests verifying cross-tenant queries return zero records"
+  ],
+  "must_reference": [
+    "mangroves/docs/rails_conventions.md"
+  ]
+}

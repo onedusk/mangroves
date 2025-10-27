@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class InputComponent < Phlex::HTML
+class InputComponent < ApplicationComponent
   def initialize(
     name:,
     type: :text,
@@ -27,7 +27,10 @@ class InputComponent < Phlex::HTML
     @id = id || "input_#{name}"
   end
 
-  def template
+  def view_template
+    hint_id = "#{@id}_hint"
+    error_id = "#{@id}_error"
+
     div(class: "w-full") do
       if @label
         label(for: @id, class: "block text-sm font-medium text-gray-700 mb-1") do
@@ -47,6 +50,7 @@ class InputComponent < Phlex::HTML
         disabled: @disabled,
         required: @required,
         class: input_classes,
+        aria: aria_attributes(hint_id, error_id),
         data: {
           controller: "input",
           action: "input->input#validate blur->input#validate",
@@ -55,16 +59,40 @@ class InputComponent < Phlex::HTML
       )
 
       if @hint && !@error_message
-        p(class: "mt-1 text-sm text-gray-500") { @hint }
+        p(id: hint_id, class: "mt-1 text-sm text-gray-500") { plain @hint }
       end
 
       if @error_message
-        p(class: "mt-1 text-sm text-red-600", data: {input_target: "error"}) { @error_message }
+        p(id: error_id, class: "mt-1 text-sm text-red-600", data: {input_target: "error"}) { plain @error_message }
       end
     end
   end
 
   private
+
+  def aria_attributes(hint_id, error_id)
+    attrs = {}
+
+    # NOTE: ARIA invalid state for form validation
+    attrs[:invalid] = "true" if @validation_state == :error
+
+    # NOTE: ARIA required for form fields
+    attrs[:required] = "true" if @required
+
+    # NOTE: ARIA disabled for disabled inputs
+    attrs[:disabled] = "true" if @disabled
+
+    # NOTE: ARIA describedby for hint/error association
+    described_by = []
+    described_by << hint_id if @hint && !@error_message
+    described_by << error_id if @error_message
+    attrs[:describedby] = described_by.join(" ") if described_by.any?
+
+    # NOTE: ARIA label for accessibility when no visible label
+    attrs[:label] = sanitize_text(@label) if @label.present?
+
+    attrs
+  end
 
   def input_classes
     base = "block w-full rounded-md shadow-sm sm:text-sm"

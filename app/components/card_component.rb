@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-class CardComponent < Phlex::HTML
+class CardComponent < ApplicationComponent
   def initialize(title: nil, footer: nil)
     @title = title
     @footer = footer
   end
 
-  def template(&)
+  def view_template(&)
     div(class: "bg-white border border-gray-200 rounded-lg shadow") do
       if @title
         div(class: "p-4 border-b") do

@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-class AlertComponent < Phlex::HTML
+class AlertComponent < ApplicationComponent
   def initialize(message, type: :info)
     @message = message
     @type = type
   end
 
-  def template
+  def view_template
     div(class: "#{alert_classes} p-4 rounded-md") do
       p { @message }
     end

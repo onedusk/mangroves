@@ -1,0 +1,33 @@
+<toc version="1.0" llm-optimized="true">
+  <metadata>
+    <totalDocs>1</totalDocs>
+  </metadata>
+  <sections>
+    <section id="company">
+      <title>Company</title>
+      <section id="company-sandbox">
+        <title>Sandbox</title>
+        <section id="company-sandbox-dl-dev">
+          <title>Dl Dev</title>
+          <section id="company-sandbox-dl-dev-experiments">
+            <title>Experiments</title>
+            <section id="company-sandbox-dl-dev-experiments-mangroves">
+              <title>Mangroves</title>
+              <section id="company-sandbox-dl-dev-experiments-mangroves-tks">
+                <title>.tks</title>
+                <section id="company-sandbox-dl-dev-experiments-mangroves-tks-todo">
+                  <title>Todo</title>
+                  <chapter id="company-sandbox-dl-dev-experiments-mangroves-tks-todo-bluf" path="company/sandbox/dl_dev/experiments/mangroves/.tks/todo/bluf.md" modified="2025-10-20T15:55:10Z" size="384" words="68" readTime="1min" hash="sha256:e7b352ec79e82109">
+                    <title>Untitled</title>
+                    <summary>Write every message with BLUF enforced. BLUF rules: - First line: one sentence containing the decision or ask, a deadline (use “by …”), and the key constraint. - Keep to ≤280 chars and end wi...</summary>
+                    <keywords>bluf</keywords>
+                  </chapter>
+                </section>
+              </section>
+            </section>
+          </section>
+        </section>
+      </section>
+    </section>
+  </sections>
+</toc>

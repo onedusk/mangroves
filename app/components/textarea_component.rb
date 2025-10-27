@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class TextareaComponent < Phlex::HTML
+class TextareaComponent < ApplicationComponent
   def initialize(
     name:,
     value: nil,
@@ -33,7 +33,10 @@ class TextareaComponent < Phlex::HTML
     @id = id || "textarea_#{name}"
   end
 
-  def template
+  def view_template
+    hint_id = "#{@id}_hint"
+    error_id = "#{@id}_error"
+
     div(class: "w-full") do
       if @label
         div(class: "flex justify-between items-center mb-1") do
@@ -64,6 +67,7 @@ class TextareaComponent < Phlex::HTML
         rows: @rows,
         maxlength: @max_length,
         class: textarea_classes,
+        aria: aria_attributes(hint_id, error_id),
         data: {
           controller: "textarea",
           action: "input->textarea#updateCount input->textarea#validate blur->textarea#validate",
@@ -74,16 +78,40 @@ class TextareaComponent < Phlex::HTML
       ) { @value }
 
       if @hint && !@error_message
-        p(class: "mt-1 text-sm text-gray-500") { @hint }
+        p(id: hint_id, class: "mt-1 text-sm text-gray-500") { plain @hint }
       end
 
       if @error_message
-        p(class: "mt-1 text-sm text-red-600", data: {textarea_target: "error"}) { @error_message }
+        p(id: error_id, class: "mt-1 text-sm text-red-600", data: {textarea_target: "error"}) { plain @error_message }
       end
     end
   end
 
   private
+
+  def aria_attributes(hint_id, error_id)
+    attrs = {}
+
+    # NOTE: ARIA invalid state for form validation
+    attrs[:invalid] = "true" if @validation_state == :error
+
+    # NOTE: ARIA required for form fields
+    attrs[:required] = "true" if @required
+
+    # NOTE: ARIA disabled for disabled inputs
+    attrs[:disabled] = "true" if @disabled
+
+    # NOTE: ARIA describedby for hint/error association
+    described_by = []
+    described_by << hint_id if @hint && !@error_message
+    described_by << error_id if @error_message
+    attrs[:describedby] = described_by.join(" ") if described_by.any?
+
+    # NOTE: ARIA label for accessibility when no visible label
+    attrs[:label] = sanitize_text(@label) if @label.present?
+
+    attrs
+  end
 
   def textarea_classes
     base = "block w-full rounded-md shadow-sm sm:text-sm"

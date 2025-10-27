@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AspectRatioComponent < Phlex::HTML
+class AspectRatioComponent < ApplicationComponent
   RATIOS = {
     "16:9" => 56.25,   # 9/16 * 100
     "4:3" => 75,       # 3/4 * 100

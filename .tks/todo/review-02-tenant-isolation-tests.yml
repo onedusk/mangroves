@@ -1,0 +1,21 @@
+# Review task 02: Tenant isolation tests
+id: "review-02"
+task: "Review and fix tenant isolation test failures"
+entry: "2025-10-20"
+modified: "2025-10-20"
+priority: "H"
+project: "mangroves-multi-tenant"
+status: "pending"
+uuid: "rev02-a1b2-c3d4-e5f6-g7h8i9j0k1l2"
+urgency: "10"
+subtasks:
+  - "Read review report at review/2025-19-10/02-tenant-isolation-tests.md"
+  - "Fix TenantScoped auto-assignment test (before_validation timing issue with ||= operator)"
+  - "Add nil guard in Workspace#generate_slug before accessing account.workspaces"
+  - "Run bundle exec rspec spec/models/concerns/tenant_scoped_spec.rb to verify fixes"
+  - "Run bundle exec rspec spec/models/workspace_spec.rb to verify all tests pass"
+  - "Update task status to completed if all tests pass"
+must_reference:
+  - "review/2025-19-10/02-tenant-isolation-tests.md"
+  - "app/models/concerns/tenant_scoped.rb"
+  - "app/models/workspace.rb"

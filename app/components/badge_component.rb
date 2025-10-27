@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-class BadgeComponent < Phlex::HTML
+class BadgeComponent < ApplicationComponent
   def initialize(text, color: :default)
     @text = text
     @color = color
   end
 
-  def template
+  def view_template
     span(class: "#{color_classes} text-xs font-medium me-2 px-2.5 py-0.5 rounded-full") { @text }
   end
 

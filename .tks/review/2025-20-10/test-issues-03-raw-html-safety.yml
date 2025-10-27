@@ -1,0 +1,23 @@
+# NO MORE than 6-8 operations/subtasks per task - if more, create new file
+id: "test-fix-003"
+task: "Fix raw HTML safety errors in SonnerComponent and ToastComponent"
+entry: "2025-10-20"
+modified: "2025-10-20"
+priority: "M"
+project: "mangroves"
+status: "completed"
+uuid: "raw-html-003"
+urgency: "7.0"
+subtasks:
+  - "Locate all usages of 'raw()' method in app/components/sonner_component.rb"
+  - "Convert unsafe objects to html_safe strings before passing to raw()"
+  - "Apply same fix to app/components/toast_component.rb"
+  - "Review Phlex documentation for proper HTML escaping patterns"
+  - "Run SonnerComponent and ToastComponent specs"
+  - "Verify all 21 related failures resolve"
+must_reference:
+  - "docs/rails_conventions.md"
+  - "app/components/sonner_component.rb"
+  - "app/components/toast_component.rb"
+  - "spec/components/sonner_component_spec.rb"
+  - "spec/components/toast_component_spec.rb"

@@ -1,0 +1,24 @@
+{
+  "id": "17",
+  "task": "Fix XSS vulnerabilities across all components",
+  "entry": "2025-10-20",
+  "modified": "2025-10-20",
+  "priority": "H",
+  "project": "mangroves-multi-tenant",
+  "status": "pending",
+  "uuid": "a1b2c3d4-e5f6-4717-a8b9-c0d1e2f3g4h5",
+  "urgency": "10",
+  "subtasks": [
+    "Add sanitization helpers (sanitize_text, sanitize_html, safe_url) to ApplicationComponent base class",
+    "Fix InputComponent, TextareaComponent, LabelComponent, SelectComponent - use plain/text for labels, hints, errors",
+    "Fix ToastComponent, SonnerComponent, ProgressComponent - sanitize message content before rendering",
+    "Fix PopoverComponent, HoverCardComponent, TooltipComponent, SheetComponent - escape Proc content and titles",
+    "Fix DropdownMenuComponent, MenubarComponent, NavigationMenuComponent - sanitize all menu item labels",
+    "Fix HeroComponent background image injection, FooterComponent tenant branding XSS vulnerabilities",
+    "Update all 49 components to use Phlex plain/text methods for user-controlled content",
+    "Add comprehensive XSS protection tests for all components using malicious payloads"
+  ],
+  "must_reference": [
+    "mangroves/docs/rails_conventions.md"
+  ]
+}

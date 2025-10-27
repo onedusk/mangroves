@@ -15,13 +15,19 @@ export default class extends Controller {
     "chevron"
   ]
   static values = {
-    collapsible: { type: Boolean, default: true }
+    collapsible: { type: Boolean, default: true },
+    keyboardShortcut: { type: String, default: "[" } // Default: [ key to toggle
   }
 
   connect() {
     this.isCollapsed = false
     this.loadCollapsedState()
     this.setupActiveStates()
+    this.setupKeyboardShortcuts()
+  }
+
+  disconnect() {
+    this.removeKeyboardShortcuts()
   }
 
   toggle(event) {
@@ -170,6 +176,35 @@ export default class extends Controller {
     } catch (e) {
       console.warn("Failed to load section state:", e)
       return true // Default to expanded
+    }
+  }
+
+  // Keyboard shortcuts following WCAG 2.1.1
+  setupKeyboardShortcuts() {
+    if (!this.collapsibleValue) return
+
+    this.boundHandleKeyboardShortcut = this.handleKeyboardShortcut.bind(this)
+    document.addEventListener("keydown", this.boundHandleKeyboardShortcut)
+  }
+
+  removeKeyboardShortcuts() {
+    if (this.boundHandleKeyboardShortcut) {
+      document.removeEventListener("keydown", this.boundHandleKeyboardShortcut)
+    }
+  }
+
+  handleKeyboardShortcut(event) {
+    // Only trigger if no input element is focused
+    if (document.activeElement.tagName === "INPUT" ||
+        document.activeElement.tagName === "TEXTAREA" ||
+        document.activeElement.isContentEditable) {
+      return
+    }
+
+    // Check for keyboard shortcut match
+    if (event.key === this.keyboardShortcutValue) {
+      event.preventDefault()
+      this.toggle(event)
     }
   }
 }

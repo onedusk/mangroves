@@ -308,8 +308,8 @@ RSpec.describe SidebarComponent, type: :component do
     it "renders section titles" do
       render_inline(described_class.new(sections: sections))
 
-      expect(page).to have_css(".uppercase", text: "MAIN MENU")
-      expect(page).to have_css(".uppercase", text: "SETTINGS")
+      expect(page).to have_css(".uppercase", text: "Main Menu")
+      expect(page).to have_css(".uppercase", text: "Settings")
     end
 
     it "has sectionTitle target on titles" do

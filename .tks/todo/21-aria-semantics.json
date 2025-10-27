@@ -1,0 +1,24 @@
+{
+  "id": "21",
+  "task": "Add ARIA semantics and screen reader support",
+  "entry": "2025-10-20",
+  "modified": "2025-10-20",
+  "priority": "H",
+  "project": "mangroves-multi-tenant",
+  "status": "pending",
+  "uuid": "e5f6g7h8-i9j0-4121-e2f3-g4h5i6j7k8l9",
+  "urgency": "10",
+  "subtasks": [
+    "Add aria-label, aria-describedby to InputComponent, TextareaComponent, SelectComponent for hint/error association",
+    "Add aria-expanded, aria-haspopup='menu', aria-controls to DropdownMenuComponent, PopoverComponent triggers",
+    "Add aria-invalid, aria-required, aria-disabled attributes to all form input components based on state",
+    "Add role='dialog', aria-modal='true', aria-labelledby to SheetComponent, DialogComponent, AlertDialogComponent",
+    "Add aria-live='polite' regions for ToastComponent, SonnerComponent, ProgressComponent dynamic updates",
+    "Add role='status' announcements in Stimulus controllers for menu open/close, tab selection state changes",
+    "Add aria-current='page' to active NavigationMenuComponent items, aria-selected to TabsComponent",
+    "Write automated accessibility tests using axe-core RSpec matcher for all component ARIA patterns"
+  ],
+  "must_reference": [
+    "mangroves/docs/rails_conventions.md"
+  ]
+}

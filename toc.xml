@@ -1,0 +1,42 @@
+<toc version="1.0" llm-optimized="true">
+  <metadata>
+    <totalDocs>4</totalDocs>
+  </metadata>
+  <sections>
+    <section id="company">
+      <title>Company</title>
+      <section id="company-sandbox">
+        <title>Sandbox</title>
+        <section id="company-sandbox-dl-dev">
+          <title>Dl Dev</title>
+          <section id="company-sandbox-dl-dev-experiments">
+            <title>Experiments</title>
+            <section id="company-sandbox-dl-dev-experiments-mangroves">
+              <title>Mangroves</title>
+              <chapter id="company-sandbox-dl-dev-experiments-mangroves-agents" path="company/sandbox/dl_dev/experiments/mangroves/AGENTS.md" modified="2025-10-17T15:17:44Z" size="2905" words="394" readTime="1min" hash="sha256:0abc0de49d3597ee">
+                <title>Repository Guidelines</title>
+                <summary>Repository Guidelines ## Project Structure &amp; Module Organization This Rails 8 app keeps domain code under `app/` (controllers, models, services, jobs, components) with deeper guidance in `docs/rail...</summary>
+                <keywords>install, required, jobs, helpers, migrations, update, they, spec, keep, overcommit</keywords>
+              </chapter>
+              <chapter id="company-sandbox-dl-dev-experiments-mangroves-claude" path="company/sandbox/dl_dev/experiments/mangroves/CLAUDE.md" modified="2025-10-17T15:17:56Z" size="5777" words="724" readTime="2min" hash="sha256:a9f5fe61e7e07703">
+                <title>CLAUDE.md</title>
+                <summary>CLAUDE.md This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository. ## Project Overview Rails 8.0 application implementing a multi-tenant SaaS platfor...</summary>
+                <keywords>testing, tenant, solid, current.account, primary, components, style, hierarchy, queue, scoping</keywords>
+              </chapter>
+              <chapter id="company-sandbox-dl-dev-experiments-mangroves-gemini" path="company/sandbox/dl_dev/experiments/mangroves/GEMINI.md" modified="2025-10-17T15:18:55Z" size="2152" words="285" readTime="1min" hash="sha256:96c1b3e75fe2209d">
+                <title>Project: Mangroves</title>
+                <summary>Project: Mangroves ## Project Overview This is a Ruby on Rails 8.0 application designed as a multi-tenant SaaS platform. It utilizes a PostgreSQL database and incorporates user authentication and ...</summary>
+                <keywords>conventions, ruby, dependencies, **run, tailwind, workspaces, devise, rspec, teams, stimulus</keywords>
+              </chapter>
+              <chapter id="company-sandbox-dl-dev-experiments-mangroves-readme" path="company/sandbox/dl_dev/experiments/mangroves/README.md" modified="2025-10-20T01:08:35Z" size="3522" words="572" readTime="2min" hash="sha256:a22a1035756bbe4a">
+                <title>mangroves</title>
+                <summary>mangroves This is a Rails 8.0 app. ## Prerequisites This project requires: - Ruby (see [.ruby-version](./.ruby-version)), preferably managed using [rbenv](https://github.com/rbenv/rbenv) - Postg...</summary>
+                <keywords>command, changes, project, start, rails, issues, time, should, script, dependencies</keywords>
+              </chapter>
+            </section>
+          </section>
+        </section>
+      </section>
+    </section>
+  </sections>
+</toc>

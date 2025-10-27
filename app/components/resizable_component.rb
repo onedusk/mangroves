@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ResizableComponent < Phlex::HTML
+class ResizableComponent < ApplicationComponent
   def initialize(orientation: :horizontal, default_size: 50, min_size: 20, max_size: 80)
     @orientation = orientation
     @default_size = default_size

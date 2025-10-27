@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-class AvatarComponent < Phlex::HTML
+class AvatarComponent < ApplicationComponent
   def initialize(src: nil, initials: nil, size: :md)
     @src = src
     @initials = initials
     @size = size
   end
 
-  def template
+  def view_template
     span(class: "#{size_classes} rounded-full flex items-center justify-center bg-gray-200 text-gray-500") do
       if @src
         img(src: @src, class: "rounded-full")

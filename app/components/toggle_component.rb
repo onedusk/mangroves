@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ToggleComponent < Phlex::HTML
+class ToggleComponent < ApplicationComponent
   def initialize(
     name:,
     checked: false,

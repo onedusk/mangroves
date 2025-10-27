@@ -1,0 +1,19 @@
+# NO MORE than 6-8 operations/subtasks per task - if more, create new file
+id: "test-fix-008"
+task: "Add TenantScoped concern to models with account_id"
+entry: "2025-10-20"
+modified: "2025-10-20"
+priority: "L"
+project: "mangroves"
+status: "completed"
+uuid: "add-tenant-008"
+urgency: "3.0"
+subtasks:
+  - "Add 'include TenantScoped' to AuditEvent model"
+  - "Add 'include TenantScoped' to PaperTrail::Version model (if applicable)"
+  - "Verify both models have account_id column in schema"
+  - "Run tenant scoping guard spec to verify failure resolves"
+must_reference:
+  - "docs/rails_conventions.md"
+  - "app/models/audit_event.rb"
+  - "spec/models/tenant_scoping_guard_spec.rb"

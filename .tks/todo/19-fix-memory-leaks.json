@@ -1,0 +1,24 @@
+{
+  "id": "19",
+  "task": "Fix memory leaks and event listener cleanup issues",
+  "entry": "2025-10-20",
+  "modified": "2025-10-20",
+  "priority": "H",
+  "project": "mangroves-multi-tenant",
+  "status": "pending",
+  "uuid": "c3d4e5f6-g7h8-4919-c0d1-e2f3g4h5i6j7",
+  "urgency": "10",
+  "subtasks": [
+    "Fix popover_controller.js, hover_card_controller.js, tooltip_controller.js - store bound functions in connect()",
+    "Fix dropdown_menu_controller.js, menubar_controller.js - use this.boundHandleClick pattern for all listeners",
+    "Fix resizable_controller.js, slider_controller.js - track drag handlers and remove in disconnect()",
+    "Fix toast_controller.js, sonner_controller.js - clear all timeouts in disconnect() and store timeout IDs",
+    "Fix sheet_controller.js - ensure focus trap listeners are removed and previous focus restored",
+    "Add isOpen/isActive state tracking to prevent double-add/remove of event listeners",
+    "Create shared validation_controller.js base class to eliminate code duplication in form controllers",
+    "Write JavaScript memory leak tests verifying listener count before/after 100 connect/disconnect cycles"
+  ],
+  "must_reference": [
+    "mangroves/docs/rails_conventions.md"
+  ]
+}

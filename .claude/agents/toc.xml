@@ -1,0 +1,43 @@
+<toc version="1.0" llm-optimized="true">
+  <metadata>
+    <totalDocs>3</totalDocs>
+  </metadata>
+  <sections>
+    <section id="company">
+      <title>Company</title>
+      <section id="company-sandbox">
+        <title>Sandbox</title>
+        <section id="company-sandbox-dl-dev">
+          <title>Dl Dev</title>
+          <section id="company-sandbox-dl-dev-experiments">
+            <title>Experiments</title>
+            <section id="company-sandbox-dl-dev-experiments-mangroves">
+              <title>Mangroves</title>
+              <section id="company-sandbox-dl-dev-experiments-mangroves-claude">
+                <title>.claude</title>
+                <section id="company-sandbox-dl-dev-experiments-mangroves-claude-agents">
+                  <title>Agents</title>
+                  <chapter id="company-sandbox-dl-dev-experiments-mangroves-claude-agents-code-reviewer" path="company/sandbox/dl_dev/experiments/mangroves/.claude/agents/code-reviewer.md" modified="2025-10-20T13:55:24Z" size="1213" words="181" readTime="1min" hash="sha256:2a47cc7dfb93f842">
+                    <title>Untitled</title>
+                    <summary>You are a senior code reviewer ensuring high standards of code quality and security. When invoked: 1. Run git diff to see recent changes 2. Focus on modified files 3. Begin review immediately Revi...</summary>
+                    <keywords>code, review, issues, include, bluf, fix)</keywords>
+                  </chapter>
+                  <chapter id="company-sandbox-dl-dev-experiments-mangroves-claude-agents-docs-aware-developer" path="company/sandbox/dl_dev/experiments/mangroves/.claude/agents/docs-aware-developer.md" modified="2025-10-20T13:55:32Z" size="3912" words="538" readTime="2min" hash="sha256:ed0dd8eb1bd5583a">
+                    <title>Untitled</title>
+                    <summary>You are a documentation-aware development specialist who ensures all implementations follow established patterns and best practices from the project documentation. ## Primary Responsibilities 1. *...</summary>
+                    <keywords>relevant, documented, check, established, note, error, hook, bluf, implementations, tested</keywords>
+                  </chapter>
+                  <chapter id="company-sandbox-dl-dev-experiments-mangroves-claude-agents-task-decomposer" path="company/sandbox/dl_dev/experiments/mangroves/.claude/agents/task-decomposer.md" modified="2025-10-20T13:55:41Z" size="5172" words="724" readTime="2min" hash="sha256:f1e342044e56e5fc">
+                    <title>Untitled</title>
+                    <summary>You are an expert task decomposition specialist with deep experience in software development workflows, project management, and technical execution planning. Your core competency is transforming hig...</summary>
+                    <keywords>bluf, email, patterns, standards, specific, conventions, priority, relevant, reference, file</keywords>
+                  </chapter>
+                </section>
+              </section>
+            </section>
+          </section>
+        </section>
+      </section>
+    </section>
+  </sections>
+</toc>

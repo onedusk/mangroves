@@ -1,0 +1,23 @@
+# Review task 12: Form controls security fixes
+id: "review-12"
+task: "Fix critical security vulnerabilities in form control components"
+entry: "2025-10-20"
+modified: "2025-10-20"
+priority: "H"
+project: "mangroves-multi-tenant"
+status: "pending"
+uuid: "rev12-e5f6-g7h8-i9j0-k1l2m3n4o5p6"
+urgency: "10"
+subtasks:
+  - "Read security review at review/reports/2025-20-10__sprint/task-12-form-controls-feedback-components.md"
+  - "Fix CRITICAL-01: XSS in ToastComponent message rendering (use text() or sanitize)"
+  - "Fix CRITICAL-02: XSS in SonnerComponent message and action_url validation"
+  - "Fix CRITICAL-03: Remove new Function() code injection in sonner_controller.js, use callback registry"
+  - "Fix HIGH-01/02: Memory leaks in toast and sonner controllers (clear timeouts properly)"
+  - "Fix HIGH-04: Add proper id/for attributes to RadioGroupComponent labels"
+  - "Run component specs to verify fixes, create tests if missing"
+must_reference:
+  - "review/reports/2025-20-10__sprint/task-12-form-controls-feedback-components.md"
+  - "app/components/toast_component.rb"
+  - "app/components/sonner_component.rb"
+  - "app/javascript/controllers/sonner_controller.js"

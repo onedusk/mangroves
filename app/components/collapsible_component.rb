@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-class CollapsibleComponent < Phlex::HTML
+class CollapsibleComponent < ApplicationComponent
   def initialize(title:)
     @title = title
   end
 
-  def template(&)
+  def view_template(&)
     div(data: {controller: "collapsible"}) do
       button(
         data: {action: "collapsible#toggle"},

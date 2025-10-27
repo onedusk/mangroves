@@ -91,7 +91,6 @@ RSpec.describe SwitchComponent, type: :component do
   end
 
   def render(component)
-    html = render_inline(component)
-    html.respond_to?(:native) ? html.native.to_html : html.to_s
+    component.call
   end
 end

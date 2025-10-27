@@ -96,7 +96,7 @@ RSpec.describe DropdownMenuComponent, type: :component do
       ]
       render_inline(described_class.new(items: items))
 
-      expect(page).to have_css(".uppercase", text: "ACCOUNT")
+      expect(page).to have_css(".uppercase", text: "Account")
     end
   end
 
@@ -141,7 +141,7 @@ RSpec.describe DropdownMenuComponent, type: :component do
     it "has proper tabindex on items" do
       render_inline(described_class.new(items: basic_items))
 
-      page.all("[role='menuitem']").find_each do |item|
+      page.all("[role='menuitem']").each do |item|
         expect(item["tabindex"]).to eq("-1")
       end
     end

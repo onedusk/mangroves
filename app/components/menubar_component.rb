@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class MenubarComponent < Phlex::HTML
+class MenubarComponent < ApplicationComponent
   def initialize(menus:)
     @menus = menus
   end

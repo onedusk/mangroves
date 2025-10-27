@@ -947,6 +947,275 @@ def template
 end
 ```
 
+## Security Best Practices
+
+### XSS (Cross-Site Scripting) Prevention
+
+Phlex automatically escapes all content by default, providing strong XSS protection:
+
+```ruby
+def template
+  # Safe - automatically escaped
+  h1 { @user_input }
+
+  # Dangerous - use only with trusted content
+  # unsafe_raw @html_content
+
+  # For HTML attributes, use data attributes
+  div(data: { user_id: @user.id, role: @user.role }) do
+    # Content here
+  end
+end
+```
+
+**Key Rules:**
+- Never use `unsafe_raw` with user input
+- Always validate and sanitize user input at the model/controller level
+- Use Phlex's automatic escaping for all dynamic content
+- For rich text, use Rails' `sanitize` helper before rendering
+
+### CSRF (Cross-Site Request Forgery) Protection
+
+All forms must include CSRF tokens:
+
+```ruby
+def template
+  form(action: "/items", method: "post") do
+    # SECURITY: CSRF protection required for all state-changing forms
+    input(
+      type: "hidden",
+      name: "authenticity_token",
+      value: helpers.form_authenticity_token
+    )
+
+    # Form fields...
+    button(type: "submit") { "Submit" }
+  end
+end
+```
+
+**Key Rules:**
+- Include `authenticity_token` in all POST/PUT/DELETE forms
+- Use Rails' built-in CSRF protection (enabled by default)
+- Verify CSRF tokens on the server side (ApplicationController handles this)
+- For AJAX requests, include CSRF token in headers
+
+### Tenant Isolation
+
+Components handling multi-tenant data must enforce strict isolation:
+
+```ruby
+class ProjectListComponent < Phlex::HTML
+  def initialize(projects:, account: nil, skip_tenant_check: false)
+    @projects = projects
+    @account = account || Current.account
+    @skip_tenant_check = skip_tenant_check
+
+    # SECURITY: Validate tenant isolation
+    validate_tenant_scope! unless @skip_tenant_check
+  end
+
+  private
+
+  def validate_tenant_scope!
+    return if @projects.empty?
+    return unless @account
+
+    # Verify all records belong to current account
+    invalid = @projects.reject { |p| p.account_id == @account.id }
+
+    if invalid.any?
+      raise SecurityError,
+        "Tenant isolation violation: #{invalid.count} records from foreign tenant(s)"
+    end
+  end
+end
+```
+
+**Key Rules:**
+- Always validate tenant scope for collections
+- Use `Current.account` to access the current tenant
+- Raise `SecurityError` for cross-tenant data access
+- Provide `skip_tenant_check` option only for admin/system components
+- Log all tenant isolation violations for security monitoring
+
+### URL Validation
+
+Validate and sanitize all user-provided URLs:
+
+```ruby
+class LinkComponent < Phlex::HTML
+  SAFE_URL_REGEX = /\A(https?:\/\/|\/|#)/i
+  ALLOWED_PROTOCOLS = %w[http https mailto tel].freeze
+
+  def initialize(href:, text:)
+    @href = sanitize_url(href)
+    @text = text
+  end
+
+  def template
+    if @href
+      a(href: @href, rel: safe_rel_attribute) { @text }
+    else
+      span(class: "text-gray-500") { @text }
+    end
+  end
+
+  private
+
+  def sanitize_url(url)
+    return nil if url.blank?
+
+    # Remove dangerous protocols
+    uri = URI.parse(url)
+
+    unless ALLOWED_PROTOCOLS.include?(uri.scheme&.downcase)
+      Rails.logger.warn("Blocked dangerous URL protocol: #{uri.scheme}")
+      return nil
+    end
+
+    url
+  rescue URI::InvalidURIError
+    Rails.logger.warn("Invalid URL format: #{url}")
+    nil
+  end
+
+  def safe_rel_attribute
+    # Prevent tabnabbing for external links
+    @href.start_with?("http") ? "noopener noreferrer" : nil
+  end
+end
+```
+
+**Key Rules:**
+- Validate URL format and protocol
+- Block javascript:, data:, and other dangerous protocols
+- Use `noopener noreferrer` for external links
+- Log blocked URLs for security monitoring
+- Provide fallback rendering for invalid URLs
+
+### Audit Logging
+
+Components that perform sensitive actions should trigger audit logs:
+
+```ruby
+class DeleteButtonComponent < Phlex::HTML
+  def initialize(resource:, current_user:)
+    @resource = resource
+    @current_user = current_user
+  end
+
+  def template
+    form(
+      action: helpers.polymorphic_path(@resource),
+      method: "post",
+      data: { turbo_confirm: "Are you sure?" }
+    ) do
+      input(type: "hidden", name: "_method", value: "delete")
+      input(
+        type: "hidden",
+        name: "authenticity_token",
+        value: helpers.form_authenticity_token
+      )
+
+      # SECURITY: Audit trail for deletions
+      input(
+        type: "hidden",
+        name: "audit_action",
+        value: "delete"
+      )
+
+      button(
+        type: "submit",
+        class: "px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+      ) do
+        "Delete"
+      end
+    end
+  end
+end
+```
+
+**Key Rules:**
+- Log all destructive actions (create, update, delete)
+- Include user ID, timestamp, IP address, and affected resources
+- Store audit logs in a separate table with immutable records
+- Use AuditEvent model for consistent logging
+- Include tenant context in all audit logs
+
+### Input Sanitization
+
+Always sanitize user input at the model/controller level before passing to components:
+
+```ruby
+# Bad - sanitizing in component
+class MessageComponent < Phlex::HTML
+  def initialize(message:)
+    @message = message.gsub(/<script>.*<\/script>/, "") # Don't do this!
+  end
+end
+
+# Good - sanitize in controller/service
+class MessagesController < ApplicationController
+  def create
+    @message = Message.new(message_params)
+    @message.content = ActionController::Base.helpers.sanitize(@message.content)
+
+    if @message.save
+      render MessageComponent.new(message: @message)
+    end
+  end
+end
+```
+
+**Key Rules:**
+- Sanitize at the entry point (controller/service)
+- Use Rails' built-in sanitization helpers
+- Define allowed HTML tags and attributes explicitly
+- Components should receive pre-sanitized data
+- Never trust user input, even from authenticated users
+
+### Access Control Patterns
+
+Components should not perform authorization checks. Use Pundit policies:
+
+```ruby
+# Bad - authorization in component
+class EditButtonComponent < Phlex::HTML
+  def initialize(resource:, user:)
+    @resource = resource
+    @user = user
+  end
+
+  def template
+    # Don't do authorization here!
+    return unless @user.admin? || @user.id == @resource.user_id
+
+    a(href: edit_path(@resource)) { "Edit" }
+  end
+end
+
+# Good - check authorization in controller
+class ItemsController < ApplicationController
+  def show
+    @item = Item.find(params[:id])
+    authorize @item # Pundit authorization
+
+    @can_edit = policy(@item).update?
+
+    # Pass authorization result to component
+    render ItemComponent.new(item: @item, can_edit: @can_edit)
+  end
+end
+```
+
+**Key Rules:**
+- Use Pundit policies for all authorization
+- Pass authorization results as props to components
+- Components should be "dumb" - only render what they're told
+- Never expose unauthorized data, even if hidden with CSS
+- Log authorization failures for security monitoring
+
 ## Contributing
 
 When creating new components:
@@ -958,6 +1227,9 @@ When creating new components:
 5. Add Stimulus controllers for interactivity
 6. Write comprehensive RSpec tests
 7. Update this README with usage examples
+8. **Implement security best practices (XSS, CSRF, tenant isolation)**
+9. **Validate all user input and URLs**
+10. **Add audit logging for sensitive actions**
 
 ## Additional Resources
 
@@ -965,3 +1237,4 @@ When creating new components:
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs)
 - [Stimulus Documentation](https://stimulus.hotwired.dev/)
 - [Rails Multi-Tenant Guide](docs/rails_conventions.md)
+- [Security Best Practices](../docs/SECURITY.md)

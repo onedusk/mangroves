@@ -22,6 +22,7 @@
 #  index_workspace_memberships_on_role                      (role)
 #  index_workspace_memberships_on_status                    (status)
 #  index_workspace_memberships_on_user_id                   (user_id)
+#  index_workspace_memberships_on_user_id_and_workspace_id  (user_id,workspace_id)
 #  index_workspace_memberships_on_workspace_id              (workspace_id)
 #  index_workspace_memberships_on_workspace_id_and_user_id  (workspace_id,user_id) UNIQUE
 #

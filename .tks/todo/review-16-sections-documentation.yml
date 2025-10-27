@@ -1,0 +1,22 @@
+# Review task 16: Layout sections and documentation
+id: "review-16"
+task: "Verify layout section components and comprehensive documentation"
+entry: "2025-10-20"
+modified: "2025-10-20"
+priority: "M"
+project: "mangroves-multi-tenant"
+status: "pending"
+uuid: "rev16-i9j0-k1l2-m3n4-o5p6q7r8s9t0"
+urgency: "4"
+subtasks:
+  - "Check if content_section_component.rb exists with container, padding, background variants"
+  - "Check if footer_component.rb exists with multi-column layout and tenant branding support"
+  - "Check if hero_component.rb exists with image background, CTA buttons, responsive text"
+  - "Check if navigation_component.rb exists for main site navigation with logo and user dropdown"
+  - "Verify spec/components tests exist for all section components with responsive behavior"
+  - "Check if app/components/README.md exists documenting all components with usage examples"
+  - "Verify README documents tenant-scoped component patterns for multi-tenant UIs"
+must_reference:
+  - "review/2025-19-10/16-sections-documentation.json"
+  - "app/components/"
+  - "app/components/README.md"

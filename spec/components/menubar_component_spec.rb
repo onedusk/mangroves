@@ -103,7 +103,7 @@ RSpec.describe MenubarComponent, type: :component do
     it "has vertical orientation on dropdown menus" do
       render_inline(described_class.new(menus: menus))
 
-      page.all("[role='menu']", visible: :all).find_each do |menu|
+      page.all("[role='menu']", visible: :all).each do |menu|
         expect(menu["aria-orientation"]).to eq("vertical")
       end
     end
@@ -167,7 +167,7 @@ RSpec.describe MenubarComponent, type: :component do
       ]
       render_inline(described_class.new(menus: menus_with_headings))
 
-      expect(page).to have_css(".uppercase", text: "RECENT")
+      expect(page).to have_css(".uppercase", text: "Recent")
     end
   end
 

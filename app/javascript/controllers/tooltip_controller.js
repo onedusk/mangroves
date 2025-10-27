@@ -10,6 +10,7 @@ export default class extends Controller {
 
   connect() {
     this.timeout = null
+    this.isVisible = false
   }
 
   disconnect() {
@@ -21,14 +22,21 @@ export default class extends Controller {
     this.clearTimeout()
 
     this.timeout = setTimeout(() => {
-      this.contentTarget.classList.remove("hidden")
-      this.position()
+      if (!this.isVisible) { // Prevent redundant state changes
+        this.contentTarget.classList.remove("hidden")
+        this.position()
+        this.isVisible = true
+      }
     }, this.delayValue)
   }
 
   hide() {
     this.clearTimeout()
-    this.contentTarget.classList.add("hidden")
+
+    if (this.isVisible) { // Prevent redundant state changes
+      this.contentTarget.classList.add("hidden")
+      this.isVisible = false
+    }
   }
 
   position() {

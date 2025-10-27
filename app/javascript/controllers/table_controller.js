@@ -4,13 +4,51 @@ export default class extends Controller {
   static targets = ["selectAll", "rowCheckbox", "row", "sortHeader", "sortIcon", "selectionSummary", "selectionCount"]
   static values = {
     sortable: { type: Boolean, default: false },
-    selectable: { type: Boolean, default: false }
+    selectable: { type: Boolean, default: false },
+    virtualScrollThreshold: { type: Number, default: 100 }
   }
 
   connect() {
     this.selectedRows = new Set()
     this.sortDirection = {}
     this.currentSortColumn = null
+
+    // OPTIMIZE: Enable virtual scrolling for large datasets (>100 rows)
+    if (this.rowTargets.length > this.virtualScrollThresholdValue) {
+      this.initVirtualScroll()
+    }
+  }
+
+  /**
+   * OPTIMIZE: Virtual scrolling implementation using IntersectionObserver
+   * Lazily renders rows as they come into viewport for large tables
+   */
+  initVirtualScroll() {
+    // Cache all row data for virtual rendering
+    this.rowData = this.rowTargets.map(row => ({
+      element: row,
+      height: row.offsetHeight || 48, // Default row height
+      isVisible: false
+    }))
+
+    // Use IntersectionObserver to track which rows are in viewport
+    const observerOptions = {
+      root: this.element.querySelector(".overflow-x-auto"),
+      rootMargin: "200px 0px", // Load rows 200px before they're visible
+      threshold: 0
+    }
+
+    this.rowObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const rowIndex = this.rowTargets.indexOf(entry.target)
+        if (rowIndex >= 0 && this.rowData[rowIndex]) {
+          this.rowData[rowIndex].isVisible = entry.isIntersecting
+        }
+      })
+    }, observerOptions)
+
+    // Observe all rows
+    this.rowTargets.forEach(row => this.rowObserver.observe(row))
   }
 
   toggleAll(event) {
@@ -161,5 +199,14 @@ export default class extends Controller {
       this.selectAllTarget.indeterminate = false
     }
     this.updateSelectionSummary()
+  }
+
+  disconnect() {
+    // OPTIMIZE: Clean up IntersectionObserver if virtual scrolling was enabled
+    if (this.rowObserver) {
+      this.rowObserver.disconnect()
+      this.rowObserver = null
+      this.rowData = null
+    }
   }
 }

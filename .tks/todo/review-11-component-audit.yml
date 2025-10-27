@@ -1,0 +1,20 @@
+# Review task 11: Component audit and form inputs
+id: "review-11"
+task: "Audit existing components and verify form input components"
+entry: "2025-10-20"
+modified: "2025-10-20"
+priority: "M"
+project: "mangroves-multi-tenant"
+status: "pending"
+uuid: "rev11-d4e5-f6g7-h8i9-j0k1l2m3n4o5"
+urgency: "4"
+subtasks:
+  - "Verify accordion, alert, alert_dialog, avatar, badge, breadcrumb, button, calendar components exist"
+  - "Verify card, carousel, chart, checkbox, collapsible, command, context_menu, dialog, drawer components exist"
+  - "Check if input_component.rb exists with Phlex template and Stimulus controller for validation states"
+  - "Check if textarea_component.rb exists with resize and character count functionality"
+  - "Check if label_component.rb exists with for attribute and required indicator"
+  - "Check if select_component.rb exists with dropdown, search, and multi-select variants"
+must_reference:
+  - "review/2025-19-10/11-audit-and-form-inputs.json"
+  - "app/components/"

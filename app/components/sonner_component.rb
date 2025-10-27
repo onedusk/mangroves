@@ -1,6 +1,17 @@
 # frozen_string_literal: true
 
-class SonnerComponent < Phlex::HTML
+class SonnerComponent < ApplicationComponent
+  # SECURITY: Allowed variants for validation
+  ALLOWED_VARIANTS = %i[info success error warning promise].freeze
+
+  # SECURITY: Predefined callback registry - no dynamic function execution
+  # Maps callback keys to Stimulus actions instead of inline JavaScript
+  CALLBACK_REGISTRY = {
+    "undo" => "sonner#undo",
+    "dismiss" => "sonner#dismiss",
+    "refresh" => "sonner#refresh"
+  }.freeze
+
   def initialize(
     message:,
     variant: :info,
@@ -10,13 +21,14 @@ class SonnerComponent < Phlex::HTML
     undo_callback: nil,
     dismissible: true
   )
-    @message = message
-    @variant = variant
-    @duration = duration
-    @action_label = action_label
-    @action_url = action_url
-    @undo_callback = undo_callback
-    @dismissible = dismissible
+    @message = validate_required(message, param_name: "message")
+    @variant = validate_enum(variant, allowed: ALLOWED_VARIANTS, param_name: "variant")
+    @duration = validate_range(duration, min: 0, max: 60_000, param_name: "duration")
+    @action_label = validate_length(action_label, max: 50, param_name: "action_label") if action_label
+    @action_url = action_url # Will be validated by safe_url when rendered
+    # SECURITY: Validate callback is a registered key, not arbitrary code
+    @undo_callback = validate_callback(undo_callback)
+    @dismissible = !!dismissible
   end
 
   def view_template
@@ -24,15 +36,19 @@ class SonnerComponent < Phlex::HTML
       class: "sonner #{base_classes} #{variant_classes}",
       data: {
         controller: "sonner",
-        sonner_duration_value: @duration,
-        sonner_undo_callback_value: @undo_callback
+        sonner_duration_value: @duration
+        # NOTE: Removed undo_callback_value - callbacks now use Stimulus actions
       },
-      role: "alert"
+      role: "alert",
+      aria: {
+        live: "polite",
+        atomic: "true"
+      }
     ) do
       div(class: "flex items-start gap-3") do
         render_icon
         div(class: "flex-1 min-w-0") do
-          p(class: "text-sm font-medium") { @message }
+          p(class: "text-sm font-medium") { plain @message }
           render_actions if @action_label || @undo_callback
         end
         render_dismiss_button if @dismissible
@@ -71,11 +87,14 @@ class SonnerComponent < Phlex::HTML
                 else "text-gray-400"
                 end
 
-    raw <<~HTML
-      <svg class="h-5 w-5 flex-shrink-0 #{svg_class}" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" d="#{icon_path}" clip-rule="evenodd" />
-      </svg>
-    HTML
+    svg(
+      class: "h-5 w-5 flex-shrink-0 #{svg_class}",
+      fill: "currentColor",
+      viewBox: "0 0 20 20",
+      xmlns: "http://www.w3.org/2000/svg"
+    ) do |s|
+      s.path(fill_rule: "evenodd", d: icon_path, clip_rule: "evenodd")
+    end
   end
 
   def icon_path
@@ -105,9 +124,9 @@ class SonnerComponent < Phlex::HTML
 
       if @action_label && @action_url
         a(
-          href: @action_url,
+          href: safe_url(@action_url),
           class: "text-sm font-medium underline hover:no-underline focus:outline-none"
-        ) { @action_label }
+        ) { plain @action_label }
       end
     end
   end
@@ -119,11 +138,18 @@ class SonnerComponent < Phlex::HTML
       class: "inline-flex rounded-md p-1.5 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
     ) do
       span(class: "sr-only") { "Dismiss" }
-      raw <<~HTML
-        <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-        </svg>
-      HTML
+      svg(
+        class: "h-4 w-4",
+        fill: "currentColor",
+        viewBox: "0 0 20 20",
+        xmlns: "http://www.w3.org/2000/svg"
+      ) do |s|
+        s.path(
+          fill_rule: "evenodd",
+          d: "M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z",
+          clip_rule: "evenodd"
+        )
+      end
     end
   end
 
@@ -135,5 +161,19 @@ class SonnerComponent < Phlex::HTML
       data: {sonner_target: "progress"},
       style: "width: 100%; animation: sonner-progress #{@duration}ms linear;"
     )
+  end
+
+  # SECURITY: Validates callback against allowed registry
+  # @param callback [String, Symbol, nil] Callback identifier
+  # @return [String, nil] Validated Stimulus action or nil
+  def validate_callback(callback)
+    return nil if callback.nil?
+
+    callback_key = callback.to_s
+    unless CALLBACK_REGISTRY.key?(callback_key)
+      raise ArgumentError, "Invalid callback: #{callback}. Allowed: #{CALLBACK_REGISTRY.keys.join(", ")}"
+    end
+
+    CALLBACK_REGISTRY[callback_key]
   end
 end

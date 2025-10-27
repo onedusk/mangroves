@@ -46,9 +46,20 @@ export default class extends Controller {
   }
 
   navigate(event) {
-    // Optional: Add loading state or animation
+    // OPTIMIZE: Add loading state with opacity-50 and disabled classes
     const link = event.currentTarget
-    link.classList.add("opacity-50", "pointer-events-none")
+    link.classList.add("opacity-50", "pointer-events-none", "cursor-not-allowed")
+
+    // Add loading indicator to all pagination links
+    this.linkTargets.forEach(l => {
+      l.classList.add("opacity-50", "pointer-events-none")
+    })
+
+    // Dispatch event for potential loading spinners
+    this.element.dispatchEvent(new CustomEvent("pagination:loading", {
+      detail: { href: link.href },
+      bubbles: true
+    }))
   }
 
   getCurrentPage() {

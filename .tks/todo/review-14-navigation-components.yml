@@ -1,0 +1,21 @@
+# Review task 14: Navigation and menu components
+id: "review-14"
+task: "Verify navigation, menu, and pagination components implementation"
+entry: "2025-10-20"
+modified: "2025-10-20"
+priority: "M"
+project: "mangroves-multi-tenant"
+status: "pending"
+uuid: "rev14-g7h8-i9j0-k1l2-m3n4o5p6q7r8"
+urgency: "4"
+subtasks:
+  - "Check if dropdown_menu_component.rb exists with keyboard navigation and nested submenus"
+  - "Check if menubar_component.rb exists for horizontal menu bar with dropdown triggers"
+  - "Check if navigation_menu_component.rb exists with active state and breadcrumb integration"
+  - "Check if pagination_component.rb exists with first/last/prev/next controls"
+  - "Check if tabs_component.rb exists with horizontal/vertical orientations and keyboard navigation"
+  - "Check if sidebar_component.rb exists with collapsible sections and tenant workspace switcher"
+  - "Run spec/components tests for navigation components including keyboard accessibility"
+must_reference:
+  - "review/2025-19-10/14-navigation-components.json"
+  - "app/components/"

@@ -33,6 +33,10 @@
 #  fk_rails_...  (workspace_id => workspaces.id) ON DELETE => cascade
 #
 class AuditEvent < ApplicationRecord
+  # NOTE: AuditEvent is exempt from TenantScoped because audit events can exist
+  # without an account context (e.g., global admin actions, pre-login events).
+  # Instead, we implement custom scoping that filters by account when available.
+
   belongs_to :auditable, polymorphic: true, optional: true
   belongs_to :user, optional: true
   belongs_to :account, optional: true
@@ -52,8 +56,22 @@ class AuditEvent < ApplicationRecord
   ACTION_USER_LOGIN = "user.login"
   ACTION_USER_LOGOUT = "user.logout"
   ACTION_PERMISSION_CHANGE = "permission.change"
+  ACTION_ACCOUNT_CREATE = "account.create"
+  ACTION_ACCOUNT_UPDATE = "account.update"
+  ACTION_WORKSPACE_CREATE = "workspace.create"
+  ACTION_WORKSPACE_UPDATE = "workspace.update"
+  ACTION_WORKSPACE_DELETE = "workspace.delete"
+  ACTION_TEAM_CREATE = "team.create"
+  ACTION_TEAM_UPDATE = "team.update"
+  ACTION_TEAM_DELETE = "team.delete"
+  ACTION_MEMBERSHIP_CREATE = "membership.create"
+  ACTION_MEMBERSHIP_UPDATE = "membership.update"
+  ACTION_MEMBERSHIP_DELETE = "membership.delete"
 
   # Helper to log events with current context
+  # @param action [String] The action being logged
+  # @param auditable [ActiveRecord::Base, nil] The record being acted upon
+  # @param metadata [Hash] Additional metadata (ip_address, user_agent, etc.)
   def self.log(action:, auditable: nil, metadata: {})
     create!(
       action: action,
@@ -62,7 +80,19 @@ class AuditEvent < ApplicationRecord
       account: Current.account,
       workspace: Current.workspace,
       metadata: metadata,
-      ip_address: metadata[:ip_address]
+      ip_address: metadata[:ip_address],
+      user_agent: metadata[:user_agent]
     )
+  rescue ActiveRecord::RecordInvalid => e
+    # SECURITY: Log audit failures but don't raise to avoid blocking operations
+    Rails.logger.error("Failed to create audit event: #{e.message}")
+  end
+
+  private
+
+  # Override TenantScoped's account requirement validation since audit events
+  # can be created without account context (e.g., global admin actions)
+  def require_current_account_on_create
+    # No-op: Allow audit events to be created without account
   end
 end

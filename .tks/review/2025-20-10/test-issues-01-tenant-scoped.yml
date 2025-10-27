@@ -1,0 +1,23 @@
+# NO MORE than 6-8 operations/subtasks per task - if more, create new file
+id: "test-fix-001"
+task: "Fix TenantScoped concern auto-assignment and validation logic"
+entry: "2025-10-20"
+modified: "2025-10-20"
+priority: "H"
+project: "mangroves"
+status: "completed"
+uuid: "ts-concern-001"
+urgency: "9.0"
+subtasks:
+  - "Review TenantScoped concern implementation in app/models/concerns/tenant_scoped.rb"
+  - "Fix auto-assignment of Current.account to prevent premature assignment in tests"
+  - "Add validation to raise ActiveRecord::RecordInvalid when Current.account is nil"
+  - "Ensure workspaces association exists before calling it (NoMethodError fix)"
+  - "Run specs for Team, Workspace, and TenantScoped shared examples"
+  - "Verify all 6 related test failures resolve"
+must_reference:
+  - "docs/rails_conventions.md"
+  - "app/models/concerns/tenant_scoped.rb"
+  - "spec/models/concerns/tenant_scoped_spec.rb"
+  - "spec/models/team_spec.rb"
+  - "spec/models/workspace_spec.rb"

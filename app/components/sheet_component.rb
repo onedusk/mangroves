@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
-class SheetComponent < Phlex::HTML
+class SheetComponent < ApplicationComponent
   def initialize(title:, side: "right")
     @title = title
     @side = side
+    @title_id = "sheet_title_#{SecureRandom.hex(8)}"
   end
 
   def view_template(&)
@@ -11,6 +12,11 @@ class SheetComponent < Phlex::HTML
       data: {
         controller: "sheet",
         sheet_side_value: @side
+      },
+      role: "dialog",
+      aria: {
+        modal: "true",
+        labelledby: @title_id
       },
       class: "fixed inset-0 z-50 overflow-hidden"
     ) do
@@ -30,7 +36,7 @@ class SheetComponent < Phlex::HTML
             # Header
             div(class: "px-4 py-6 sm:px-6 border-b border-gray-200") do
               div(class: "flex items-start justify-between") do
-                h2(class: "text-lg font-semibold text-gray-900") { @title }
+                h2(id: @title_id, class: "text-lg font-semibold text-gray-900") { plain @title }
                 button(
                   data: {action: "sheet#close"},
                   class: "ml-3 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 rounded-md"

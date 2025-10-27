@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ContentSectionComponent < Phlex::HTML
+class ContentSectionComponent < ApplicationComponent
   def initialize(
     container: :default,
     padding: :default,
@@ -15,7 +15,7 @@ class ContentSectionComponent < Phlex::HTML
     @class_name = class_name
   end
 
-  def template(&)
+  def view_template(&)
     section(id: @id, class: "#{background_classes} #{@class_name}") do
       div(class: container_classes) do
         div(class: padding_classes, &)

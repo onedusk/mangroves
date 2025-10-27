@@ -3,18 +3,27 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["progress"]
   static values = {
-    duration: Number,
-    undoCallback: String
+    duration: Number
+    // SECURITY: Removed undoCallback value - no longer needed after removing new Function() vulnerability
   }
 
   connect() {
+    // NOTE: Store all timeout IDs for proper cleanup
+    this.timeoutId = null
+    this.dismissTimeoutId = null
+
     if (this.durationValue > 0) {
       this.startTimer()
     }
   }
 
   disconnect() {
+    // NOTE: Clear all timeouts to prevent memory leaks
     this.clearTimer()
+    if (this.dismissTimeoutId) {
+      clearTimeout(this.dismissTimeoutId)
+      this.dismissTimeoutId = null
+    }
   }
 
   startTimer() {
@@ -34,22 +43,17 @@ export default class extends Controller {
     event.preventDefault()
     this.clearTimer()
 
-    if (this.undoCallbackValue) {
-      // Execute undo callback if provided
-      try {
-        // NOTE: This is a simple eval-based approach. In production,
-        // you might want to use a more secure callback mechanism
-        const callback = new Function(this.undoCallbackValue)
-        callback()
-      } catch (error) {
-        console.error("Undo callback error:", error)
-      }
-    }
+    // SECURITY FIX: Removed new Function() code injection vulnerability
+    // Callbacks are now handled via Stimulus actions in the component definition
+    // The undo action itself is the callback - dispatching event for app to handle
 
     // Dispatch custom event for undo action
     this.element.dispatchEvent(new CustomEvent("sonner:undo", {
       bubbles: true,
-      detail: { callback: this.undoCallbackValue }
+      detail: {
+        timestamp: Date.now(),
+        element: this.element
+      }
     }))
 
     this.dismiss()
@@ -57,7 +61,7 @@ export default class extends Controller {
 
   dismiss() {
     this.element.classList.add("opacity-0", "transition-opacity", "duration-300")
-    setTimeout(() => {
+    this.dismissTimeoutId = setTimeout(() => {
       this.element.remove()
     }, 300)
   }

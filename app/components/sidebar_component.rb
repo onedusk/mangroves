@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SidebarComponent < Phlex::HTML
+class SidebarComponent < ApplicationComponent
   def initialize(
     sections:,
     current_user: nil,
@@ -19,7 +19,7 @@ class SidebarComponent < Phlex::HTML
     aside(
       data: {
         controller: "sidebar",
-        sidebar_collapsible_value: @collapsible
+        sidebar_collapsible_value: @collapsible.to_s
       },
       aria: {label: "Sidebar navigation"},
       class: sidebar_classes

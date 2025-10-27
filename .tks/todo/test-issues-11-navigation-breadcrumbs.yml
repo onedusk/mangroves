@@ -1,0 +1,21 @@
+# NO MORE than 6-8 operations/subtasks per task - if more, create new file
+id: "test-fix-011"
+task: "Fix NavigationMenuComponent breadcrumbs rendering"
+entry: "2025-10-20"
+modified: "2025-10-20"
+priority: "M"
+project: "mangroves"
+status: "completed"
+uuid: "nav-breadcrumbs-011"
+urgency: "4.5"
+subtasks:
+  - "Review NavigationMenuComponent initialize method for breadcrumbs parameter"
+  - "Check if breadcrumbs rendering logic exists in view_template"
+  - "Add or fix breadcrumbs rendering with proper nav[aria-label='Breadcrumb'] wrapper"
+  - "Ensure breadcrumbs render before main navigation menu"
+  - "Run NavigationMenuComponent breadcrumbs integration spec"
+  - "Verify failure resolves"
+must_reference:
+  - "docs/rails_conventions.md"
+  - "app/components/navigation_menu_component.rb"
+  - "spec/components/navigation_menu_component_spec.rb"

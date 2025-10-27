@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import { throttle } from "../utils/throttle"
 
 export default class extends Controller {
   static targets = ["panel1", "panel2", "handle"]
@@ -13,6 +14,10 @@ export default class extends Controller {
     this.isResizing = false
     this.startPos = 0
     this.startSize = this.defaultSizeValue
+    // NOTE: Store bound functions for proper cleanup
+    // OPTIMIZE: Throttle resize events to 150ms for better performance
+    this.boundResize = throttle(this.resize.bind(this), 150)
+    this.boundStopResize = this.stopResize.bind(this)
   }
 
   startResize(event) {
@@ -27,10 +32,11 @@ export default class extends Controller {
       this.startSize = (this.panel1Target.offsetWidth / this.element.offsetWidth) * 100
     }
 
-    document.addEventListener("mousemove", this.resize.bind(this))
-    document.addEventListener("mouseup", this.stopResize.bind(this))
-    document.addEventListener("touchmove", this.resize.bind(this))
-    document.addEventListener("touchend", this.stopResize.bind(this))
+    // Use bound functions
+    document.addEventListener("mousemove", this.boundResize)
+    document.addEventListener("mouseup", this.boundStopResize)
+    document.addEventListener("touchmove", this.boundResize)
+    document.addEventListener("touchend", this.boundStopResize)
 
     document.body.style.cursor = this.orientationValue === "vertical" ? "row-resize" : "col-resize"
     document.body.style.userSelect = "none"
@@ -62,17 +68,26 @@ export default class extends Controller {
   }
 
   stopResize() {
+    if (!this.isResizing) return
+
     this.isResizing = false
-    document.removeEventListener("mousemove", this.resize.bind(this))
-    document.removeEventListener("mouseup", this.stopResize.bind(this))
-    document.removeEventListener("touchmove", this.resize.bind(this))
-    document.removeEventListener("touchend", this.stopResize.bind(this))
+    // Use bound functions
+    document.removeEventListener("mousemove", this.boundResize)
+    document.removeEventListener("mouseup", this.boundStopResize)
+    document.removeEventListener("touchmove", this.boundResize)
+    document.removeEventListener("touchend", this.boundStopResize)
 
     document.body.style.cursor = ""
     document.body.style.userSelect = ""
   }
 
   disconnect() {
+    // NOTE: Ensure cleanup even if stopResize wasn't called
     this.stopResize()
+    // Extra safety: remove listeners
+    document.removeEventListener("mousemove", this.boundResize)
+    document.removeEventListener("mouseup", this.boundStopResize)
+    document.removeEventListener("touchmove", this.boundResize)
+    document.removeEventListener("touchend", this.boundStopResize)
   }
 }

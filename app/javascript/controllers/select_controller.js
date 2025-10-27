@@ -18,6 +18,7 @@ export default class extends Controller {
 
   connect() {
     this.selected = this.getInitialSelected()
+    this.focusedOptionIndex = -1
     // Close dropdown when clicking outside
     this.boundClose = this.closeOnClickOutside.bind(this)
     document.addEventListener("click", this.boundClose)
@@ -49,16 +50,30 @@ export default class extends Controller {
 
   open() {
     this.menuTarget.classList.remove("hidden")
+    this.focusedOptionIndex = this.getSelectedOptionIndex()
+
     if (this.searchableValue && this.hasSearchInputTarget) {
       this.searchInputTarget.focus()
+    } else {
+      // Focus first visible option or selected option
+      if (this.focusedOptionIndex >= 0) {
+        this.focusOptionAtIndex(this.focusedOptionIndex)
+      } else if (this.visibleOptions.length > 0) {
+        this.focusOptionAtIndex(0)
+      }
     }
   }
 
   close() {
     this.menuTarget.classList.add("hidden")
+    this.focusedOptionIndex = -1
     if (this.hasSearchInputTarget) {
       this.searchInputTarget.value = ""
       this.clearSearch()
+    }
+    // Return focus to trigger
+    if (this.hasTriggerTarget) {
+      this.triggerTarget.focus()
     }
   }
 
@@ -248,5 +263,138 @@ export default class extends Controller {
     if (this.hasErrorTarget) {
       this.errorTarget.classList.add("hidden")
     }
+  }
+
+  // Keyboard navigation methods following ARIA Authoring Practices
+  handleKeydown(event) {
+    // Handle keyboard on trigger button
+    if (event.target === this.triggerTarget) {
+      this.handleTriggerKeydown(event)
+    } else if (this.menuTarget.contains(event.target)) {
+      this.handleMenuKeydown(event)
+    }
+  }
+
+  handleTriggerKeydown(event) {
+    switch (event.key) {
+      case "ArrowDown":
+      case "ArrowUp":
+      case "Enter":
+      case " ": // Space
+        event.preventDefault()
+        if (!this.menuTarget.classList.contains("hidden")) {
+          this.close()
+        } else {
+          this.open()
+        }
+        break
+      case "Escape":
+        event.preventDefault()
+        this.close()
+        break
+    }
+  }
+
+  handleMenuKeydown(event) {
+    const visibleOptions = this.visibleOptions
+
+    switch (event.key) {
+      case "ArrowDown":
+        event.preventDefault()
+        this.focusNextOption(visibleOptions)
+        break
+      case "ArrowUp":
+        event.preventDefault()
+        this.focusPreviousOption(visibleOptions)
+        break
+      case "Home":
+        event.preventDefault()
+        this.focusFirstOption(visibleOptions)
+        break
+      case "End":
+        event.preventDefault()
+        this.focusLastOption(visibleOptions)
+        break
+      case "Enter":
+      case " ": // Space
+        event.preventDefault()
+        if (this.focusedOptionIndex >= 0 && visibleOptions[this.focusedOptionIndex]) {
+          visibleOptions[this.focusedOptionIndex].click()
+        }
+        break
+      case "Escape":
+        event.preventDefault()
+        this.close()
+        break
+      case "Tab":
+        // Allow natural tab behavior, just close menu
+        this.close()
+        break
+    }
+  }
+
+  get visibleOptions() {
+    return this.optionTargets.filter(opt => opt.style.display !== "none")
+  }
+
+  getSelectedOptionIndex() {
+    const visibleOptions = this.visibleOptions
+    return visibleOptions.findIndex(opt => {
+      const value = opt.dataset.value
+      if (this.multipleValue) {
+        return Array.isArray(this.selected) && this.selected.includes(value)
+      }
+      return value === this.selected
+    })
+  }
+
+  focusNextOption(visibleOptions) {
+    if (visibleOptions.length === 0) return
+
+    this.focusedOptionIndex = (this.focusedOptionIndex + 1) % visibleOptions.length
+    this.focusOptionAtIndex(this.focusedOptionIndex, visibleOptions)
+  }
+
+  focusPreviousOption(visibleOptions) {
+    if (visibleOptions.length === 0) return
+
+    this.focusedOptionIndex = this.focusedOptionIndex <= 0
+      ? visibleOptions.length - 1
+      : this.focusedOptionIndex - 1
+    this.focusOptionAtIndex(this.focusedOptionIndex, visibleOptions)
+  }
+
+  focusFirstOption(visibleOptions) {
+    if (visibleOptions.length === 0) return
+
+    this.focusedOptionIndex = 0
+    this.focusOptionAtIndex(this.focusedOptionIndex, visibleOptions)
+  }
+
+  focusLastOption(visibleOptions) {
+    if (visibleOptions.length === 0) return
+
+    this.focusedOptionIndex = visibleOptions.length - 1
+    this.focusOptionAtIndex(this.focusedOptionIndex, visibleOptions)
+  }
+
+  focusOptionAtIndex(index, visibleOptions = null) {
+    const options = visibleOptions || this.visibleOptions
+    if (index < 0 || index >= options.length) return
+
+    const option = options[index]
+
+    // Remove focus styling from all options
+    this.optionTargets.forEach(opt => {
+      opt.classList.remove("ring-2", "ring-blue-500", "ring-inset")
+      opt.removeAttribute("aria-selected")
+    })
+
+    // Add focus styling to current option
+    option.classList.add("ring-2", "ring-blue-500", "ring-inset")
+    option.setAttribute("aria-selected", "true")
+
+    // Scroll option into view if needed
+    option.scrollIntoView({ block: "nearest", behavior: "smooth" })
   }
 }

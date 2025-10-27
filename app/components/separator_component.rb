@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SeparatorComponent < Phlex::HTML
+class SeparatorComponent < ApplicationComponent
   def initialize(orientation: :horizontal, decorative: true, class_name: nil)
     @orientation = orientation
     @decorative = decorative

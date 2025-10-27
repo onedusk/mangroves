@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-class DrawerComponent < Phlex::HTML
+class DrawerComponent < ApplicationComponent
   def initialize(title:)
     @title = title
   end
 
-  def template(&)
+  def view_template(&)
     div(data: {controller: "drawer"}, class: "fixed inset-0 overflow-hidden") do
       div(class: "absolute inset-0 overflow-hidden") do
         div(

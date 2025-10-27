@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SelectComponent < Phlex::HTML
+class SelectComponent < ApplicationComponent
   def initialize(
     name:,
     options: [],
@@ -31,7 +31,10 @@ class SelectComponent < Phlex::HTML
     @id = id || "select_#{name}"
   end
 
-  def template
+  def view_template
+    hint_id = "#{@id}_hint"
+    error_id = "#{@id}_error"
+
     div(class: "w-full") do
       if @label
         label(for: @id, class: "block text-sm font-medium text-gray-700 mb-1") do
@@ -43,51 +46,52 @@ class SelectComponent < Phlex::HTML
       end
 
       if @searchable || @multiple
-        render_custom_select
+        render_custom_select(hint_id, error_id)
       else
-        render_native_select
+        render_native_select(hint_id, error_id)
       end
 
       if @hint && !@error_message
-        p(class: "mt-1 text-sm text-gray-500") { @hint }
+        p(id: hint_id, class: "mt-1 text-sm text-gray-500") { plain @hint }
       end
 
       if @error_message
-        p(class: "mt-1 text-sm text-red-600", data: {select_target: "error"}) { @error_message }
+        p(id: error_id, class: "mt-1 text-sm text-red-600", data: {select_target: "error"}) { plain @error_message }
       end
     end
   end
 
   private
 
-  def render_native_select
+  def render_native_select(hint_id, error_id)
     select(
       name: @name,
       id: @id,
       disabled: @disabled,
       required: @required,
       class: select_classes,
+      aria: aria_attributes(hint_id, error_id),
       data: {
         controller: "select",
         action: "change->select#validate"
       }
     ) do
-      option(value: "", disabled: true, selected: @selected.nil?) { @placeholder }
+      option(value: "", disabled: true, selected: @selected.nil?) { plain @placeholder }
 
-      @options.each do |option|
-        if option.is_a?(Hash)
+      @options.each do |opt|
+        if opt.is_a?(Hash)
           option(
-            value: option[:value],
-            selected: option[:value] == @selected
-          ) { option[:label] }
+            value: opt[:value],
+            selected: opt[:value] == @selected
+          ) { plain opt[:label] }
         else
-          option(value: option, selected: option == @selected) { option }
+          option(value: opt, selected: opt == @selected) { plain opt.to_s }
         end
       end
     end
   end
 
-  def render_custom_select
+  def render_custom_select(hint_id, error_id)
     div(
       class: "relative",
       data: {
@@ -120,11 +124,12 @@ class SelectComponent < Phlex::HTML
       button(
         type: "button",
         data: {
-          action: "select#toggle",
+          action: "select#toggle keydown->select#handleKeydown",
           select_target: "trigger"
         },
         class: select_trigger_classes,
-        disabled: @disabled
+        disabled: @disabled,
+        aria: trigger_aria_attributes(hint_id, error_id)
       ) do
         span(data: {select_target: "display"}, class: "block truncate") do
           if @multiple && @selected.present?
@@ -153,7 +158,12 @@ class SelectComponent < Phlex::HTML
 
       # Dropdown menu
       div(
-        data: {select_target: "menu"},
+        data: {
+          select_target: "menu",
+          action: "keydown->select#handleKeydown"
+        },
+        role: "listbox",
+        aria: {multiselectable: @multiple.to_s},
         class: "hidden absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
       ) do
         if @searchable
@@ -192,13 +202,15 @@ class SelectComponent < Phlex::HTML
       data: {
         action: "click->select#selectOption",
         select_target: "option",
-        value: value,
-        label: label
+        value: sanitize_text(value),
+        label: sanitize_text(label)
       },
+      role: "option",
+      tabindex: "-1",
       class: "#{option_classes} #{is_selected ? "bg-blue-50 text-blue-900" : "text-gray-900"}"
     ) do
       div(class: "flex items-center justify-between") do
-        span(class: "block truncate #{is_selected ? "font-semibold" : "font-normal"}") { label }
+        span(class: "block truncate #{is_selected ? "font-semibold" : "font-normal"}") { plain label }
         if is_selected
           svg(
             class: "h-5 w-5 text-blue-600",
@@ -260,5 +272,53 @@ class SelectComponent < Phlex::HTML
 
   def option_classes
     "cursor-default select-none relative py-2 pl-3 pr-9 hover:bg-gray-50"
+  end
+
+  def aria_attributes(hint_id, error_id)
+    attrs = {}
+
+    # NOTE: ARIA invalid state for form validation
+    attrs[:invalid] = "true" if @validation_state == :error
+
+    # NOTE: ARIA required for form fields
+    attrs[:required] = "true" if @required
+
+    # NOTE: ARIA disabled for disabled inputs
+    attrs[:disabled] = "true" if @disabled
+
+    # NOTE: ARIA describedby for hint/error association
+    described_by = []
+    described_by << hint_id if @hint && !@error_message
+    described_by << error_id if @error_message
+    attrs[:describedby] = described_by.join(" ") if described_by.any?
+
+    # NOTE: ARIA label for accessibility when no visible label
+    attrs[:label] = sanitize_text(@label) if @label.present?
+
+    attrs
+  end
+
+  def trigger_aria_attributes(hint_id, error_id)
+    attrs = {
+      haspopup: "listbox",
+      expanded: "false"
+    }
+
+    # NOTE: ARIA invalid state for form validation
+    attrs[:invalid] = "true" if @validation_state == :error
+
+    # NOTE: ARIA required for form fields
+    attrs[:required] = "true" if @required
+
+    # NOTE: ARIA describedby for hint/error association
+    described_by = []
+    described_by << hint_id if @hint && !@error_message
+    described_by << error_id if @error_message
+    attrs[:describedby] = described_by.join(" ") if described_by.any?
+
+    # NOTE: ARIA label for accessibility when no visible label
+    attrs[:label] = sanitize_text(@label) if @label.present?
+
+    attrs
   end
 end

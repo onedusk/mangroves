@@ -1,0 +1,33 @@
+<toc version="1.0" llm-optimized="true">
+  <metadata>
+    <totalDocs>1</totalDocs>
+  </metadata>
+  <sections>
+    <section id="company">
+      <title>Company</title>
+      <section id="company-sandbox">
+        <title>Sandbox</title>
+        <section id="company-sandbox-dl-dev">
+          <title>Dl Dev</title>
+          <section id="company-sandbox-dl-dev-experiments">
+            <title>Experiments</title>
+            <section id="company-sandbox-dl-dev-experiments-mangroves">
+              <title>Mangroves</title>
+              <section id="company-sandbox-dl-dev-experiments-mangroves-spec">
+                <title>Spec</title>
+                <section id="company-sandbox-dl-dev-experiments-mangroves-spec-javascript">
+                  <title>Javascript</title>
+                  <chapter id="company-sandbox-dl-dev-experiments-mangroves-spec-javascript-readme" path="company/sandbox/dl_dev/experiments/mangroves/spec/javascript/README.md" modified="2025-10-20T14:02:48Z" size="7023" words="809" readTime="3min" hash="sha256:0e4c50afb3927f90">
+                    <title>JavaScript Memory Leak Tests</title>
+                    <summary>JavaScript Memory Leak Tests ## Overview This directory contains tests to verify that Stimulus controllers properly clean up event listeners and prevent memory leaks during connect/disconnect cycl...</summary>
+                    <keywords>performance, automated, properly, during, events/second, detached, (should, controllers, test, javascript</keywords>
+                  </chapter>
+                </section>
+              </section>
+            </section>
+          </section>
+        </section>
+      </section>
+    </section>
+  </sections>
+</toc>

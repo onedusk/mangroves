@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ToggleGroupComponent < Phlex::HTML
+class ToggleGroupComponent < ApplicationComponent
   def initialize(
     name:,
     items: [],

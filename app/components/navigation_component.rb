@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class NavigationComponent < Phlex::HTML
+class NavigationComponent < ApplicationComponent
   def initialize(
     logo_url: nil,
     logo_text: nil,
@@ -19,7 +19,7 @@ class NavigationComponent < Phlex::HTML
     @transparent = transparent
   end
 
-  def template
+  def view_template
     nav(class: navigation_classes, data_controller: "navigation") do
       div(class: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8") do
         div(class: "flex justify-between items-center h-16") do
@@ -48,10 +48,8 @@ class NavigationComponent < Phlex::HTML
         if @logo_url
           img(src: @logo_url, alt: "Logo", class: "h-8 w-auto")
         end
-        if @logo_text || @account
-          span(class: "text-xl font-bold text-gray-900") do
-            @logo_text || @account&.name || "App"
-          end
+        span(class: "text-xl font-bold text-gray-900") do
+          @logo_text || @account&.name || "App"
         end
       end
     end

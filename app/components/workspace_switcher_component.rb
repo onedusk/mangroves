@@ -1,14 +1,20 @@
 # frozen_string_literal: true
 
-class WorkspaceSwitcherComponent < Phlex::HTML
+class WorkspaceSwitcherComponent < ApplicationComponent
   def initialize(current_user:, current_workspace: nil)
     super()
     @current_user = current_user
     @current_workspace = current_workspace
   end
 
-  def template
-    div(class: "relative inline-block text-left") do
+  def view_template
+    div(
+      class: "relative inline-block text-left",
+      data: {
+        controller: "dropdown",
+        dropdown_keyboard_value: "true"
+      }
+    ) do
       render_trigger_button
       render_dropdown_menu
     end
@@ -17,7 +23,18 @@ class WorkspaceSwitcherComponent < Phlex::HTML
   private
 
   def render_trigger_button
-    button(type: "button", class: trigger_button_classes) do
+    button(
+      type: "button",
+      class: trigger_button_classes,
+      data: {
+        action: "dropdown#toggle keydown->dropdown#handleKeydown",
+        dropdown_target: "trigger"
+      },
+      aria: {
+        haspopup: "menu",
+        expanded: "false"
+      }
+    ) do
       span(class: "truncate") do
         if @current_workspace
           @current_workspace.name
@@ -52,7 +69,14 @@ class WorkspaceSwitcherComponent < Phlex::HTML
   end
 
   def render_dropdown_menu
-    div(class: dropdown_menu_classes) do
+    div(
+      class: "#{dropdown_menu_classes} hidden",
+      data: {
+        dropdown_target: "menu",
+        action: "keydown->dropdown#handleKeydown"
+      },
+      role: "menu"
+    ) do
       div(class: "py-1") do
         render_workspaces
       end
@@ -65,13 +89,22 @@ class WorkspaceSwitcherComponent < Phlex::HTML
   end
 
   def render_workspaces
-    @current_user.accessible_accounts.each do |account|
+    # SECURITY: Only show accounts the user has access to via active memberships
+    accessible_accounts = @current_user.accounts
+      .joins(:account_memberships)
+      .where(account_memberships: {user_id: @current_user.id, status: :active})
+      .distinct
+
+    accessible_accounts.each do |account|
+      # SECURITY: Verify user has account membership before showing
+      next unless user_can_access_account?(account)
+
       # Account header
       div(class: "px-4 py-2 text-xs font-semibold text-gray-500 uppercase bg-gray-50") do
         account.name
       end
 
-      # Workspaces in account
+      # SECURITY: Only show workspaces user has explicit access to
       workspaces = account.workspaces.active
         .joins(:workspace_memberships)
         .where(workspace_memberships: {user_id: @current_user.id, status: :active})
@@ -79,6 +112,9 @@ class WorkspaceSwitcherComponent < Phlex::HTML
 
       if workspaces.any?
         workspaces.each do |workspace|
+          # SECURITY: Double-check workspace access before rendering
+          next unless user_can_access_workspace?(workspace)
+
           render_workspace_item(account, workspace)
         end
       else
@@ -95,7 +131,19 @@ class WorkspaceSwitcherComponent < Phlex::HTML
       method: "post",
       class: "block"
     ) do
-      button(type: "submit", class: workspace_button_classes(workspace)) do
+      # SECURITY: CSRF protection for workspace switching
+      input(
+        type: "hidden",
+        name: "authenticity_token",
+        value: helpers.form_authenticity_token
+      )
+      button(
+        type: "submit",
+        class: workspace_button_classes(workspace),
+        data: {dropdown_target: "menuItem"},
+        role: "menuitem",
+        tabindex: "-1"
+      ) do
         render_workspace_button_content(workspace)
       end
     end
@@ -138,5 +186,17 @@ class WorkspaceSwitcherComponent < Phlex::HTML
   def helpers
     # Access Rails URL helpers in Phlex
     ApplicationController.helpers
+  end
+
+  # SECURITY: Verify user has active account membership
+  def user_can_access_account?(account)
+    @current_user.account_memberships
+      .exists?(account: account, status: :active)
+  end
+
+  # SECURITY: Verify user has active workspace membership
+  def user_can_access_workspace?(workspace)
+    @current_user.workspace_memberships
+      .exists?(workspace: workspace, status: :active)
   end
 end

@@ -40,5 +40,11 @@ module Mangroves
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # SECURITY: Enable Rack::Attack for rate limiting
+    config.middleware.use Rack::Attack
+
+    # SECURITY: Configure allowed redirect domains
+    config.allowed_redirect_domains = []
   end
 end

@@ -1,14 +1,15 @@
 # frozen_string_literal: true
 
-class PopoverComponent < Phlex::HTML
+class PopoverComponent < ApplicationComponent
   def initialize(trigger_content:, align: "center", side: "bottom", offset: 8)
     @trigger_content = trigger_content
     @align = align
     @side = side
     @offset = offset
+    @popover_id = "popover_#{SecureRandom.hex(8)}"
   end
 
-  def view_template(&content_block)
+  def view_template(&)
     div(
       data: {
         controller: "popover",
@@ -18,16 +19,26 @@ class PopoverComponent < Phlex::HTML
       },
       class: "relative inline-block"
     ) do
-      div(data: {popover_target: "trigger", action: "click->popover#toggle"}) do
+      div(
+        data: {popover_target: "trigger", action: "click->popover#toggle"},
+        role: "button",
+        tabindex: "0",
+        aria: {
+          haspopup: "dialog",
+          expanded: "false",
+          controls: @popover_id
+        }
+      ) do
         render_content(@trigger_content)
       end
 
       div(
+        id: @popover_id,
+        role: "dialog",
         data: {popover_target: "content"},
-        class: "hidden absolute z-50 bg-white rounded-md border border-gray-200 shadow-lg p-4"
-      ) do
-        yield_content(&content_block) if content_block
-      end
+        class: "hidden absolute z-50 bg-white rounded-md border border-gray-200 shadow-lg p-4",
+        &
+      )
     end
   end
 
@@ -38,7 +49,8 @@ class PopoverComponent < Phlex::HTML
     when String
       plain content
     when Proc
-      content.call
+      # NOTE: XSS Protection - Execute Proc in safe context
+      safe_proc(content)
     else
       plain content.to_s
     end

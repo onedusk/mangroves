@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
-class DropdownMenuComponent < Phlex::HTML
+class DropdownMenuComponent < ApplicationComponent
   def initialize(items:, trigger_text: "Menu", align: :left, width: "w-56")
     @items = items
     @trigger_text = trigger_text
     @align = align
     @width = width
+    @menu_id = "dropdown_menu_#{SecureRandom.hex(8)}"
   end
 
   def view_template
@@ -31,12 +32,13 @@ class DropdownMenuComponent < Phlex::HTML
         dropdown_menu_target: "trigger"
       },
       aria: {
-        haspopup: "true",
-        expanded: "false"
+        haspopup: "menu",
+        expanded: "false",
+        controls: @menu_id
       },
       class: trigger_button_classes
     ) do
-      span { @trigger_text }
+      span { plain @trigger_text }
       render_chevron_icon
     end
   end
@@ -66,6 +68,7 @@ class DropdownMenuComponent < Phlex::HTML
 
   def render_dropdown_content
     div(
+      id: @menu_id,
       data: {
         dropdown_menu_target: "menu",
         action: "keydown->dropdown-menu#handleMenuKeydown"
@@ -136,7 +139,7 @@ class DropdownMenuComponent < Phlex::HTML
     div(class: "flex items-center justify-between w-full") do
       div(class: "flex items-center gap-2") do
         render_icon(item[:icon]) if item[:icon]
-        span { item[:label] }
+        span { plain item[:label] }
       end
       render_shortcut(item[:shortcut]) if item[:shortcut]
     end
@@ -164,7 +167,7 @@ class DropdownMenuComponent < Phlex::HTML
         div(class: "flex items-center justify-between w-full") do
           div(class: "flex items-center gap-2") do
             render_icon(item[:icon]) if item[:icon]
-            span { item[:label] }
+            span { plain item[:label] }
           end
           render_chevron_right_icon
         end
@@ -191,7 +194,7 @@ class DropdownMenuComponent < Phlex::HTML
 
   def render_heading(item)
     div(class: "px-4 py-2 text-xs font-semibold text-gray-500 uppercase") do
-      item[:label]
+      plain item[:label]
     end
   end
 
@@ -200,7 +203,7 @@ class DropdownMenuComponent < Phlex::HTML
   end
 
   def render_shortcut(shortcut)
-    kbd(class: "ml-auto text-xs text-gray-500") { shortcut }
+    kbd(class: "ml-auto text-xs text-gray-500") { plain shortcut }
   end
 
   def render_chevron_right_icon

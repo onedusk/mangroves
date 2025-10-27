@@ -14,6 +14,15 @@ export default class extends Controller {
     this.updateState(this.checkedValue)
   }
 
+  // Keyboard accessibility following WCAG 2.1.1
+  handleKeydown(event) {
+    // Space or Enter key toggles the switch
+    if (event.key === " " || event.key === "Enter") {
+      event.preventDefault()
+      this.toggle(event)
+    }
+  }
+
   updateState(checked) {
     // Update button
     this.buttonTarget.setAttribute("aria-checked", checked)

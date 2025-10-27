@@ -218,7 +218,7 @@ RSpec.describe NavigationMenuComponent, type: :component do
       ]
       render_inline(described_class.new(items: items_with_heading))
 
-      expect(page).to have_css(".uppercase", text: "MAIN MENU")
+      expect(page).to have_css(".uppercase", text: "Main Menu")
     end
   end
 

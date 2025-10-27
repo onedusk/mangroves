@@ -40,14 +40,16 @@ class Workspace < ApplicationRecord
 
   enum :status, {active: 0, archived: 1, suspended: 2}
 
-  validates :name, presence: true
+  validates :name, presence: true, length: {minimum: 2, maximum: 100}
   validates :slug,
     presence: true,
     uniqueness: {scope: :account_id},
+    length: {minimum: 2, maximum: 63},
     format: {
       with: /\A[a-z0-9][a-z0-9-]*[a-z0-9]\z/,
       message: "must contain only lowercase letters, numbers, and hyphens"
     }
+  validates :description, length: {maximum: 1000}, allow_blank: true
 
   before_validation :generate_slug, on: :create
   before_validation :set_defaults, on: :create
@@ -62,14 +64,25 @@ class Workspace < ApplicationRecord
 
   def generate_slug
     return if slug.present?
+    return unless name.present?
+
+    # SECURITY: Guard against nil account to prevent errors
+    unless account
+      errors.add(:account, "must be present before generating slug")
+      return
+    end
 
     base_slug = name.parameterize
-    self.slug = base_slug
+    candidate_slug = base_slug
+
+    # Check uniqueness within account scope using unscoped query
     counter = 1
-    while account.workspaces.exists?(slug:)
-      self.slug = "#{base_slug}-#{counter}"
+    while Workspace.unscoped.exists?(slug: candidate_slug, account_id: account.id)
+      candidate_slug = "#{base_slug}-#{counter}"
       counter += 1
     end
+
+    self.slug = candidate_slug
   end
 
   def set_defaults

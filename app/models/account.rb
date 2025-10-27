@@ -40,14 +40,18 @@ class Account < ApplicationRecord
 
   belongs_to :owner, class_name: "User", optional: true
 
-  validates :name, presence: true
+  validates :name, presence: true, length: {minimum: 2, maximum: 100}
   validates :slug,
     presence: true,
     uniqueness: true,
+    length: {minimum: 2, maximum: 63},
     format: {
       with: /\A[a-z0-9][a-z0-9-]*[a-z0-9]\z/,
       message: "must contain only lowercase letters, numbers, and hyphens"
     }
+  validates :billing_email,
+    format: {with: URI::MailTo::EMAIL_REGEXP, message: "must be a valid email"},
+    allow_blank: true
 
   before_validation :generate_slug, on: :create
   before_validation :set_defaults, on: :create

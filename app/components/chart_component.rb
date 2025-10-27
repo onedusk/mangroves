@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class ChartComponent < Phlex::HTML
-  def template
+class ChartComponent < ApplicationComponent
+  def view_template
     canvas(data: {controller: "chart"})
   end
 end

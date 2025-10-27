@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ScrollAreaComponent < Phlex::HTML
+class ScrollAreaComponent < ApplicationComponent
   def initialize(height: "400px", width: "100%", orientation: :vertical, class_name: nil)
     @height = height
     @width = width

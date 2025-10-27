@@ -56,4 +56,9 @@ export default class extends Controller {
     })
     this.isAnyMenuOpen = hasOpenMenu
   }
+
+  disconnect() {
+    // NOTE: Cleanup any open menus on disconnect
+    this.closeAllMenus()
+  }
 }

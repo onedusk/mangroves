@@ -1,0 +1,22 @@
+# Review task 13: Overlay and popover components
+id: "review-13"
+task: "Verify overlay, popover, and tooltip components implementation"
+entry: "2025-10-20"
+modified: "2025-10-20"
+priority: "M"
+project: "mangroves-multi-tenant"
+status: "pending"
+uuid: "rev13-f6g7-h8i9-j0k1-l2m3n4o5p6q7"
+urgency: "4"
+subtasks:
+  - "Check if popover_component.rb exists with auto-positioning and click-outside-to-close"
+  - "Check if hover_card_component.rb exists with delayed show/hide and rich content support"
+  - "Check if sheet_component.rb exists as slide-over panel with directional positions"
+  - "Check if tooltip_component.rb exists with hover behavior, arrow, and multiple positions"
+  - "Check if aspect_ratio_component.rb exists for maintaining aspect ratios"
+  - "Verify positioning_controller.js exists for overlay positioning logic"
+  - "Run spec/components tests for overlay components if they exist"
+must_reference:
+  - "review/2025-19-10/13-overlay-components.json"
+  - "app/components/"
+  - "app/javascript/controllers/"

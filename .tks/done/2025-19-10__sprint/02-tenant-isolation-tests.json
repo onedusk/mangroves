@@ -18,7 +18,5 @@
     "Update spec/models/workspace_spec.rb to include_examples 'tenant scoped model' and write WorkspaceMembership/TeamMembership validation specs rejecting cross-tenant users",
     "Run 'bundle exec rspec spec/models/concerns/tenant_scoped_spec.rb' and verify all tenant isolation tests pass"
   ],
-  "must_reference": [
-    "mangroves/docs/rails_conventions.md"
-  ]
+  "must_reference": ["mangroves/docs/rails_conventions.md"]
 }

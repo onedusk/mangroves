@@ -1,0 +1,21 @@
+# NO MORE than 6-8 operations/subtasks per task - if more, create new file
+id: "test-fix-010"
+task: "Fix SidebarComponent collapsible functionality"
+entry: "2025-10-20"
+modified: "2025-10-20"
+priority: "M"
+project: "mangroves"
+status: "completed"
+uuid: "sidebar-collapse-010"
+urgency: "5.0"
+subtasks:
+  - "Review SidebarComponent view_template for collapsible parameter logic"
+  - "Add collapse button rendering when collapsible: true is passed"
+  - "Add data-sidebar-collapsible-value='true' to controller element"
+  - "Verify button has correct aria-label='Toggle sidebar' and toggle action"
+  - "Run SidebarComponent specs to verify both failures resolve"
+must_reference:
+  - "docs/rails_conventions.md"
+  - "app/components/sidebar_component.rb"
+  - "spec/components/sidebar_component_spec.rb"
+  - "app/javascript/controllers/sidebar_controller.js"

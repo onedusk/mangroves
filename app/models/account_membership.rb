@@ -24,6 +24,7 @@
 #  index_account_memberships_on_role                    (role)
 #  index_account_memberships_on_status                  (status)
 #  index_account_memberships_on_user_id                 (user_id)
+#  index_account_memberships_on_user_id_and_account_id  (user_id,account_id)
 #
 # Foreign Keys
 #

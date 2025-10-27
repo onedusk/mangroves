@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-class CommandComponent < Phlex::HTML
+class CommandComponent < ApplicationComponent
   def initialize(commands)
     @commands = commands
   end
 
-  def template
+  def view_template
     div(data: {controller: "command"}) do
       input(
         type: "text",

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class TableComponent < Phlex::HTML
+class TableComponent < ApplicationComponent
   def initialize(
     data: [],
     columns: [],
@@ -11,7 +11,8 @@ class TableComponent < Phlex::HTML
     current_page: 1,
     striped: true,
     hoverable: true,
-    class_name: nil
+    class_name: nil,
+    skip_tenant_check: false
   )
     @data = data
     @columns = columns
@@ -23,6 +24,10 @@ class TableComponent < Phlex::HTML
     @striped = striped
     @hoverable = hoverable
     @class_name = class_name
+    @skip_tenant_check = skip_tenant_check
+
+    # SECURITY: Validate all tenant-scoped records belong to Current.account
+    validate_tenant_isolation! unless @skip_tenant_check
   end
 
   def view_template
@@ -167,10 +172,16 @@ class TableComponent < Phlex::HTML
     end
 
     td(class: "px-6 py-4") do
-      if value.is_a?(String) || value.is_a?(Numeric)
+      # SECURITY: Only allow Phlex components or sanitize everything else
+      case value
+      when String, Numeric
         plain value.to_s
+      when Phlex::HTML
+        value # Allow explicit Phlex component rendering
+      when NilClass
+        plain "" # Render empty string for nil
       else
-        value
+        plain value.to_s # Force string conversion and escape for all other types
       end
     end
   end
@@ -231,5 +242,27 @@ class TableComponent < Phlex::HTML
 
     start_index = (@current_page - 1) * @per_page
     @data[start_index, @per_page] || []
+  end
+
+  # SECURITY: Validate all tenant-scoped records belong to Current.account
+  def validate_tenant_isolation!
+    return if @data.empty?
+    return unless Current.account
+
+    # Check if data is tenant-scoped (has account_id)
+    sample = @data.first
+    return unless sample.respond_to?(:account_id)
+
+    # Verify all records belong to Current.account
+    invalid_records = @data.select do |record|
+      record.respond_to?(:account_id) && record.account_id != Current.account.id
+    end
+
+    if invalid_records.any?
+      raise SecurityError,
+        "Tenant isolation violation: TableComponent received #{invalid_records.count} " \
+        "records not belonging to Current.account (#{Current.account.id}). " \
+        "Record IDs: #{invalid_records.map(&:id).take(5).join(", ")}"
+    end
   end
 end

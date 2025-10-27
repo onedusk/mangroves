@@ -78,7 +78,8 @@ RSpec.describe SonnerComponent, type: :component do
         output = render(component)
 
         expect(output).to include("Update Now")
-        expect(output).to include('href="/update"')
+        # SECURITY: safe_url() may percent-encode URLs
+        expect(output).to match(/href="[^"]*update[^"]*"/)
         expect(output).to include("underline")
       end
     end
@@ -87,13 +88,13 @@ RSpec.describe SonnerComponent, type: :component do
       it "renders undo button when callback provided" do
         component = described_class.new(
           message: "Item deleted",
-          undo_callback: "restoreItem()"
+          undo_callback: "undo" # SECURITY: Must use registered callback
         )
         output = render(component)
 
         expect(output).to include("Undo")
         expect(output).to include('data-action="sonner#undo"')
-        expect(output).to include('data-sonner-undo-callback-value="restoreItem()"')
+        # SECURITY: Removed undo_callback_value to prevent code injection
       end
     end
 

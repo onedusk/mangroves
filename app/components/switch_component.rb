@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SwitchComponent < Phlex::HTML
+class SwitchComponent < ApplicationComponent
   def initialize(name:, checked: false, label: nil, label_position: :right, disabled: false)
     @name = name
     @checked = checked
@@ -25,7 +25,7 @@ class SwitchComponent < Phlex::HTML
         aria_checked: @checked.to_s,
         disabled: @disabled,
         data: {
-          action: "click->switch#toggle",
+          action: "click->switch#toggle keydown->switch#handleKeydown",
           switch_target: "button"
         },
         class: switch_classes

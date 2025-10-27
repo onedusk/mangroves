@@ -42,20 +42,24 @@ class Team < ApplicationRecord
 
   enum :status, {active: 0, archived: 1}
 
-  validates :name, presence: true
+  validates :name, presence: true, length: {minimum: 2, maximum: 100}
   validates :slug,
     presence: true,
     uniqueness: {scope: :workspace_id},
+    length: {minimum: 2, maximum: 63},
     format: {
       with: /\A[a-z0-9][a-z0-9-]*[a-z0-9]\z/,
       message: "must contain only lowercase letters, numbers, and hyphens"
     }
+  validates :description, length: {maximum: 1000}, allow_blank: true
 
   before_validation :generate_slug, on: :create
   before_validation :set_defaults, on: :create
-  before_validation :sync_account_from_workspace
 
+  # SECURITY: Strict validation that account must come from Current.account (via TenantScoped)
+  # This replaces sync_account_from_workspace which could mask authorization bugs
   validate :account_matches_workspace
+  validate :account_matches_current_on_create, on: :create
 
   scope :active, -> { where(status: :active) }
 
@@ -83,14 +87,19 @@ class Team < ApplicationRecord
     self.metadata ||= {}
   end
 
-  def sync_account_from_workspace
-    self.account ||= workspace&.account
-  end
-
   def account_matches_workspace
     return if workspace.blank? || account.blank?
     return if workspace.account_id == account_id
 
     errors.add(:account, "must belong to the same account as workspace")
+  end
+
+  def account_matches_current_on_create
+    return if Current.account.blank? || account.blank?
+    return if account_id == Current.account.id
+
+    # SECURITY: Account must match Current.account (enforced by TenantScoped)
+    # This prevents creating teams with the wrong tenant context
+    errors.add(:account, "must match Current.account (got #{account_id}, expected #{Current.account.id})")
   end
 end

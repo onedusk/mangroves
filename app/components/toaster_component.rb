@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ToasterComponent < Phlex::HTML
+class ToasterComponent < ApplicationComponent
   def initialize(position: :top_right)
     @position = position
   end

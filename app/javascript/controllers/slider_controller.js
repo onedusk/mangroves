@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import { throttle } from "../utils/throttle"
 
 export default class extends Controller {
   static targets = ["track", "thumb", "thumbMin", "thumbMax", "input", "inputMin", "inputMax", "valueLabel"]
@@ -13,6 +14,9 @@ export default class extends Controller {
   connect() {
     this.isDragging = false
     this.activeThumb = null
+    // NOTE: Bound functions initialized in attachDragListeners
+    this.boundDrag = null
+    this.boundStopDrag = null
   }
 
   startDrag(event) {
@@ -40,7 +44,8 @@ export default class extends Controller {
   }
 
   attachDragListeners() {
-    this.boundDrag = this.drag.bind(this)
+    // OPTIMIZE: Throttle drag events to 150ms for better performance
+    this.boundDrag = throttle(this.drag.bind(this), 150)
     this.boundStopDrag = this.stopDrag.bind(this)
 
     document.addEventListener("mousemove", this.boundDrag)
@@ -69,13 +74,17 @@ export default class extends Controller {
   }
 
   stopDrag() {
+    if (!this.isDragging) return
+
     this.isDragging = false
     this.activeThumb = null
 
-    document.removeEventListener("mousemove", this.boundDrag)
-    document.removeEventListener("mouseup", this.boundStopDrag)
-    document.removeEventListener("touchmove", this.boundDrag)
-    document.removeEventListener("touchend", this.boundStopDrag)
+    if (this.boundDrag && this.boundStopDrag) {
+      document.removeEventListener("mousemove", this.boundDrag)
+      document.removeEventListener("mouseup", this.boundStopDrag)
+      document.removeEventListener("touchmove", this.boundDrag)
+      document.removeEventListener("touchend", this.boundStopDrag)
+    }
 
     document.body.style.userSelect = ""
   }
@@ -142,6 +151,14 @@ export default class extends Controller {
   }
 
   disconnect() {
+    // NOTE: Ensure cleanup even if stopDrag wasn't called
     this.stopDrag()
+    // Extra safety: remove listeners
+    if (this.boundDrag && this.boundStopDrag) {
+      document.removeEventListener("mousemove", this.boundDrag)
+      document.removeEventListener("mouseup", this.boundStopDrag)
+      document.removeEventListener("touchmove", this.boundDrag)
+      document.removeEventListener("touchend", this.boundStopDrag)
+    }
   }
 }

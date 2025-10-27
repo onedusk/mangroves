@@ -1,0 +1,33 @@
+<toc version="1.0" llm-optimized="true">
+  <metadata>
+    <totalDocs>1</totalDocs>
+  </metadata>
+  <sections>
+    <section id="company">
+      <title>Company</title>
+      <section id="company-sandbox">
+        <title>Sandbox</title>
+        <section id="company-sandbox-dl-dev">
+          <title>Dl Dev</title>
+          <section id="company-sandbox-dl-dev-experiments">
+            <title>Experiments</title>
+            <section id="company-sandbox-dl-dev-experiments-mangroves">
+              <title>Mangroves</title>
+              <section id="company-sandbox-dl-dev-experiments-mangroves-app">
+                <title>App</title>
+                <section id="company-sandbox-dl-dev-experiments-mangroves-app-components">
+                  <title>Components</title>
+                  <chapter id="company-sandbox-dl-dev-experiments-mangroves-app-components-readme" path="company/sandbox/dl_dev/experiments/mangroves/app/components/README.md" modified="2025-10-20T14:01:01Z" size="29756" words="3489" readTime="13min" hash="sha256:cb4b1d6f803c00fb">
+                    <title>Phlex Component Library</title>
+                    <summary>Phlex Component Library This directory contains 49 reusable Phlex components for building multi-tenant Rails applications. All components are built with Tailwind CSS and support responsive design, ...</summary>
+                    <keywords>mobile, **stimulus, monitoring, controller:**, handles, resources, policies, passing, sensitive, background</keywords>
+                  </chapter>
+                </section>
+              </section>
+            </section>
+          </section>
+        </section>
+      </section>
+    </section>
+  </sections>
+</toc>

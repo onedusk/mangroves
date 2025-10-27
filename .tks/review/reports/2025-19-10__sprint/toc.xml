@@ -1,0 +1,79 @@
+<toc version="1.0" llm-optimized="true">
+  <metadata>
+    <totalDocs>9</totalDocs>
+  </metadata>
+  <sections>
+    <section id="company">
+      <title>Company</title>
+      <section id="company-sandbox">
+        <title>Sandbox</title>
+        <section id="company-sandbox-dl-dev">
+          <title>Dl Dev</title>
+          <section id="company-sandbox-dl-dev-experiments">
+            <title>Experiments</title>
+            <section id="company-sandbox-dl-dev-experiments-mangroves">
+              <title>Mangroves</title>
+              <section id="company-sandbox-dl-dev-experiments-mangroves-tks">
+                <title>.tks</title>
+                <section id="company-sandbox-dl-dev-experiments-mangroves-tks-review">
+                  <title>Review</title>
+                  <section id="company-sandbox-dl-dev-experiments-mangroves-tks-review-reports">
+                    <title>Reports</title>
+                    <section id="company-sandbox-dl-dev-experiments-mangroves-tks-review-reports-2025-19-10-sprint">
+                      <title>2025 19 10 Sprint</title>
+                      <chapter id="company-sandbox-dl-dev-experiments-mangroves-tks-review-reports-2025-19-10-sprint-01-apply-tenant-scoping" path="company/sandbox/dl_dev/experiments/mangroves/.tks/review/reports/2025-19-10__sprint/01-apply-tenant-scoping.md" modified="2025-10-19T16:28:50Z" size="11200" words="1350" readTime="5min" hash="sha256:5ce0dea8ef0a9321">
+                        <title>Untitled</title>
+                        <summary>⏺ Code Review: Tenant Scoping Sprint Executive Summary The tenant scoping implementation is well-executed with strong patterns and comprehensive testing. The sprint successfully applied the ...</summary>
+                        <keywords>(lines, contains, global, message, shared, integration, sprint, scope, excellent, considerations</keywords>
+                      </chapter>
+                      <chapter id="company-sandbox-dl-dev-experiments-mangroves-tks-review-reports-2025-19-10-sprint-03-fix-job-tenant-context" path="company/sandbox/dl_dev/experiments/mangroves/.tks/review/reports/2025-19-10__sprint/03-fix-job-tenant-context.md" modified="2025-10-19T16:35:54Z" size="1187" words="150" readTime="1min" hash="sha256:d1d41614004bff88">
+                        <title>Sprint 03: Fix Job Tenant Context</title>
+                        <summary>Sprint 03: Fix Job Tenant Context ## Status: COMPLETE ## Implementation Summary: ApplicationJob implements tenant context preservation using an around_perform callback that extracts account_id fro...</summary>
+                        <keywords>implementation, using, verifies, test, comment, tests, cleanup, documentation, handles, arguments</keywords>
+                      </chapter>
+                      <chapter id="company-sandbox-dl-dev-experiments-mangroves-tks-review-reports-2025-19-10-sprint-04-create-authorization-policies" path="company/sandbox/dl_dev/experiments/mangroves/.tks/review/reports/2025-19-10__sprint/04-create-authorization-policies.md" modified="2025-10-19T16:36:02Z" size="1430" words="171" readTime="1min" hash="sha256:c748249f35d1e49e">
+                        <title>Sprint 04: Create Authorization Policies</title>
+                        <summary>Sprint 04: Create Authorization Policies ## Status: COMPLETE ## Implementation Summary: All Pundit authorization policies have been implemented with role-based access control for the multi-tenant ...</summary>
+                        <keywords>applicationpolicy, authorization, workspacepolicy, role-based, methods, multi-tenant, implementation, access, applicationcontroller, policies</keywords>
+                      </chapter>
+                      <chapter id="company-sandbox-dl-dev-experiments-mangroves-tks-review-reports-2025-19-10-sprint-05-build-tenant-controllers" path="company/sandbox/dl_dev/experiments/mangroves/.tks/review/reports/2025-19-10__sprint/05-build-tenant-controllers.md" modified="2025-10-19T16:36:07Z" size="1232" words="146" readTime="1min" hash="sha256:dcb17f7166b3a2f6">
+                        <title>Sprint 05: Build Tenant Controllers</title>
+                        <summary>Sprint 05: Build Tenant Controllers ## Status: COMPLETE ## Implementation Summary: AccountsController and WorkspacesController fully implemented with CRUD operations, Pundit authorization, and nes...</summary>
+                        <keywords>generated, enforce, specs, authorization, cross-tenant, tenant, pundit, policies, routes, guards</keywords>
+                      </chapter>
+                      <chapter id="company-sandbox-dl-dev-experiments-mangroves-tks-review-reports-2025-19-10-sprint-06-implement-workspace-switching" path="company/sandbox/dl_dev/experiments/mangroves/.tks/review/reports/2025-19-10__sprint/06-implement-workspace-switching.md" modified="2025-10-19T16:36:34Z" size="1314" words="142" readTime="1min" hash="sha256:d2b90103863a1538">
+                        <title>Sprint 06: Implement Workspace Switching</title>
+                        <summary>Sprint 06: Implement Workspace Switching ## Status: COMPLETE ## Implementation Summary: All workspace switching functionality implemented. User model has current_workspace_id attribute with belong...</summary>
+                        <keywords>passing, post, setter, workspace, workspaces, account, session, actions, storage, implementation</keywords>
+                      </chapter>
+                      <chapter id="company-sandbox-dl-dev-experiments-mangroves-tks-review-reports-2025-19-10-sprint-07-fix-mailer-tenant-context" path="company/sandbox/dl_dev/experiments/mangroves/.tks/review/reports/2025-19-10__sprint/07-fix-mailer-tenant-context.md" modified="2025-10-19T16:35:51Z" size="953" words="115" readTime="1min" hash="sha256:6512f4e351661b22">
+                        <title>Sprint 07: Fix Mailer Tenant Context</title>
+                        <summary>Sprint 07: Fix Mailer Tenant Context ## Status: COMPLETE ## Implementation Summary: ApplicationMailer implements comprehensive tenant context preservation through three mechanisms: default_url_opt...</summary>
+                        <keywords>background, preservation, includes, address, context, jobs, comprehensive, account, generation, mailer</keywords>
+                      </chapter>
+                      <chapter id="company-sandbox-dl-dev-experiments-mangroves-tks-review-reports-2025-19-10-sprint-08-add-audit-logging" path="company/sandbox/dl_dev/experiments/mangroves/.tks/review/reports/2025-19-10__sprint/08-add-audit-logging.md" modified="2025-10-19T16:36:08Z" size="1271" words="154" readTime="1min" hash="sha256:8455be84d4f9625b">
+                        <title>Sprint 08: Add Audit Logging</title>
+                        <summary>Sprint 08: Add Audit Logging ## Status: COMPLETE ## Implementation Summary: Implemented comprehensive audit logging system using both PaperTrail (for model change tracking) and custom AuditEvent m...</summary>
+                        <keywords>custom, added, account, user, implementation, completed, created, (for, auditevent, model</keywords>
+                      </chapter>
+                      <chapter id="company-sandbox-dl-dev-experiments-mangroves-tks-review-reports-2025-19-10-sprint-security-fixes-completed" path="company/sandbox/dl_dev/experiments/mangroves/.tks/review/reports/2025-19-10__sprint/SECURITY_FIXES_COMPLETED.md" modified="2025-10-20T15:23:27Z" size="7785" words="1028" readTime="4min" hash="sha256:792941aca9473b43">
+                        <title>Security Fixes Completed: 2025-10-20</title>
+                        <summary>Security Fixes Completed: 2025-10-20 ## Summary All 6 critical security vulnerabilities identified in the sprint review have been successfully fixed and tested. Tasks 12 and 15 are now production-...</summary>
+                        <keywords>properly, surface**, (security, testing, **tests**, **xss, **code, listeners, **tenant, tenant</keywords>
+                      </chapter>
+                      <chapter id="company-sandbox-dl-dev-experiments-mangroves-tks-review-reports-2025-19-10-sprint-sprint-review-summary" path="company/sandbox/dl_dev/experiments/mangroves/.tks/review/reports/2025-19-10__sprint/SPRINT_REVIEW_SUMMARY.md" modified="2025-10-20T13:11:10Z" size="16799" words="2254" readTime="9min" hash="sha256:3a16a40cb010dc21">
+                        <title>Sprint Review Summary: 2025-19-10</title>
+                        <summary>Sprint Review Summary: 2025-19-10 **Review Date**: 2025-10-20 **Reviewer**: Claude Code (AI-Assisted Parallel Review) **Tasks Reviewed**: 9 tasks (02, 09, 10, 11, 12, 13, 14, 15, 16) --- ## Execu...</summary>
+                        <keywords>priority, **task, malicious, **summary**, dataset, allows, aria-describedby, core, patterns**, **files</keywords>
+                      </chapter>
+                    </section>
+                  </section>
+                </section>
+              </section>
+            </section>
+          </section>
+        </section>
+      </section>
+    </section>
+  </sections>
+</toc>

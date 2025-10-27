@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PaginationComponent < Phlex::HTML
+class PaginationComponent < ApplicationComponent
   def initialize(
     current_page:,
     total_pages:,

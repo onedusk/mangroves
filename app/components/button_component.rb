@@ -1,15 +1,19 @@
 # frozen_string_literal: true
 
-class ButtonComponent < Phlex::HTML
+class ButtonComponent < ApplicationComponent
+  ALLOWED_TYPES = %i[button submit reset].freeze
+  ALLOWED_VARIANTS = %i[default primary secondary danger].freeze
+  ALLOWED_SIZES = %i[sm md lg].freeze
+
   def initialize(text, type: :button, variant: :default, size: :md, disabled: false)
-    @text = text
-    @type = type
-    @variant = variant
-    @size = size
-    @disabled = disabled
+    @text = validate_required(text, param_name: "text")
+    @type = validate_enum(type, allowed: ALLOWED_TYPES, param_name: "type")
+    @variant = validate_enum(variant, allowed: ALLOWED_VARIANTS, param_name: "variant")
+    @size = validate_enum(size, allowed: ALLOWED_SIZES, param_name: "size")
+    @disabled = !!disabled # Coerce to boolean
   end
 
-  def template
+  def view_template
     button(
       type: @type,
       class: "#{base_classes} #{variant_classes} #{size_classes}",

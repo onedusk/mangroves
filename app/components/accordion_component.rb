@@ -1,26 +1,34 @@
 # frozen_string_literal: true
 
-class AccordionComponent < Phlex::HTML
-  def initialize(items)
+class AccordionComponent < ApplicationComponent
+  def initialize(items:, allow_multiple: false)
     @items = items
+    @allow_multiple = allow_multiple
   end
 
-  def template
-    div(data: {controller: "accordion"}) do
-      @items.each_with_index do |item, _index|
+  def view_template
+    div(data: {controller: "accordion", accordion_allow_multiple_value: @allow_multiple.to_s}) do
+      @items.each_with_index do |item, index|
+        title_text = item[:title]
+        content_text = item[:content]
+        content_id = "accordion-content-#{index}"
+
         div(class: "border-b") do
           button(
             data: {action: "accordion#toggle"},
-            class: "flex justify-between items-center w-full py-4 font-medium text-left"
+            class: "flex justify-between items-center w-full py-4 font-medium text-left",
+            role: "button",
+            aria: {expanded: "false", controls: content_id}
           ) do
-            span { item[:title] }
+            span { title_text }
             span(class: "accordion-icon") { "+" }
           end
           div(
+            id: content_id,
             data: {accordion_target: "content"},
-            class: "accordion-content overflow-hidden transition-max-height duration-500 ease-in-out"
+            class: "accordion-content overflow-hidden transition-max-height duration-500 ease-in-out hidden"
           ) do
-            div(class: "py-4") { item[:content] }
+            div(class: "py-4") { plain content_text }
           end
         end
       end

@@ -22,11 +22,33 @@
             <!-- Errors -->
             <%= render "devise/shared/error_messages", resource: resource %>
 
+            <!-- First Name -->
+            <div>
+              <label for="hs-pro-signup-first-name" class="sr-only">First Name</label>
+              <%= f.text_field :first_name,
+                  autofocus: true,
+                  autocomplete: "given-name",
+                  placeholder: "First Name",
+                  id: "hs-pro-signup-first-name",
+                  class: "block w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white
+                          placeholder-white/40 outline-none transition focus:border-[#F27405]/50 focus:ring-2 focus:ring-[#F27405]/40" %>
+            </div>
+
+            <!-- Last Name -->
+            <div>
+              <label for="hs-pro-signup-last-name" class="sr-only">Last Name</label>
+              <%= f.text_field :last_name,
+                  autocomplete: "family-name",
+                  placeholder: "Last Name",
+                  id: "hs-pro-signup-last-name",
+                  class: "block w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white
+                          placeholder-white/40 outline-none transition focus:border-[#F27405]/50 focus:ring-2 focus:ring-[#F27405]/40" %>
+            </div>
+
             <!-- Email -->
             <div>
               <label for="hs-pro-signup-email" class="sr-only">Email</label>
               <%= f.email_field :email,
-                  autofocus: true,
                   autocomplete: "email",
                   placeholder: "Email",
                   id: "hs-pro-signup-email",
@@ -70,11 +92,6 @@
               </div>
             </div>
 
-            <% if devise_mapping.confirmable? %>
-              <div class="mt-2">
-                <%= f.hidden_field :confirmation_token %>
-              </div>
-            <% end %>
 
             <!-- Actions -->
             <div class="mt-6 grid grid-cols-2 gap-3">

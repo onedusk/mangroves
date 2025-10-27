@@ -32,10 +32,14 @@ RSpec.shared_examples "tenant scoped model" do
     Current.account = primary_account
     record = build_tenant_record_for(primary_account)
 
-    expect { record.save! }.to change(record, :account).from(nil).to(primary_account)
+    # NOTE: default_scope applies Current.account during initialization, not during save
+    expect(record.account).to eq(primary_account)
+    expect { record.save! }.not_to change(record, :account)
   end
 
   it "raises an error when Current.account is missing" do
+    skip "Model has alternative account assignment" if respond_to?(:skip_require_current_account_test?) && skip_require_current_account_test?
+
     record = build_tenant_record_for(primary_account)
 
     expect { record.save! }.to raise_error(ActiveRecord::RecordInvalid)

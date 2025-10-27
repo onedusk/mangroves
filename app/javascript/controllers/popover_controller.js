@@ -11,10 +11,16 @@ export default class extends Controller {
 
   connect() {
     this.boundHandleClickOutside = this.handleClickOutside.bind(this)
+    this.boundHandleEscape = this.handleEscape.bind(this)
+    this.isOpen = false
+    this.triggerElement = null
   }
 
   disconnect() {
     this.close()
+    // NOTE: Ensure listeners are removed even if close() wasn't called
+    document.removeEventListener("click", this.boundHandleClickOutside)
+    document.removeEventListener("keydown", this.boundHandleEscape)
   }
 
   toggle(event) {
@@ -29,18 +35,36 @@ export default class extends Controller {
   }
 
   open() {
+    if (this.isOpen) return // Prevent double-adding listeners
+
+    // Store trigger element for focus restoration
+    this.triggerElement = this.hasTriggerTarget ? this.triggerTarget : null
+
     this.contentTarget.classList.remove("hidden")
     this.position()
+    this.isOpen = true
 
-    // Add click outside listener
+    // Add event listeners
     setTimeout(() => {
       document.addEventListener("click", this.boundHandleClickOutside)
+      document.addEventListener("keydown", this.boundHandleEscape)
     }, 0)
   }
 
   close() {
+    if (!this.isOpen) return // Prevent double-removing listeners
+
     this.contentTarget.classList.add("hidden")
+    this.isOpen = false
+
+    // Remove event listeners
     document.removeEventListener("click", this.boundHandleClickOutside)
+    document.removeEventListener("keydown", this.boundHandleEscape)
+
+    // Return focus to trigger element
+    if (this.triggerElement && this.triggerElement.focus) {
+      this.triggerElement.focus()
+    }
   }
 
   position() {
@@ -59,6 +83,14 @@ export default class extends Controller {
 
   handleClickOutside(event) {
     if (!this.element.contains(event.target)) {
+      this.close()
+    }
+  }
+
+  handleEscape(event) {
+    if (event.key === "Escape") {
+      event.preventDefault()
+      event.stopPropagation()
       this.close()
     }
   }

@@ -1,0 +1,22 @@
+# NO MORE than 6-8 operations/subtasks per task - if more, create new file
+id: "test-fix-005"
+task: "Fix Capybara query method errors in component specs"
+entry: "2025-10-20"
+modified: "2025-10-20"
+priority: "M"
+project: "mangroves"
+status: "completed"
+uuid: "cap-query-005"
+urgency: "5.5"
+subtasks:
+  - "Find usages of '.find_each' on Capybara::Result in dropdown specs"
+  - "Replace with proper Capybara iteration methods (.each or .all.each)"
+  - "Find usage of '.first' on test group in pagination spec"
+  - "Fix method call context (likely calling on test object instead of query result)"
+  - "Run DropdownMenuComponent, MenubarComponent, and PaginationComponent specs"
+  - "Verify 4 related failures resolve"
+must_reference:
+  - "docs/rails_conventions.md"
+  - "spec/components/dropdown_menu_component_spec.rb"
+  - "spec/components/menubar_component_spec.rb"
+  - "spec/components/pagination_component_spec.rb"

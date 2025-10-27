@@ -42,13 +42,40 @@ RSpec.describe TenantScoped do
     Current.account = primary_account
     record = build_workspace_for(primary_account)
 
-    expect { record.save! }.to change(record, :account).from(nil).to(primary_account)
+    # NOTE: default_scope applies Current.account during initialization, not during save
+    expect(record.account).to eq(primary_account)
+    expect { record.save! }.not_to change(record, :account)
   end
 
   it "raises an error when Current.account is missing" do
     record = build_workspace_for(primary_account)
 
     expect { record.save! }.to raise_error(ActiveRecord::RecordInvalid)
+  end
+
+  # SECURITY: Critical test for data leak prevention
+  it "returns zero records when Current.account is nil" do
+    Current.account = primary_account
+    in_scope = build_workspace_for(primary_account)
+    in_scope.save!
+
+    Current.account = secondary_account
+    out_of_scope = build_workspace_for(secondary_account)
+    out_of_scope.save!
+
+    # CRITICAL: Must return empty result set, not all records
+    Current.account = nil
+    expect(model_class.count).to eq(0)
+    expect(model_class.all.to_a).to eq([])
+  end
+
+  it "validates account presence on all records" do
+    Current.account = nil
+    record = Workspace.new(name: "Test Workspace")
+    # Don't set account - it should fail validation
+
+    expect(record).not_to be_valid
+    expect(record.errors[:account]).to include("can't be blank")
   end
 
   it "provides an unscoped_all helper" do

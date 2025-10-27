@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ToastComponent < Phlex::HTML
+class ToastComponent < ApplicationComponent
   def initialize(message:, variant: :info, duration: 5000, dismissible: true)
     @message = message
     @variant = variant
@@ -15,12 +15,16 @@ class ToastComponent < Phlex::HTML
         controller: "toast",
         toast_duration_value: @duration
       },
-      role: "alert"
+      role: "alert",
+      aria: {
+        live: "polite",
+        atomic: "true"
+      }
     ) do
       div(class: "flex items-center gap-3") do
         render_icon
         div(class: "flex-1") do
-          p(class: "text-sm font-medium") { @message }
+          p(class: "text-sm font-medium") { plain @message }
         end
         render_dismiss_button if @dismissible
       end
@@ -54,11 +58,14 @@ class ToastComponent < Phlex::HTML
                 else "text-blue-400"
                 end
 
-    raw <<~HTML
-      <svg class="h-5 w-5 #{svg_class}" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" d="#{icon_path}" clip-rule="evenodd" />
-      </svg>
-    HTML
+    svg(
+      class: "h-5 w-5 #{svg_class}",
+      fill: "currentColor",
+      viewBox: "0 0 20 20",
+      xmlns: "http://www.w3.org/2000/svg"
+    ) do |s|
+      s.path(fill_rule: "evenodd", d: icon_path, clip_rule: "evenodd")
+    end
   end
 
   def icon_path
@@ -81,11 +88,18 @@ class ToastComponent < Phlex::HTML
       class: "inline-flex rounded-md p-1.5 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
     ) do
       span(class: "sr-only") { "Dismiss" }
-      raw <<~HTML
-        <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-        </svg>
-      HTML
+      svg(
+        class: "h-4 w-4",
+        fill: "currentColor",
+        viewBox: "0 0 20 20",
+        xmlns: "http://www.w3.org/2000/svg"
+      ) do |s|
+        s.path(
+          fill_rule: "evenodd",
+          d: "M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z",
+          clip_rule: "evenodd"
+        )
+      end
     end
   end
 end

@@ -671,12 +671,476 @@ class TenantMetricsComponent < Phlex::HTML
 end
 ```
 
+## Validation Requirements
+
+### Input Validation Patterns
+
+All components accepting user input must validate at the controller/service level:
+
+```ruby
+# Controller validates before passing to component
+class ProjectsController < ApplicationController
+  def create
+    # SECURITY: Validate input before creating resource
+    @project = Current.account.projects.build(project_params)
+
+    if @project.valid?
+      @project.save
+      render ProjectComponent.new(project: @project)
+    else
+      # Return validation errors
+      render json: { errors: @project.errors }, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def project_params
+    # SECURITY: Strong parameters to prevent mass assignment
+    params.require(:project).permit(:name, :description, :status)
+  end
+end
+```
+
+### Tenant Scope Validation
+
+Components handling tenant data must validate isolation:
+
+```ruby
+class TenantDataComponent < Phlex::HTML
+  class TenantIsolationError < SecurityError; end
+
+  def initialize(records:, account: nil, skip_validation: false)
+    @records = records
+    @account = account || Current.account
+    @skip_validation = skip_validation
+
+    validate_tenant_isolation! unless @skip_validation
+  end
+
+  private
+
+  def validate_tenant_isolation!
+    return if @records.empty?
+    return unless @account
+
+    # Check if records respond to account_id
+    sample = @records.first
+    return unless sample.respond_to?(:account_id)
+
+    # Find any records not belonging to current account
+    foreign_records = @records.select do |record|
+      record.respond_to?(:account_id) && record.account_id != @account.id
+    end
+
+    if foreign_records.any?
+      # Log security violation
+      log_security_violation(foreign_records)
+
+      # Raise error
+      raise TenantIsolationError,
+        "Attempted to render #{foreign_records.count} records from foreign tenant(s). " \
+        "Current account: #{@account.id}, " \
+        "Foreign account IDs: #{foreign_records.map(&:account_id).uniq.join(", ")}"
+    end
+  end
+
+  def log_security_violation(foreign_records)
+    Rails.logger.warn({
+      event: "tenant_isolation_violation",
+      component: self.class.name,
+      current_account_id: @account.id,
+      foreign_account_ids: foreign_records.map(&:account_id).uniq,
+      record_count: foreign_records.count,
+      user_id: Current.user&.id,
+      backtrace: caller[0..5]
+    }.to_json)
+  end
+end
+```
+
+### URL and Link Validation
+
+Components rendering user-provided links must sanitize:
+
+```ruby
+class SafeLinkComponent < Phlex::HTML
+  ALLOWED_PROTOCOLS = %w[http https mailto tel].freeze
+  DANGEROUS_PROTOCOLS = %w[javascript data vbscript file].freeze
+
+  def initialize(url:, text:, external: false)
+    @url = sanitize_url(url)
+    @text = text
+    @external = external || url_is_external?(@url)
+  end
+
+  def template
+    if @url
+      a(
+        href: @url,
+        class: link_classes,
+        rel: link_rel_attribute,
+        target: @external ? "_blank" : nil
+      ) { @text }
+    else
+      # Render as plain text if URL is invalid
+      span(class: "text-gray-500 cursor-not-allowed") { @text }
+    end
+  end
+
+  private
+
+  def sanitize_url(url)
+    return nil if url.blank?
+
+    # Parse URL
+    uri = URI.parse(url.to_s)
+
+    # Block dangerous protocols
+    if DANGEROUS_PROTOCOLS.include?(uri.scheme&.downcase)
+      Rails.logger.security_warn(
+        "Blocked dangerous URL protocol",
+        protocol: uri.scheme,
+        url: url,
+        component: self.class.name
+      )
+      return nil
+    end
+
+    # Validate allowed protocols
+    unless ALLOWED_PROTOCOLS.include?(uri.scheme&.downcase)
+      Rails.logger.warn("Unknown URL protocol: #{uri.scheme}")
+      return nil
+    end
+
+    url
+  rescue URI::InvalidURIError => e
+    Rails.logger.warn("Invalid URL format: #{url} - #{e.message}")
+    nil
+  end
+
+  def url_is_external?(url)
+    return false if url.blank?
+    uri = URI.parse(url)
+    uri.host.present? && uri.host != request.host
+  rescue URI::InvalidURIError
+    false
+  end
+
+  def link_rel_attribute
+    # Prevent tabnabbing for external links
+    @external ? "noopener noreferrer" : nil
+  end
+
+  def link_classes
+    base = "text-blue-600 hover:text-blue-800 underline"
+    @external ? "#{base} external-link" : base
+  end
+end
+```
+
+## Authorization Patterns
+
+### Pundit Integration
+
+Components should receive authorization results, not perform checks:
+
+```ruby
+# Good: Controller performs authorization
+class WorkspacesController < ApplicationController
+  def show
+    @workspace = Current.account.workspaces.find(params[:id])
+
+    # SECURITY: Authorize access via Pundit
+    authorize @workspace
+
+    # Pass authorization capabilities to component
+    @can_edit = policy(@workspace).update?
+    @can_delete = policy(@workspace).destroy?
+    @can_invite = policy(@workspace).invite_members?
+
+    render WorkspaceComponent.new(
+      workspace: @workspace,
+      can_edit: @can_edit,
+      can_delete: @can_delete,
+      can_invite: @can_invite
+    )
+  end
+end
+
+# Component renders based on passed capabilities
+class WorkspaceComponent < Phlex::HTML
+  def initialize(workspace:, can_edit: false, can_delete: false, can_invite: false)
+    @workspace = workspace
+    @can_edit = can_edit
+    @can_delete = can_delete
+    @can_invite = can_invite
+  end
+
+  def template
+    div(class: "workspace-container") do
+      render_header
+      render_actions if @can_edit || @can_delete || @can_invite
+    end
+  end
+
+  private
+
+  def render_actions
+    div(class: "flex gap-2") do
+      render EditButton.new(workspace: @workspace) if @can_edit
+      render InviteButton.new(workspace: @workspace) if @can_invite
+      render DeleteButton.new(workspace: @workspace) if @can_delete
+    end
+  end
+end
+```
+
+### Role-Based Rendering
+
+```ruby
+class AdminPanelComponent < Phlex::HTML
+  def initialize(user:, account: nil)
+    @user = user
+    @account = account || Current.account
+    @user_role = get_user_role
+  end
+
+  def template
+    return unless authorized_to_view?
+
+    div(class: "admin-panel") do
+      render_header
+      render_admin_sections
+    end
+  end
+
+  private
+
+  def authorized_to_view?
+    # Users must be at least admin in the account
+    %i[admin owner].include?(@user_role)
+  end
+
+  def render_admin_sections
+    # Owner-only sections
+    if @user_role == :owner
+      render_billing_section
+      render_member_management
+      render_danger_zone
+    end
+
+    # Admin and owner sections
+    if %i[admin owner].include?(@user_role)
+      render_workspace_management
+      render_team_management
+    end
+  end
+
+  def get_user_role
+    membership = @account.account_memberships.find_by(user: @user)
+    membership&.role&.to_sym || :viewer
+  end
+end
+```
+
+### Row-Level Security
+
+Components accessing workspace/team data must verify user access:
+
+```ruby
+class WorkspaceDataComponent < Phlex::HTML
+  def initialize(workspace:, user:)
+    @workspace = workspace
+    @user = user
+
+    # SECURITY: Verify user has access to workspace
+    verify_workspace_access!
+  end
+
+  private
+
+  def verify_workspace_access!
+    membership = @workspace.workspace_memberships.find_by(user: @user, status: :active)
+
+    unless membership
+      raise Pundit::NotAuthorizedError,
+        "User #{@user.id} does not have access to workspace #{@workspace.id}"
+    end
+
+    @user_role = membership.role.to_sym
+  end
+
+  def can_perform_action?(action)
+    case action
+    when :view
+      true # All members can view
+    when :edit
+      %i[member admin owner].include?(@user_role)
+    when :delete
+      %i[admin owner].include?(@user_role)
+    when :manage_members
+      %i[admin owner].include?(@user_role)
+    else
+      false
+    end
+  end
+end
+```
+
+## Performance Optimization Examples
+
+### N+1 Query Prevention
+
+Components must receive pre-loaded data:
+
+```ruby
+# Bad: Component triggers N+1 queries
+class ProjectListComponent < Phlex::HTML
+  def initialize(projects:)
+    @projects = projects
+  end
+
+  def template
+    @projects.each do |project|
+      # N+1: queries members for each project
+      p { "Members: #{project.members.count}" }
+    end
+  end
+end
+
+# Good: Controller preloads associations
+class ProjectsController < ApplicationController
+  def index
+    # OPTIMIZE: Preload associations to prevent N+1
+    @projects = Current.account.projects
+      .includes(:workspace, :team_memberships, :members)
+      .order(created_at: :desc)
+
+    render ProjectListComponent.new(projects: @projects)
+  end
+end
+```
+
+### Caching Strategies
+
+```ruby
+class DashboardStatsComponent < Phlex::HTML
+  def initialize(account:)
+    @account = account
+  end
+
+  def template
+    # Cache expensive stats calculation per account
+    stats = Rails.cache.fetch(
+      "account/#{@account.id}/dashboard_stats/v2",
+      expires_in: 15.minutes
+    ) do
+      calculate_stats
+    end
+
+    div(class: "grid grid-cols-3 gap-4") do
+      render_stat_card("Projects", stats[:project_count])
+      render_stat_card("Members", stats[:member_count])
+      render_stat_card("Workspaces", stats[:workspace_count])
+    end
+  end
+
+  private
+
+  def calculate_stats
+    {
+      project_count: @account.projects.count,
+      member_count: @account.users.count,
+      workspace_count: @account.workspaces.count
+    }
+  end
+end
+```
+
+## Audit Logging Integration
+
+### Tracking Component Actions
+
+```ruby
+class AuditedActionComponent < Phlex::HTML
+  def initialize(resource:, action:, user:)
+    @resource = resource
+    @action = action
+    @user = user
+  end
+
+  def template
+    form(
+      action: resource_path,
+      method: "post",
+      data: { turbo_confirm: confirmation_message }
+    ) do
+      # CSRF protection
+      input(
+        type: "hidden",
+        name: "authenticity_token",
+        value: helpers.form_authenticity_token
+      )
+
+      # Hidden fields for audit logging
+      input(type: "hidden", name: "audit[action]", value: @action)
+      input(type: "hidden", name: "audit[user_id]", value: @user.id)
+      input(type: "hidden", name: "audit[resource_type]", value: @resource.class.name)
+      input(type: "hidden", name: "audit[resource_id]", value: @resource.id)
+
+      button(type: "submit", class: button_classes) { button_text }
+    end
+  end
+
+  private
+
+  def confirmation_message
+    "Are you sure you want to #{@action} this #{@resource.class.name.downcase}?"
+  end
+end
+```
+
+### Audit Event Recording
+
+Controllers should create audit events for component actions:
+
+```ruby
+class WorkspacesController < ApplicationController
+  def destroy
+    @workspace = Current.account.workspaces.find(params[:id])
+    authorize @workspace
+
+    # SECURITY: Create audit event before deletion
+    AuditEvent.create!(
+      action: "workspace_deleted",
+      auditable: @workspace,
+      user: current_user,
+      account: Current.account,
+      workspace: @workspace,
+      metadata: {
+        workspace_name: @workspace.name,
+        workspace_slug: @workspace.slug,
+        member_count: @workspace.workspace_memberships.count
+      },
+      ip_address: request.remote_ip,
+      user_agent: request.user_agent
+    )
+
+    @workspace.destroy
+    redirect_to workspaces_path, notice: "Workspace deleted"
+  end
+end
+```
+
 ## Conclusion
 
 Tenant-scoped components enhance multi-tenant applications by:
 - Providing consistent branding across tenants
-- Enforcing data isolation
+- Enforcing data isolation through validation
 - Enabling per-tenant feature customization
-- Maintaining security through validation
+- Maintaining security through validation and authorization
+- Optimizing performance with proper data loading
+- Creating audit trails for compliance
 
-Always validate tenant scope, provide sensible defaults, and test cross-tenant scenarios to ensure robust multi-tenant components.
+Always validate tenant scope, authorize access in controllers, provide sensible defaults, and test cross-tenant scenarios to ensure robust multi-tenant components.

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class TooltipComponent < Phlex::HTML
+class TooltipComponent < ApplicationComponent
   def initialize(text:, position: "top", delay: 200)
     @text = text
     @position = position

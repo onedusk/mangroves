@@ -1,0 +1,24 @@
+{
+  "id": "24",
+  "task": "Performance optimizations and security documentation",
+  "entry": "2025-10-20",
+  "modified": "2025-10-20",
+  "priority": "M",
+  "project": "mangroves-multi-tenant",
+  "status": "pending",
+  "uuid": "h8i9j0k1-l2m3-4424-h5i6-j7k8l9m0n1o2",
+  "urgency": "5",
+  "subtasks": [
+    "Add database indexes on accounts(slug), workspaces(account_id, slug), memberships(user_id, account_id)",
+    "Implement virtual scrolling for TableComponent using Stimulus IntersectionObserver for >100 rows",
+    "Add event throttling (150ms) to ResizableComponent, SliderComponent drag handlers using lodash.throttle",
+    "Fix N+1 queries in WorkspaceSwitcherComponent with includes(:account, :workspace_memberships)",
+    "Add loading states to PaginationComponent navigation, form submissions with opacity-50 disabled classes",
+    "Update app/components/README.md with Security Best Practices section covering XSS, CSRF, tenant isolation",
+    "Update docs/tenant-scoped-components.md with validation requirements, authorization patterns, examples",
+    "Create SECURITY.md documenting XSS prevention, tenant isolation patterns, URL validation, audit logging"
+  ],
+  "must_reference": [
+    "mangroves/docs/rails_conventions.md"
+  ]
+}

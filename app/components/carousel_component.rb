@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-class CarouselComponent < Phlex::HTML
+class CarouselComponent < ApplicationComponent
   def initialize(slides)
     @slides = slides
   end
 
-  def template
+  def view_template
     div(data: {controller: "carousel"}, class: "swiper") do
       div(class: "swiper-wrapper") do
         @slides.each do |slide|

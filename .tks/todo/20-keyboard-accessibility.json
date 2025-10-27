@@ -1,0 +1,24 @@
+{
+  "id": "20",
+  "task": "Implement keyboard accessibility for WCAG 2.1.1 compliance",
+  "entry": "2025-10-20",
+  "modified": "2025-10-20",
+  "priority": "H",
+  "project": "mangroves-multi-tenant",
+  "status": "pending",
+  "uuid": "d4e5f6g7-h8i9-4020-d1e2-f3g4h5i6j7k8",
+  "urgency": "10",
+  "subtasks": [
+    "Add keyboard navigation to SelectComponent custom dropdown - Arrow keys, Enter, Escape, Home, End",
+    "Add keyboard navigation to WorkspaceSwitcherComponent dropdown with same pattern as SelectComponent",
+    "Implement focus trap in SheetComponent - Tab cycles through focusable elements, Shift+Tab reverses",
+    "Add Escape key handlers to PopoverComponent, HoverCardComponent to close and return focus to trigger",
+    "Add Home/End navigation to TabsComponent (jump to first/last), PaginationComponent (first/last page)",
+    "Implement keyboard shortcuts for SidebarComponent - configurable keys for collapse/expand toggle",
+    "Add Space/Enter key support to SwitchComponent toggle action via Stimulus handleKeydown method",
+    "Write system specs testing keyboard navigation flows for all interactive components"
+  ],
+  "must_reference": [
+    "mangroves/docs/rails_conventions.md"
+  ]
+}

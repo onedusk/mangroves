@@ -1,0 +1,22 @@
+# NO MORE than 6-8 operations/subtasks per task - if more, create new file
+id: "test-fix-007"
+task: "Investigate and fix unexpected HTML DOCTYPE in component output"
+entry: "2025-10-20"
+modified: "2025-10-20"
+priority: "L"
+project: "mangroves"
+status: "completed"
+uuid: "html-doc-007"
+urgency: "3.5"
+subtasks:
+  - "Reproduce HTML DOCTYPE issue in ProgressComponent and SwitchComponent specs"
+  - "Check if Phlex rendering includes unwanted DOCTYPE declaration"
+  - "Review test helpers for layout wrapping or full page rendering"
+  - "Adjust component rendering to return fragment instead of full document"
+  - "Run ProgressComponent and SwitchComponent specs to verify 3 failures resolve"
+must_reference:
+  - "docs/rails_conventions.md"
+  - "spec/components/progress_component_spec.rb"
+  - "spec/components/switch_component_spec.rb"
+  - "app/components/progress_component.rb"
+  - "app/components/switch_component.rb"

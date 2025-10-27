@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class RadioGroupComponent < Phlex::HTML
+class RadioGroupComponent < ApplicationComponent
   def initialize(name:, options:, selected: nil, layout: :vertical, label: nil)
     @name = name
     @options = options

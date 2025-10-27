@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SliderComponent < Phlex::HTML
+class SliderComponent < ApplicationComponent
   def initialize(
     name:,
     min: 0,

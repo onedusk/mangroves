@@ -1,0 +1,23 @@
+# Review task 15: Utility components security fixes
+id: "review-15"
+task: "Fix critical tenant isolation and security issues in utility components"
+entry: "2025-10-20"
+modified: "2025-10-20"
+priority: "H"
+project: "mangroves-multi-tenant"
+status: "pending"
+uuid: "rev15-h8i9-j0k1-l2m3-n4o5p6q7r8s9"
+urgency: "10"
+subtasks:
+  - "Read security review at review/reports/2025-20-10__sprint/task-15-utility-interactive-components-review.md"
+  - "Fix CRITICAL: Add tenant isolation validation in TableComponent initialize method"
+  - "Fix CRITICAL: Sanitize cell formatter output in TableComponent (XSS vulnerability)"
+  - "Fix CRITICAL: Fix memory leaks in resizable_controller.js event handlers"
+  - "Fix HIGH: Implement server-side sorting instead of client-side data exposure in table"
+  - "Fix MEDIUM: Add parameter validation in ResizableComponent and SliderComponent"
+  - "Run spec/components tests to verify fixes, create security tests if missing"
+must_reference:
+  - "review/reports/2025-20-10__sprint/task-15-utility-interactive-components-review.md"
+  - "app/components/table_component.rb"
+  - "app/javascript/controllers/resizable_controller.js"
+  - "app/javascript/controllers/slider_controller.js"

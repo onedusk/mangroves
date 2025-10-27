@@ -1,0 +1,21 @@
+# Review task 09: Console helpers and rake tasks
+id: "review-09"
+task: "Verify console helpers and tenant rake tasks implementation"
+entry: "2025-10-20"
+modified: "2025-10-20"
+priority: "M"
+project: "mangroves-multi-tenant"
+status: "pending"
+uuid: "rev09-b2c3-d4e5-f6g7-h8i9j0k1l2m3"
+urgency: "6"
+subtasks:
+  - "Review lib/tasks/tenant.rake verifying tenant:list, tenant:switch[slug], tenant:create[name] tasks exist"
+  - "Review lib/console_helpers.rb verifying TenantContext module with with_tenant and without_tenant methods"
+  - "Test rake tenant:list in development to verify it displays accounts correctly"
+  - "Test rake tenant:switch[test-account] to verify Current.account switching works"
+  - "Verify console helpers can be used in rails console for debugging"
+  - "Mark task as completed if all functionality works as specified"
+must_reference:
+  - "review/2025-19-10/09-create-console-helpers.json"
+  - "lib/tasks/tenant.rake"
+  - "lib/console_helpers.rb"

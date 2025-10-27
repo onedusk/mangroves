@@ -1,0 +1,21 @@
+# Review task 10: User onboarding flow
+id: "review-10"
+task: "Verify user onboarding flow implementation"
+entry: "2025-10-20"
+modified: "2025-10-20"
+priority: "M"
+project: "mangroves-multi-tenant"
+status: "pending"
+uuid: "rev10-c3d4-e5f6-g7h8-i9j0k1l2m3n4"
+urgency: "5"
+subtasks:
+  - "Review app/controllers/onboarding_controller.rb for new and create actions"
+  - "Verify Devise after_sign_up redirect points to onboarding_path in config/initializers/devise.rb"
+  - "Check app/views/onboarding/new.html.erb exists with account creation form"
+  - "Verify create action creates Account, Workspace, AccountMembership in transaction with owner role"
+  - "Check routes config has get/post onboarding routes defined"
+  - "Run spec/requests/onboarding_spec.rb if exists to verify end-to-end flow"
+must_reference:
+  - "review/2025-19-10/10-implement-onboarding-flow.json"
+  - "app/controllers/onboarding_controller.rb"
+  - "config/routes.rb"

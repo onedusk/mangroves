@@ -74,8 +74,12 @@ class User < ApplicationRecord
   enum :role, {member: 0, admin: 1, super_admin: 2}
   enum :status, {active: 0, inactive: 1, suspended: 2}
 
-  validates :first_name, presence: true
-  validates :last_name, presence: true
+  validates :first_name, presence: true, length: {maximum: 100}
+  validates :last_name, presence: true, length: {maximum: 100}
+  validates :phone, length: {maximum: 20}, allow_blank: true
+  validates :avatar_url,
+    format: {with: URI::DEFAULT_PARSER.make_regexp(%w[http https]), message: "must be a valid URL"},
+    allow_blank: true
 
   before_validation :set_defaults, on: :create
 

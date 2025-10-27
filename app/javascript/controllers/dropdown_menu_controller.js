@@ -9,6 +9,9 @@ export default class extends Controller {
   connect() {
     this.currentFocus = -1
     this.isOpen = false
+    // NOTE: Store bound functions for proper cleanup
+    this.boundHandleOutsideClick = this.handleOutsideClick.bind(this)
+    this.boundHandleEscapeKey = this.handleEscapeKey.bind(this)
   }
 
   toggle(event) {
@@ -23,6 +26,8 @@ export default class extends Controller {
   }
 
   open() {
+    if (this.isOpen) return // Prevent double-adding listeners
+
     this.menuTarget.classList.remove("hidden")
     this.triggerTarget.setAttribute("aria-expanded", "true")
     this.isOpen = true
@@ -31,23 +36,35 @@ export default class extends Controller {
     // Focus first item
     this.focusFirstItem()
 
-    // Close on outside click
-    document.addEventListener("click", this.handleOutsideClick.bind(this))
-    document.addEventListener("keydown", this.handleEscapeKey.bind(this))
+    // Close on outside click - use bound functions
+    document.addEventListener("click", this.boundHandleOutsideClick)
+    document.addEventListener("keydown", this.boundHandleEscapeKey)
   }
 
   close() {
+    if (!this.isOpen) return // Prevent double-removing listeners
+
     this.menuTarget.classList.add("hidden")
     this.triggerTarget.setAttribute("aria-expanded", "false")
     this.isOpen = false
     this.currentFocus = -1
 
-    // Remove event listeners
-    document.removeEventListener("click", this.handleOutsideClick.bind(this))
-    document.removeEventListener("keydown", this.handleEscapeKey.bind(this))
+    // Remove event listeners - use bound functions
+    document.removeEventListener("click", this.boundHandleOutsideClick)
+    document.removeEventListener("keydown", this.boundHandleEscapeKey)
 
     // Close all submenus
     this.closeAllSubmenus()
+  }
+
+  disconnect() {
+    // NOTE: Ensure cleanup on disconnect
+    if (this.isOpen) {
+      this.close()
+    }
+    // Extra safety: remove listeners even if not open
+    document.removeEventListener("click", this.boundHandleOutsideClick)
+    document.removeEventListener("keydown", this.boundHandleEscapeKey)
   }
 
   handleOutsideClick(event) {
