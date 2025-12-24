@@ -16,7 +16,7 @@
               <chapter id="pushp-mangroves-tks-done-2025-19-10-sprint-02-tenant-isolation-tests" path=".pushp/mangroves/.tks/done/2025-19-10__sprint/02-tenant-isolation-tests.md" modified="2025-12-09T14:32:04Z" size="1282" words="153" readTime="1min" hash="sha256:47ef1165b3ebdae5">
                 <title>Sprint 02: Tenant Isolation Tests</title>
                 <summary>Sprint 02: Tenant Isolation Tests ## Status: INCOMPLETE ## Implementation Summary: Tenant isolation tests were implemented across multiple spec files including tenant_scoped_spec.rb, shared exampl...</summary>
-                <keywords>current.account, pass, test, fails, account.workspaces, tests, hook, implementation, tenant_scoped_spec.rb, cross-tenant</keywords>
+                <keywords>cross-tenant, fails, workspace#generate_slug, issues, current.account, hook, expectation, auto-assignment, tenant_scoped_spec.rb, account.workspaces</keywords>
               </chapter>
             </section>
           </section>

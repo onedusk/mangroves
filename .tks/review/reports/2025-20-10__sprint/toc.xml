@@ -18,12 +18,12 @@
                 <chapter id="pushp-mangroves-tks-review-reports-2025-20-10-sprint-task-12-form-controls-feedback-components" path=".pushp/mangroves/.tks/review/reports/2025-20-10__sprint/task-12-form-controls-feedback-components.md" modified="2025-12-09T14:32:05Z" size="22843" words="2722" readTime="10min" hash="sha256:cdbb9f82238aabbb">
                   <title>Code Review: Task 12 - Form Control &amp; Feedback Components</title>
                   <summary>Code Review: Task 12 - Form Control &amp; Feedback Components ## Executive Summary The form control and feedback components show good basic implementation with proper Phlex patterns and Stimulus integ...</summary>
-                  <keywords>could, controller, same, javascript, **implement, critical-04, changes, **risk**, vulnerabilities, wcag</keywords>
+                  <keywords>clean, **location**, message, sonnercomponent, performance, controllers, pause, javascript, critical-03, fail</keywords>
                 </chapter>
                 <chapter id="pushp-mangroves-tks-review-reports-2025-20-10-sprint-task-15-utility-interactive-components-review" path=".pushp/mangroves/.tks/review/reports/2025-20-10__sprint/task-15-utility-interactive-components-review.md" modified="2025-12-09T14:32:05Z" size="21971" words="2568" readTime="10min" hash="sha256:42798460ba5226c2">
                   <title>Task 15: Utility and Interactive Components Security Review</title>
                   <summary>Task 15: Utility and Interactive Components Security Review **Review Date**: 2025-10-20 **Reviewer**: Claude Code **Scope**: Separator, Resizable, Scroll Area, Slider, Toggle, Toggle Group, and...</summary>
-                  <keywords>table, confirmation, priority, input, server-side, none, could, tablecomponent, bounds, value</keywords>
+                  <keywords>utility, data, browser, missing, percentage, accepts, method, interpolated, fix**, height/width</keywords>
                 </chapter>
               </section>
             </section>

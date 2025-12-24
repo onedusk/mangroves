@@ -14,7 +14,7 @@
             <chapter id="pushp-mangroves-spec-javascript-readme" path=".pushp/mangroves/spec/javascript/README.md" modified="2025-12-09T14:32:04Z" size="7023" words="809" readTime="3min" hash="sha256:0e4c50afb3927f90">
               <title>JavaScript Memory Leak Tests</title>
               <summary>JavaScript Memory Leak Tests ## Overview This directory contains tests to verify that Stimulus controllers properly clean up event listeners and prevent memory leaks during connect/disconnect cycl...</summary>
-              <keywords>focus, baseline, (should, open, properly, leaks, devtools, automated, fixes, **wcag</keywords>
+              <keywords>restoration, timeout, functions, state, snapshot, verify, performance, listener, (should, connect/disconnect</keywords>
             </chapter>
           </section>
         </section>

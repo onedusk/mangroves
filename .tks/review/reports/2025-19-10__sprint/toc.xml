@@ -18,47 +18,47 @@
                 <chapter id="pushp-mangroves-tks-review-reports-2025-19-10-sprint-01-apply-tenant-scoping" path=".pushp/mangroves/.tks/review/reports/2025-19-10__sprint/01-apply-tenant-scoping.md" modified="2025-12-09T14:32:05Z" size="11200" words="1350" readTime="5min" hash="sha256:5ce0dea8ef0a9321">
                   <title>Untitled</title>
                   <summary>⏺ Code Review: Tenant Scoping Sprint Executive Summary The tenant scoping implementation is well-executed with strong patterns and comprehensive testing. The sprint successfully applied the ...</summary>
-                  <keywords>because, specs, composite, regressions, comprehensive, testing, includes, excellent, inclusion, audit</keywords>
+                  <keywords>associations, global, relationship, tenantscoped, records, code, 90-95), data, integration, concern</keywords>
                 </chapter>
                 <chapter id="pushp-mangroves-tks-review-reports-2025-19-10-sprint-03-fix-job-tenant-context" path=".pushp/mangroves/.tks/review/reports/2025-19-10__sprint/03-fix-job-tenant-context.md" modified="2025-12-09T14:32:05Z" size="1187" words="150" readTime="1min" hash="sha256:d1d41614004bff88">
                   <title>Sprint 03: Fix Job Tenant Context</title>
                   <summary>Sprint 03: Fix Job Tenant Context ## Status: COMPLETE ## Implementation Summary: ApplicationJob implements tenant context preservation using an around_perform callback that extracts account_id fro...</summary>
-                  <keywords>implementation, using, test, around_perform, arguments, account_id, cleanup, current.set, block, automatic</keywords>
+                  <keywords>block, account_id, arguments, test, verifies, tenant, callback, extracts, handles, comment</keywords>
                 </chapter>
                 <chapter id="pushp-mangroves-tks-review-reports-2025-19-10-sprint-04-create-authorization-policies" path=".pushp/mangroves/.tks/review/reports/2025-19-10__sprint/04-create-authorization-policies.md" modified="2025-12-09T14:32:05Z" size="1430" words="171" readTime="1min" hash="sha256:c748249f35d1e49e">
                   <title>Sprint 04: Create Authorization Policies</title>
                   <summary>Sprint 04: Create Authorization Policies ## Status: COMPLETE ## Implementation Summary: All Pundit authorization policies have been implemented with role-based access control for the multi-tenant ...</summary>
-                  <keywords>pundit, applicationpolicy, update, create, (member+, hierarchy, methods, workspacepolicy, role-based, teampolicy</keywords>
+                  <keywords>update, teampolicy, pundit, methods, (member+, base, accountpolicy, access, applicationpolicy, implementation</keywords>
                 </chapter>
                 <chapter id="pushp-mangroves-tks-review-reports-2025-19-10-sprint-05-build-tenant-controllers" path=".pushp/mangroves/.tks/review/reports/2025-19-10__sprint/05-build-tenant-controllers.md" modified="2025-12-09T14:32:05Z" size="1232" words="146" readTime="1min" hash="sha256:dcb17f7166b3a2f6">
                   <title>Sprint 05: Build Tenant Controllers</title>
                   <summary>Sprint 05: Build Tenant Controllers ## Status: COMPLETE ## Implementation Summary: AccountsController and WorkspacesController fully implemented with CRUD operations, Pundit authorization, and nes...</summary>
-                  <keywords>workspacescontroller, nested, policies, pundit, authorization, request, generated, authentication, isolation, guards</keywords>
+                  <keywords>tenant, workspacescontroller, request, account, routes, verify, enforce, cross-tenant, implemented, pundit</keywords>
                 </chapter>
                 <chapter id="pushp-mangroves-tks-review-reports-2025-19-10-sprint-06-implement-workspace-switching" path=".pushp/mangroves/.tks/review/reports/2025-19-10__sprint/06-implement-workspace-switching.md" modified="2025-12-09T14:32:05Z" size="1314" words="142" readTime="1min" hash="sha256:d2b90103863a1538">
                   <title>Sprint 06: Implement Workspace Switching</title>
                   <summary>Sprint 06: Implement Workspace Switching ## Status: COMPLETE ## Implementation Summary: All workspace switching functionality implemented. User model has current_workspace_id attribute with belong...</summary>
-                  <keywords>switching, verifies, configured, tests, storage, logging, routes, workspaceswitchercomponent, workspaces, accessible</keywords>
+                  <keywords>passing, account, tests, switching, routes, workspaceswitchercomponent, accessible, setter, verifies, implementation</keywords>
                 </chapter>
                 <chapter id="pushp-mangroves-tks-review-reports-2025-19-10-sprint-07-fix-mailer-tenant-context" path=".pushp/mangroves/.tks/review/reports/2025-19-10__sprint/07-fix-mailer-tenant-context.md" modified="2025-12-09T14:32:05Z" size="953" words="115" readTime="1min" hash="sha256:6512f4e351661b22">
                   <title>Sprint 07: Fix Mailer Tenant Context</title>
                   <summary>Sprint 07: Fix Mailer Tenant Context ## Status: COMPLETE ## Implementation Summary: ApplicationMailer implements comprehensive tenant context preservation through three mechanisms: default_url_opt...</summary>
-                  <keywords>implementation, tenant, context, generation, account, jobs, preservation, documentation, background, comprehensive</keywords>
+                  <keywords>mailer, tenant, preservation, address, context, documentation, implementation, jobs, comprehensive, generation</keywords>
                 </chapter>
                 <chapter id="pushp-mangroves-tks-review-reports-2025-19-10-sprint-08-add-audit-logging" path=".pushp/mangroves/.tks/review/reports/2025-19-10__sprint/08-add-audit-logging.md" modified="2025-12-09T14:32:05Z" size="1271" words="154" readTime="1min" hash="sha256:8455be84d4f9625b">
                   <title>Sprint 08: Add Audit Logging</title>
                   <summary>Sprint 08: Add Audit Logging ## Status: COMPLETE ## Implementation Summary: Implemented comprehensive audit logging system using both PaperTrail (for model change tracking) and custom AuditEvent m...</summary>
-                  <keywords>implementation, added, complete, comprehensive, workspace, custom, models, created, audit, model</keywords>
+                  <keywords>complete, created, papertrail, logging, implementation, comprehensive, (for, account, models, custom</keywords>
                 </chapter>
                 <chapter id="pushp-mangroves-tks-review-reports-2025-19-10-sprint-security-fixes-completed" path=".pushp/mangroves/.tks/review/reports/2025-19-10__sprint/SECURITY_FIXES_COMPLETED.md" modified="2025-12-09T14:32:05Z" size="7785" words="1028" readTime="4min" hash="sha256:792941aca9473b43">
                   <title>Security Fixes Completed: 2025-10-20</title>
                   <summary>Security Fixes Completed: 2025-10-20 ## Summary All 6 critical security vulnerabilities identified in the sprint review have been successfully fixed and tested. Tasks 12 and 15 are now production-...</summary>
-                  <keywords>without, leaks, updated, prevention, injection**, rendered, leak, (line, production, deploy</keywords>
+                  <keywords>leak, production, needed), listeners, test, implemented, vulnerabilities, event, uses, explaining</keywords>
                 </chapter>
                 <chapter id="pushp-mangroves-tks-review-reports-2025-19-10-sprint-sprint-review-summary" path=".pushp/mangroves/.tks/review/reports/2025-19-10__sprint/SPRINT_REVIEW_SUMMARY.md" modified="2025-12-09T14:32:05Z" size="16799" words="2254" readTime="9min" hash="sha256:3a16a40cb010dc21">
                   <title>Sprint Review Summary: 2025-19-10</title>
                   <summary>Sprint Review Summary: 2025-19-10 **Review Date**: 2025-10-20 **Reviewer**: Claude Code (AI-Assisted Parallel Review) **Tasks Reviewed**: 9 tasks (02, 09, 10, 11, 12, 13, 14, 15, 16) --- ## Execu...</summary>
-                  <keywords>attributes, model, documented, overlay, (except, fix), performance, hovercard, tests), issue</keywords>
+                  <keywords>resizable_controller.js, core, documented, dataset, quality, aria-describedby, unfixed, specs, arbitrary, full</keywords>
                 </chapter>
               </section>
             </section>

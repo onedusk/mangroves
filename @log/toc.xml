@@ -12,7 +12,7 @@
           <chapter id="pushp-mangroves-log-test-fixes-summary-2025-10-20" path=".pushp/mangroves/@log/test-fixes-summary-2025-10-20.md" modified="2025-12-09T14:32:04Z" size="6708" words="896" readTime="3min" hash="sha256:657d64864f48772a">
             <title>Test Fixes Orchestration - Final Summary</title>
             <summary>Test Fixes Orchestration - Final Summary *Date: 2025-10-20* ## Executive Summary Successfully reduced test failures from **127 to 7** (94.5% reduction) by orchestrating 7 parallel agents plus manu...</summary>
-            <keywords>integration, issues, manual, examples, **120, updated, text, expect, phlex/capybara, safety</keywords>
+            <keywords>matches, navigationmenucomponent, dismiss, added, summary, html, fixed, raw(), render, success</keywords>
           </chapter>
         </section>
       </section>
