@@ -3,76 +3,67 @@
     <totalDocs>11</totalDocs>
   </metadata>
   <sections>
-    <section id="company">
-      <title>Company</title>
-      <section id="company-sandbox">
-        <title>Sandbox</title>
-        <section id="company-sandbox-dl-dev">
-          <title>Dl Dev</title>
-          <section id="company-sandbox-dl-dev-experiments">
-            <title>Experiments</title>
-            <section id="company-sandbox-dl-dev-experiments-mangroves">
-              <title>Mangroves</title>
-              <section id="company-sandbox-dl-dev-experiments-mangroves-docs">
-                <title>Docs</title>
-                <chapter id="company-sandbox-dl-dev-experiments-mangroves-docs-deployment" path="company/sandbox/dl_dev/experiments/mangroves/docs/DEPLOYMENT.md" modified="2025-10-01T11:36:22Z" size="561" words="80" readTime="1min" hash="sha256:ce6924fa331c0aed">
-                  <title>Deployment</title>
-                  <summary>Deployment ## Environment variables These environment variables affect how the app functions when deployed in production. - `RAILS_HOSTNAME` - Redirect all requests to the specified canonical hos...</summary>
-                  <keywords>cookies, number, puma, environment, variables, (default, production, **required**</keywords>
-                </chapter>
-                <chapter id="company-sandbox-dl-dev-experiments-mangroves-docs-multi-tenant-assessment" path="company/sandbox/dl_dev/experiments/mangroves/docs/MULTI_TENANT_ASSESSMENT.md" modified="2025-10-17T15:23:21Z" size="17923" words="2334" readTime="9min" hash="sha256:efa455e40c535f47">
-                  <title>Multi-Tenant Readiness Assessment</title>
-                  <summary>Multi-Tenant Readiness Assessment **Date**: 2025-10-17 **Application**: Mangroves Rails 8.0 **Assessment Type**: Production Readiness for Multi-Tenant SaaS --- ## Executive Summary The applicati...</summary>
-                  <keywords>data, flow, tasks, calls, app/policies/, without, multi-tenant, user, context, **impact**</keywords>
-                </chapter>
-                <chapter id="company-sandbox-dl-dev-experiments-mangroves-docs-admin-interface-requirements" path="company/sandbox/dl_dev/experiments/mangroves/docs/admin_interface_requirements.md" modified="2025-10-19T15:28:01Z" size="1927" words="266" readTime="1min" hash="sha256:9cc925b67ab62ca6">
-                  <title>Admin Interface Requirements</title>
-                  <summary>Admin Interface Requirements ## Audit Log Viewer ### Overview Administrative interface for viewing and filtering audit events for security and compliance. ### Requirements #### Audit Event Viewe...</summary>
-                  <keywords>interface, event, history, json, action, date, resource, user, detail, compliance</keywords>
-                </chapter>
-                <chapter id="company-sandbox-dl-dev-experiments-mangroves-docs-developer-workflows" path="company/sandbox/dl_dev/experiments/mangroves/docs/developer_workflows.md" modified="2025-10-19T15:56:38Z" size="14772" words="1671" readTime="6min" hash="sha256:49d73a7f226e15fe">
-                  <title>Developer Workflows - Multi-Tenant Rails Application</title>
-                  <summary>Developer Workflows - Multi-Tenant Rails Application This guide covers common development workflows for working with multi-tenant data in the Mangroves Rails application. ## Overview The applicat...</summary>
-                  <keywords>common, temporary, provide, string, **usage:**, cross-tenant, models, switches, useful, without</keywords>
-                </chapter>
-                <chapter id="company-sandbox-dl-dev-experiments-mangroves-docs-rails-conventions" path="company/sandbox/dl_dev/experiments/mangroves/docs/rails_conventions.md" modified="2025-10-17T22:26:28Z" size="9549" words="1147" readTime="4min" hash="sha256:5bc1fce6a9feb299">
-                  <title>Rails Conventions — Condensed One‑Pager</title>
-                  <summary>Rails Conventions — Condensed One‑Pager A pragmatic “what‑goes‑where” map for a modern Rails app (Hotwire + Solid* + Postgres + RSpec + Docker/Kamal). --- ## Golden Rules * Keep **Ac...</summary>
-                  <keywords>avoid, tenant‑owned, jobs, wrap, service, retries, rails, **jobs**, testing, scopes</keywords>
-                </chapter>
-                <chapter id="company-sandbox-dl-dev-experiments-mangroves-docs-task-18-completion-report" path="company/sandbox/dl_dev/experiments/mangroves/docs/task-18-completion-report.md" modified="2025-10-20T14:03:44Z" size="10351" words="1218" readTime="4min" hash="sha256:87718d4b10056665">
-                  <title>Task 18: Tenant Isolation and Authorization Security Fixes - Completion Report</title>
-                  <summary>Task 18: Tenant Isolation and Authorization Security Fixes - Completion Report **Date:** 2025-10-20 **Status:** COMPLETED with minor test adjustments needed **Priority:** HIGH - Critical Security I...</summary>
-                  <keywords>subtasks, team, setup, membership, passing, removed, failures, workspace, missing, workspaceswitchercomponent</keywords>
-                </chapter>
-                <chapter id="company-sandbox-dl-dev-experiments-mangroves-docs-task-13-completion-report" path="company/sandbox/dl_dev/experiments/mangroves/docs/task_13_completion_report.md" modified="2025-10-20T00:13:40Z" size="7359" words="707" readTime="2min" hash="sha256:05578718f4b33560">
-                  <title>Task 13 Completion Report: Overlay, Popover, and Tooltip Components</title>
-                  <summary>Task 13 Completion Report: Overlay, Popover, and Tooltip Components ## Summary Successfully implemented all overlay components with Phlex templates, Stimulus controllers, Tailwind styling, and com...</summary>
-                  <keywords>overlay, alignment, position, boundary, block, implemented, stimulus, method, tests, layout</keywords>
-                </chapter>
-                <chapter id="company-sandbox-dl-dev-experiments-mangroves-docs-task-24-completion-report" path="company/sandbox/dl_dev/experiments/mangroves/docs/task_24_completion_report.md" modified="2025-10-20T14:04:39Z" size="14856" words="1773" readTime="7min" hash="sha256:9325d6791e4d0f94">
-                  <title>Task 24 Completion Report: Performance Optimizations &amp; Security Documentation</title>
-                  <summary>Task 24 Completion Report: Performance Optimizations &amp; Security Documentation **Date:** 2025-10-20 **Task ID:** 24 **Status:** Complete **Priority:** M **Project:** mangroves-multi-tenant ## Execu...</summary>
-                  <keywords>throttle, pundit, turbo, sanitization, logging**, quality, extensive, enhanced, slidercomponent, documented</keywords>
-                </chapter>
-                <chapter id="company-sandbox-dl-dev-experiments-mangroves-docs-tenant-isolation-demonstration" path="company/sandbox/dl_dev/experiments/mangroves/docs/tenant-isolation-demonstration.md" modified="2025-10-20T14:04:31Z" size="7166" words="845" readTime="3min" hash="sha256:ac4818bb014dfe96">
-                  <title>Tenant Isolation Security Fix - Demonstration</title>
-                  <summary>Tenant Isolation Security Fix - Demonstration ## Critical Vulnerability - Data Leak Prevention ### The Problem (BEFORE) ```ruby # DANGEROUS CODE - Previous implementation # in app/models/concerns...</summary>
-                  <keywords>returns, security, vulnerability, context, records, **result:**, query, level:**, current.account, code</keywords>
-                </chapter>
-                <chapter id="company-sandbox-dl-dev-experiments-mangroves-docs-tenant-scoped-components" path="company/sandbox/dl_dev/experiments/mangroves/docs/tenant-scoped-components.md" modified="2025-10-20T14:01:54Z" size="27323" words="2743" readTime="10min" hash="sha256:49ac97c1e18e9e2f">
-                  <title>Tenant-Scoped Component Patterns</title>
-                  <summary>Tenant-Scoped Component Patterns This document describes patterns for building multi-tenant aware Phlex components that integrate with the `Current.account` context and provide tenant-specific cust...</summary>
-                  <keywords>validation, feature, work, performance, gating, context, display, tenant-specific, accessing, pattern</keywords>
-                </chapter>
-                <chapter id="company-sandbox-dl-dev-experiments-mangroves-docs-tenant-management-implementation" path="company/sandbox/dl_dev/experiments/mangroves/docs/tenant_management_implementation.md" modified="2025-10-20T00:09:10Z" size="9075" words="1107" readTime="4min" hash="sha256:6cbb5a3c0948ff73">
-                  <title>Task 9: Tenant Management Implementation - COMPLETED</title>
-                  <summary>Task 9: Tenant Management Implementation - COMPLETED ## Overview This document provides verification that all requirements for Task 9 have been successfully implemented and tested. ## Requirement...</summary>
-                  <keywords>tenant:switch[slug], unique, **features:**, testing, directory, switch, thread-safe, handling, tenant:list, **output:**</keywords>
-                </chapter>
-              </section>
-            </section>
-          </section>
+    <section id="pushp">
+      <title>.pushp</title>
+      <section id="pushp-mangroves">
+        <title>Mangroves</title>
+        <section id="pushp-mangroves-docs">
+          <title>Docs</title>
+          <chapter id="pushp-mangroves-docs-deployment" path=".pushp/mangroves/docs/DEPLOYMENT.md" modified="2025-12-09T14:32:04Z" size="561" words="80" readTime="1min" hash="sha256:ce6924fa331c0aed">
+            <title>Deployment</title>
+            <summary>Deployment ## Environment variables These environment variables affect how the app functions when deployed in production. - `RAILS_HOSTNAME` - Redirect all requests to the specified canonical hos...</summary>
+            <keywords>puma, environment, variables, production, **required**, (default, cookies, number</keywords>
+          </chapter>
+          <chapter id="pushp-mangroves-docs-multi-tenant-assessment" path=".pushp/mangroves/docs/MULTI_TENANT_ASSESSMENT.md" modified="2025-12-09T14:32:04Z" size="17923" words="2334" readTime="9min" hash="sha256:efa455e40c535f47">
+            <title>Multi-Tenant Readiness Assessment</title>
+            <summary>Multi-Tenant Readiness Assessment **Date**: 2025-10-17 **Application**: Mangroves Rails 8.0 **Assessment Type**: Production Readiness for Multi-Tenant SaaS --- ## Executive Summary The applicati...</summary>
+            <keywords>foundational, without, directory, rate, roles, policies, models, multiple, abuse, scenarios</keywords>
+          </chapter>
+          <chapter id="pushp-mangroves-docs-admin-interface-requirements" path=".pushp/mangroves/docs/admin_interface_requirements.md" modified="2025-12-09T14:32:04Z" size="1927" words="266" readTime="1min" hash="sha256:9cc925b67ab62ca6">
+            <title>Admin Interface Requirements</title>
+            <summary>Admin Interface Requirements ## Audit Log Viewer ### Overview Administrative interface for viewing and filtering audit events for security and compliance. ### Requirements #### Audit Event Viewe...</summary>
+            <keywords>date, admin, user, version, model, json, access, metadata, pages, timestamp</keywords>
+          </chapter>
+          <chapter id="pushp-mangroves-docs-developer-workflows" path=".pushp/mangroves/docs/developer_workflows.md" modified="2025-12-09T14:32:04Z" size="14772" words="1671" readTime="6min" hash="sha256:49d73a7f226e15fe">
+            <title>Developer Workflows - Multi-Tenant Rails Application</title>
+            <summary>Developer Workflows - Multi-Tenant Rails Application This guide covers common development workflows for working with multi-tenant data in the Mangroves Rails application. ## Overview The applicat...</summary>
+            <keywords>scenario, scripts, between, useful, tenant-scoped, slug, rake, user, automatically, context</keywords>
+          </chapter>
+          <chapter id="pushp-mangroves-docs-rails-conventions" path=".pushp/mangroves/docs/rails_conventions.md" modified="2025-12-09T14:32:04Z" size="9549" words="1147" readTime="4min" hash="sha256:5bc1fce6a9feb299">
+            <title>Rails Conventions — Condensed One‑Pager</title>
+            <summary>Rails Conventions — Condensed One‑Pager A pragmatic “what‑goes‑where” map for a modern Rails app (Hotwire + Solid* + Postgres + RSpec + Docker/Kamal). --- ## Golden Rules * Keep **Ac...</summary>
+            <keywords>shared, **do**, **shared, **solid, migrations, jobs/services, operations, fan‑out, tenant‑owned, model</keywords>
+          </chapter>
+          <chapter id="pushp-mangroves-docs-task-18-completion-report" path=".pushp/mangroves/docs/task-18-completion-report.md" modified="2025-12-09T14:32:04Z" size="10351" words="1218" readTime="4min" hash="sha256:87718d4b10056665">
+            <title>Task 18: Tenant Isolation and Authorization Security Fixes - Completion Report</title>
+            <summary>Task 18: Tenant Isolation and Authorization Security Fixes - Completion Report **Date:** 2025-10-20 **Status:** COMPLETED with minor test adjustments needed **Priority:** HIGH - Critical Security I...</summary>
+            <keywords>needed, **changes:**, detected, actual, tests, returns, failures, presence, user, critical</keywords>
+          </chapter>
+          <chapter id="pushp-mangroves-docs-task-13-completion-report" path=".pushp/mangroves/docs/task_13_completion_report.md" modified="2025-12-09T14:32:04Z" size="7359" words="707" readTime="2min" hash="sha256:05578718f4b33560">
+            <title>Task 13 Completion Report: Overlay, Popover, and Tooltip Components</title>
+            <summary>Task 13 Completion Report: Overlay, Popover, and Tooltip Components ## Summary Successfully implemented all overlay components with Phlex templates, Stimulus controllers, Tailwind styling, and com...</summary>
+            <keywords>click-outside-to-close, display, sheetcomponent, shared, auto-positioning, features, aspect, tailwind, covering, controllers</keywords>
+          </chapter>
+          <chapter id="pushp-mangroves-docs-task-24-completion-report" path=".pushp/mangroves/docs/task_24_completion_report.md" modified="2025-12-09T14:32:04Z" size="14856" words="1773" readTime="7min" hash="sha256:9325d6791e4d0f94">
+            <title>Task 24 Completion Report: Performance Optimizations &amp; Security Documentation</title>
+            <summary>Task 24 Completion Report: Performance Optimizations &amp; Security Documentation **Date:** 2025-10-20 **Task ID:** 24 **Status:** Complete **Priority:** M **Project:** mangroves-multi-tenant ## Execu...</summary>
+            <keywords>enhanced, review, protection**, coverage:**, subtasks, prevents, compatibility, application, throttling, added:**</keywords>
+          </chapter>
+          <chapter id="pushp-mangroves-docs-tenant-isolation-demonstration" path=".pushp/mangroves/docs/tenant-isolation-demonstration.md" modified="2025-12-09T14:32:04Z" size="7166" words="845" readTime="3min" hash="sha256:ac4818bb014dfe96">
+            <title>Tenant Isolation Security Fix - Demonstration</title>
+            <summary>Tenant Isolation Security Fix - Demonstration ## Critical Vulnerability - Data Leak Prevention ### The Problem (BEFORE) ```ruby # DANGEROUS CODE - Previous implementation # in app/models/concerns...</summary>
+            <keywords>background, query, production, zero, security, vulnerability, **benefit:**, verification, data, runtime</keywords>
+          </chapter>
+          <chapter id="pushp-mangroves-docs-tenant-scoped-components" path=".pushp/mangroves/docs/tenant-scoped-components.md" modified="2025-12-09T14:32:04Z" size="27323" words="2743" readTime="10min" hash="sha256:49ac97c1e18e9e2f">
+            <title>Tenant-Scoped Component Patterns</title>
+            <summary>Tenant-Scoped Component Patterns This document describes patterns for building multi-tenant aware Phlex components that integrate with the `Current.account` context and provide tenant-specific cust...</summary>
+            <keywords>testing, receive, should, display, colors, account, pattern, always, validate, must</keywords>
+          </chapter>
+          <chapter id="pushp-mangroves-docs-tenant-management-implementation" path=".pushp/mangroves/docs/tenant_management_implementation.md" modified="2025-12-09T14:32:04Z" size="9075" words="1107" readTime="4min" hash="sha256:6cbb5a3c0948ff73">
+            <title>Task 9: Tenant Management Implementation - COMPLETED</title>
+            <summary>Task 9: Tenant Management Implementation - COMPLETED ## Overview This document provides verification that all requirements for Task 9 have been successfully implemented and tested. ## Requirement...</summary>
+            <keywords>conventions, available, arguments, current.account, comprehensive, automatically, successfully, thread-safe, module, execution</keywords>
+          </chapter>
         </section>
       </section>
     </section>

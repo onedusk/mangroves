@@ -1,0 +1,105 @@
+
+---
+workspaces:
+  columns:
+  - id
+  - account_id
+  - name
+  - slug
+  - description
+  - status
+  - settings
+  - metadata
+  - created_at
+  - updated_at
+  records: 
+  - - 4abf1cd7-a8f8-49a8-a4f0-c9e1fa877e1f
+    - 612484d0-f94e-4f15-a90c-bd7b1935f6e3
+    - Test Workspace
+    - test-workspace
+    -
+    - 0
+    - "{}"
+    - "{}"
+    - 2025-10-20 14:16:24.925637000 Z
+    - 2025-10-20 14:16:24.925637000 Z
+  - - 51918663-4298-495c-bd16-61880375304f
+    - 0c1ea408-584f-42d8-9050-158a72034a53
+    - Default
+    - default
+    -
+    - 0
+    - "{}"
+    - "{}"
+    - 2025-10-19 19:56:55.559169000 Z
+    - 2025-10-19 19:56:55.559169000 Z
+  - - 6726877f-30c8-4a58-929a-e2ab96b99873
+    - 6f4ba7f0-6e3c-486a-9b3c-3a3d44fabb38
+    - Other Workspace
+    - workspace-2
+    - Workspace description
+    - 0
+    - "{}"
+    - "{}"
+    - 2025-10-19 18:56:32.749716000 Z
+    - 2025-10-19 18:56:32.749716000 Z
+  - - 70188f33-968a-49fa-926e-bfb376779e31
+    - 00d81bef-f53b-44b2-b08e-3490158bb03c
+    - Main Workspace
+    - main
+    - Main workspace for StartUp Inc
+    - 0
+    - "{}"
+    - "{}"
+    - 2025-10-17 19:25:11.913588000 Z
+    - 2025-10-17 19:25:11.913588000 Z
+  - - 7acb64d7-8ab7-4a9d-9d6f-d356478ed2e5
+    - d470ea3a-4e7e-461f-977c-33e01a6fca09
+    - Workspace 1
+    - workspace-1
+    - Workspace description
+    - 0
+    - "{}"
+    - "{}"
+    - 2025-10-19 18:56:32.740735000 Z
+    - 2025-10-19 18:56:32.740735000 Z
+  - - bc1b69a0-81ee-4b46-9ea4-889abccc8eef
+    - a8a3481e-afef-4a64-a252-ae32caa7bc5c
+    - Review Test Account Workspace
+    - review-test-account-workspace
+    -
+    - 0
+    - "{}"
+    - "{}"
+    - 2025-10-20 17:02:07.091512000 Z
+    - 2025-10-20 17:02:07.091512000 Z
+  - - cca1e35c-a77e-4b98-bc16-3520efd9659b
+    - 6e0f0121-85f4-48b1-abb8-708bd59e77c9
+    - Test New Account 2 Workspace
+    - test-new-account-2-workspace
+    -
+    - 0
+    - "{}"
+    - "{}"
+    - 2025-10-20 04:07:38.299804000 Z
+    - 2025-10-20 04:07:38.299804000 Z
+  - - e476bc1c-a95a-452b-8d28-bb85b001360e
+    - d06bae30-caf5-4ed3-a1c8-2e3a43219e57
+    - Production
+    - production
+    - Production environment workspace
+    - 0
+    - "{}"
+    - "{}"
+    - 2025-10-17 19:25:11.096811000 Z
+    - 2025-10-17 19:25:11.096811000 Z
+  - - e9f13bf3-93b5-41b5-b4ac-af8ec6049e52
+    - d06bae30-caf5-4ed3-a1c8-2e3a43219e57
+    - Development
+    - development
+    - Development environment workspace
+    - 0
+    - "{}"
+    - "{}"
+    - 2025-10-17 19:25:11.091829000 Z
+    - 2025-10-17 19:25:11.091829000 Z

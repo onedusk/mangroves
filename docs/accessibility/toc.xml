@@ -3,43 +3,34 @@
     <totalDocs>4</totalDocs>
   </metadata>
   <sections>
-    <section id="company">
-      <title>Company</title>
-      <section id="company-sandbox">
-        <title>Sandbox</title>
-        <section id="company-sandbox-dl-dev">
-          <title>Dl Dev</title>
-          <section id="company-sandbox-dl-dev-experiments">
-            <title>Experiments</title>
-            <section id="company-sandbox-dl-dev-experiments-mangroves">
-              <title>Mangroves</title>
-              <section id="company-sandbox-dl-dev-experiments-mangroves-docs">
-                <title>Docs</title>
-                <section id="company-sandbox-dl-dev-experiments-mangroves-docs-accessibility">
-                  <title>Accessibility</title>
-                  <chapter id="company-sandbox-dl-dev-experiments-mangroves-docs-accessibility-aria-implementation-summary" path="company/sandbox/dl_dev/experiments/mangroves/docs/accessibility/aria-implementation-summary.md" modified="2025-10-20T14:04:45Z" size="7055" words="808" readTime="3min" hash="sha256:49032b5efbb20152">
-                    <title>ARIA Semantics Implementation Summary</title>
-                    <summary>ARIA Semantics Implementation Summary **Date:** 2025-10-20 **Task:** #21 - Add ARIA semantics and screen reader support **Status:** Complete ## Overview Comprehensive ARIA semantics and screen re...</summary>
-                    <keywords>changes, focus, buttons, modal, **test, references, region, progress, dropdown, pass</keywords>
-                  </chapter>
-                  <chapter id="company-sandbox-dl-dev-experiments-mangroves-docs-accessibility-aria-usage-guide" path="company/sandbox/dl_dev/experiments/mangroves/docs/accessibility/aria-usage-guide.md" modified="2025-10-20T14:05:18Z" size="6869" words="735" readTime="2min" hash="sha256:b81101100f8f7a4f">
-                    <title>ARIA Usage Guide for Components</title>
-                    <summary>ARIA Usage Guide for Components Quick reference for using components with proper ARIA semantics. ## Form Components ### InputComponent ```ruby # Basic usage with label InputComponent.new( name...</summary>
-                    <keywords>accessibility, native, devtools, testing, update, aria, semantics, html, elements, components</keywords>
-                  </chapter>
-                  <chapter id="company-sandbox-dl-dev-experiments-mangroves-docs-accessibility-keyboard-navigation" path="company/sandbox/dl_dev/experiments/mangroves/docs/accessibility/keyboard_navigation.md" modified="2025-10-20T14:04:54Z" size="10950" words="1430" readTime="5min" hash="sha256:33075d1b678c23a7">
-                    <title>Keyboard Navigation &amp; Accessibility (WCAG 2.1.1)</title>
-                    <summary>Keyboard Navigation &amp; Accessibility (WCAG 2.1.1) This document outlines the keyboard accessibility implementation for interactive components in the Mangroves application, ensuring compliance with W...</summary>
-                    <keywords>mouse, return, traps, triggers, activates, next, shortcuts**, test, selectcomponent, testing</keywords>
-                  </chapter>
-                  <chapter id="company-sandbox-dl-dev-experiments-mangroves-docs-accessibility-task-20-completion-report" path="company/sandbox/dl_dev/experiments/mangroves/docs/accessibility/task-20-completion-report.md" modified="2025-10-20T14:06:02Z" size="12875" words="1622" readTime="6min" hash="sha256:3b817f396e262d70">
-                    <title>Task 20: Keyboard Accessibility Implementation - Completion Report</title>
-                    <summary>Task 20: Keyboard Accessibility Implementation - Completion Report **Task ID:** 20 **Task:** Implement keyboard accessibility for WCAG 2.1.1 compliance **Date Completed:** 2025-10-20 **Status:** CO...</summary>
-                    <keywords>order, full, subtasks, trigger, details, comprehensive, interactive, attributes, configurable, (except</keywords>
-                  </chapter>
-                </section>
-              </section>
-            </section>
+    <section id="pushp">
+      <title>.pushp</title>
+      <section id="pushp-mangroves">
+        <title>Mangroves</title>
+        <section id="pushp-mangroves-docs">
+          <title>Docs</title>
+          <section id="pushp-mangroves-docs-accessibility">
+            <title>Accessibility</title>
+            <chapter id="pushp-mangroves-docs-accessibility-aria-implementation-summary" path=".pushp/mangroves/docs/accessibility/aria-implementation-summary.md" modified="2025-12-09T14:32:04Z" size="7055" words="808" readTime="3min" hash="sha256:49032b5efbb20152">
+              <title>ARIA Semantics Implementation Summary</title>
+              <summary>ARIA Semantics Implementation Summary **Date:** 2025-10-20 **Task:** #21 - Add ARIA semantics and screen reader support **Status:** Complete ## Overview Comprehensive ARIA semantics and screen re...</summary>
+              <keywords>reads, attributes, indicates, popover, defines, unique, navigation, proper, type, progress</keywords>
+            </chapter>
+            <chapter id="pushp-mangroves-docs-accessibility-aria-usage-guide" path=".pushp/mangroves/docs/accessibility/aria-usage-guide.md" modified="2025-12-09T14:32:04Z" size="6869" words="735" readTime="2min" hash="sha256:b81101100f8f7a4f">
+              <title>ARIA Usage Guide for Components</title>
+              <summary>ARIA Usage Guide for Components Quick reference for using components with proper ARIA semantics. ## Form Components ### InputComponent ```ruby # Basic usage with label InputComponent.new( name...</summary>
+              <keywords>testing, components, native, devtools, elements, semantics, update, accessibility, html, aria</keywords>
+            </chapter>
+            <chapter id="pushp-mangroves-docs-accessibility-keyboard-navigation" path=".pushp/mangroves/docs/accessibility/keyboard_navigation.md" modified="2025-12-09T14:32:04Z" size="10950" words="1430" readTime="5min" hash="sha256:33075d1b678c23a7">
+              <title>Keyboard Navigation &amp; Accessibility (WCAG 2.1.1)</title>
+              <summary>Keyboard Navigation &amp; Accessibility (WCAG 2.1.1) This document outlines the keyboard accessibility implementation for interactive components in the Mangroves application, ensuring compliance with W...</summary>
+              <keywords>visible, panel, within, move, without, tests, listbox, triggers, trigger, returns</keywords>
+            </chapter>
+            <chapter id="pushp-mangroves-docs-accessibility-task-20-completion-report" path=".pushp/mangroves/docs/accessibility/task-20-completion-report.md" modified="2025-12-09T14:32:04Z" size="12875" words="1622" readTime="6min" hash="sha256:3b817f396e262d70">
+              <title>Task 20: Keyboard Accessibility Implementation - Completion Report</title>
+              <summary>Task 20: Keyboard Accessibility Implementation - Completion Report **Task ID:** 20 **Task:** Implement keyboard accessibility for WCAG 2.1.1 compliance **Date Completed:** 2025-10-20 **Status:** CO...</summary>
+              <keywords>arrow, task, dropdown, existing, specs:**, accessibility, cycles, paginationcomponent, accessible, level</keywords>
+            </chapter>
           </section>
         </section>
       </section>

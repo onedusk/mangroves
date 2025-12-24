@@ -1,0 +1,38 @@
+
+---
+teams:
+  columns:
+  - id
+  - workspace_id
+  - name
+  - slug
+  - description
+  - status
+  - settings
+  - metadata
+  - created_at
+  - updated_at
+  - account_id
+  records: 
+  - - 2f024fce-5572-4ef6-9902-d1e14857f455
+    - e9f13bf3-93b5-41b5-b4ac-af8ec6049e52
+    - Backend Team
+    - backend
+    - Backend development team
+    - 0
+    - "{}"
+    - "{}"
+    - 2025-10-17 19:25:11.147067000 Z
+    - 2025-10-17 19:25:11.147067000 Z
+    - d06bae30-caf5-4ed3-a1c8-2e3a43219e57
+  - - 3f191322-1af6-4752-955a-8e032cd0f1af
+    - e9f13bf3-93b5-41b5-b4ac-af8ec6049e52
+    - Frontend Team
+    - frontend
+    - Frontend development team
+    - 0
+    - "{}"
+    - "{}"
+    - 2025-10-17 19:25:11.157397000 Z
+    - 2025-10-17 19:25:11.157397000 Z
+    - d06bae30-caf5-4ed3-a1c8-2e3a43219e57

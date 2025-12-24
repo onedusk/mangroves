@@ -3,33 +3,24 @@
     <totalDocs>2</totalDocs>
   </metadata>
   <sections>
-    <section id="company">
-      <title>Company</title>
-      <section id="company-sandbox">
-        <title>Sandbox</title>
-        <section id="company-sandbox-dl-dev">
-          <title>Dl Dev</title>
-          <section id="company-sandbox-dl-dev-experiments">
-            <title>Experiments</title>
-            <section id="company-sandbox-dl-dev-experiments-mangroves">
-              <title>Mangroves</title>
-              <section id="company-sandbox-dl-dev-experiments-mangroves-docs">
-                <title>Docs</title>
-                <section id="company-sandbox-dl-dev-experiments-mangroves-docs-security">
-                  <title>Security</title>
-                  <chapter id="company-sandbox-dl-dev-experiments-mangroves-docs-security-validation-hardening-summary" path="company/sandbox/dl_dev/experiments/mangroves/docs/security/validation-hardening-summary.md" modified="2025-10-20T14:04:37Z" size="11225" words="1347" readTime="5min" hash="sha256:388933af33140673">
-                    <title>Server-Side Validation and Security Hardening Summary</title>
-                    <summary>Server-Side Validation and Security Hardening Summary **Date:** 2025-10-20 **Task:** Task 22 - Add server-side validation and security hardening **Status:** Complete ## Overview Implemented compr...</summary>
-                    <keywords>schemes, authentication, request, implementation, implemented, application, custom, **validation, audit, prevents</keywords>
-                  </chapter>
-                  <chapter id="company-sandbox-dl-dev-experiments-mangroves-docs-security-xss-protection-implementation" path="company/sandbox/dl_dev/experiments/mangroves/docs/security/xss-protection-implementation.md" modified="2025-10-20T14:05:37Z" size="12337" words="1495" readTime="5min" hash="sha256:dc0e2c64e4dc4291">
-                    <title>XSS Protection Implementation Report</title>
-                    <summary>XSS Protection Implementation Report **Date:** 2025-10-20 **Task:** Fix XSS vulnerabilities across all components **Status:** Complete ## Summary Successfully implemented comprehensive XSS pr...</summary>
-                    <keywords>range, components, application, class, display, output, html, messages, vectors, security</keywords>
-                  </chapter>
-                </section>
-              </section>
-            </section>
+    <section id="pushp">
+      <title>.pushp</title>
+      <section id="pushp-mangroves">
+        <title>Mangroves</title>
+        <section id="pushp-mangroves-docs">
+          <title>Docs</title>
+          <section id="pushp-mangroves-docs-security">
+            <title>Security</title>
+            <chapter id="pushp-mangroves-docs-security-validation-hardening-summary" path=".pushp/mangroves/docs/security/validation-hardening-summary.md" modified="2025-12-09T14:32:04Z" size="11225" words="1347" readTime="5min" hash="sha256:388933af33140673">
+              <title>Server-Side Validation and Security Hardening Summary</title>
+              <summary>Server-Side Validation and Security Hardening Summary **Date:** 2025-10-20 **Task:** Task 22 - Add server-side validation and security hardening **Status:** Complete ## Overview Implemented compr...</summary>
+              <keywords>urls, attempts/hour, against, files, scoped, **csp, non-blank, valid, description, already</keywords>
+            </chapter>
+            <chapter id="pushp-mangroves-docs-security-xss-protection-implementation" path=".pushp/mangroves/docs/security/xss-protection-implementation.md" modified="2025-12-09T14:32:04Z" size="12337" words="1495" readTime="5min" hash="sha256:dc0e2c64e4dc4291">
+              <title>XSS Protection Implementation Report</title>
+              <summary>XSS Protection Implementation Report **Date:** 2025-10-20 **Task:** Fix XSS vulnerabilities across all components **Status:** Complete ## Summary Successfully implemented comprehensive XSS pr...</summary>
+              <keywords>file:), validation, callback, other, attempts, (created), link, messages, action, vectors</keywords>
+            </chapter>
           </section>
         </section>
       </section>

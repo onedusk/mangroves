@@ -1,0 +1,237 @@
+
+---
+users:
+  columns:
+  - id
+  - email
+  - encrypted_password
+  - reset_password_token
+  - reset_password_sent_at
+  - remember_created_at
+  - sign_in_count
+  - current_sign_in_at
+  - last_sign_in_at
+  - current_sign_in_ip
+  - last_sign_in_ip
+  - confirmation_token
+  - confirmed_at
+  - confirmation_sent_at
+  - unconfirmed_email
+  - failed_attempts
+  - unlock_token
+  - locked_at
+  - first_name
+  - last_name
+  - phone
+  - avatar_url
+  - role
+  - status
+  - current_workspace_id
+  - settings
+  - metadata
+  - created_at
+  - updated_at
+  records: 
+  - - 071fd356-d662-4e2e-87e0-4cc0fd3b6255
+    - developer2@example.com
+    - "$2a$12$DPq4bJrucZNA3O/gBYiF3uH06q.kGqGUENzW.yopFon0M2aozwl0O"
+    -
+    -
+    -
+    - 0
+    -
+    -
+    -
+    -
+    -
+    - 2025-10-17 19:25:11.362640000 Z
+    -
+    -
+    - 0
+    -
+    -
+    - Developer
+    - '2'
+    -
+    -
+    - 0
+    - 0
+    - e9f13bf3-93b5-41b5-b4ac-af8ec6049e52
+    - "{}"
+    - "{}"
+    - 2025-10-17 19:25:11.533200000 Z
+    - 2025-10-17 19:25:11.542239000 Z
+  - - 1ca5c93f-3848-41ba-b4a3-093486c3b982
+    - user1@example.com
+    - "$2a$12$nFmBCcE4kn2ifPgeRswjz.y.C9uorTu/HSwh4m6HFYKonygClq6DG"
+    -
+    -
+    -
+    - 0
+    -
+    -
+    -
+    -
+    -
+    - 2025-10-19 18:56:32.627290000 Z
+    -
+    -
+    - 0
+    -
+    -
+    - Test
+    - User1
+    -
+    -
+    - 0
+    - 0
+    -
+    - "{}"
+    - "{}"
+    - 2025-10-19 18:56:32.661749000 Z
+    - 2025-10-19 18:56:32.661749000 Z
+  - - 3f1155f8-0ee9-4ce9-b348-77b1d0d8d8ff
+    - admin@example.com
+    - "$2a$12$.Oue3SifwY8gfwmBkyek7OJWqssnNVdIqodSg7OX5V7SuRBwF0iem"
+    -
+    -
+    -
+    - 0
+    -
+    -
+    -
+    -
+    -
+    - 2025-10-17 19:25:10.801012000 Z
+    -
+    -
+    - 0
+    -
+    -
+    - Super
+    - Admin
+    -
+    -
+    - 2
+    - 0
+    - e9f13bf3-93b5-41b5-b4ac-af8ec6049e52
+    - "{}"
+    - "{}"
+    - 2025-10-17 19:25:11.032474000 Z
+    - 2025-10-17 19:25:11.119466000 Z
+  - - 93b5b002-c9b7-4d22-a83b-137189cf178d
+    - developer1@example.com
+    - "$2a$12$X/M5NLxcg.GvRHm2JXZJo.rsLp.wtBh/BAelJutKUsTIUn4qZVlQu"
+    -
+    -
+    -
+    - 0
+    -
+    -
+    -
+    -
+    -
+    - 2025-10-17 19:25:11.158945000 Z
+    -
+    -
+    - 0
+    -
+    -
+    - Developer
+    - '1'
+    -
+    -
+    - 0
+    - 0
+    - e9f13bf3-93b5-41b5-b4ac-af8ec6049e52
+    - "{}"
+    - "{}"
+    - 2025-10-17 19:25:11.330153000 Z
+    - 2025-10-17 19:25:11.360631000 Z
+  - - b5d580f2-9978-4dfa-a641-d225dbf0b1e6
+    - developer3@example.com
+    - "$2a$12$oP9XW5nc0NqqVW1xPb95ZuB7L1XQH2l9T3PMz6/LIKTX6hD.Bt.qS"
+    -
+    -
+    -
+    - 0
+    -
+    -
+    -
+    -
+    -
+    - 2025-10-17 19:25:11.543909000 Z
+    -
+    -
+    - 0
+    -
+    -
+    - Developer
+    - '3'
+    -
+    -
+    - 0
+    - 0
+    - e9f13bf3-93b5-41b5-b4ac-af8ec6049e52
+    - "{}"
+    - "{}"
+    - 2025-10-17 19:25:11.714285000 Z
+    - 2025-10-17 19:25:11.722811000 Z
+  - - cc134fdd-2cc6-4070-bb53-6b1e2a926a13
+    - startup@example.com
+    - "$2a$12$LOkFXMCVuTSV5FY2HYjPZeDEvrmQosSuWnGRF2UHU2AoxZH4yVNVS"
+    -
+    -
+    -
+    - 0
+    -
+    -
+    -
+    -
+    -
+    - 2025-10-17 19:25:11.727517000 Z
+    -
+    -
+    - 0
+    -
+    -
+    - Startup
+    - Founder
+    -
+    -
+    - 0
+    - 0
+    - 70188f33-968a-49fa-926e-bfb376779e31
+    - "{}"
+    - "{}"
+    - 2025-10-17 19:25:11.899583000 Z
+    - 2025-10-17 19:25:11.923859000 Z
+  - - ea8c0d5d-693d-4194-aa9f-478a9b6dc131
+    - test@test.com
+    - "$2a$12$VcHaUxhglZxC26.GiRIauuo8BQr3rk001pDWubys2pIrImF.XS6CK"
+    -
+    -
+    -
+    - 0
+    -
+    -
+    -
+    -
+    - rxNyY4LXsixdB5Y2MQok
+    -
+    - 2025-10-20 18:01:35.948876000 Z
+    -
+    - 0
+    -
+    -
+    - Test
+    - User
+    -
+    -
+    - 0
+    - 0
+    -
+    - "{}"
+    - "{}"
+    - 2025-10-20 18:01:35.948757000 Z
+    - 2025-10-20 18:01:35.948757000 Z

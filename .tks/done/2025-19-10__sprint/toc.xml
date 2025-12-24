@@ -3,30 +3,21 @@
     <totalDocs>1</totalDocs>
   </metadata>
   <sections>
-    <section id="company">
-      <title>Company</title>
-      <section id="company-sandbox">
-        <title>Sandbox</title>
-        <section id="company-sandbox-dl-dev">
-          <title>Dl Dev</title>
-          <section id="company-sandbox-dl-dev-experiments">
-            <title>Experiments</title>
-            <section id="company-sandbox-dl-dev-experiments-mangroves">
-              <title>Mangroves</title>
-              <section id="company-sandbox-dl-dev-experiments-mangroves-tks">
-                <title>.tks</title>
-                <section id="company-sandbox-dl-dev-experiments-mangroves-tks-done">
-                  <title>Done</title>
-                  <section id="company-sandbox-dl-dev-experiments-mangroves-tks-done-2025-19-10-sprint">
-                    <title>2025 19 10 Sprint</title>
-                    <chapter id="company-sandbox-dl-dev-experiments-mangroves-tks-done-2025-19-10-sprint-02-tenant-isolation-tests" path="company/sandbox/dl_dev/experiments/mangroves/.tks/done/2025-19-10__sprint/02-tenant-isolation-tests.md" modified="2025-10-19T16:36:05Z" size="1282" words="153" readTime="1min" hash="sha256:47ef1165b3ebdae5">
-                      <title>Sprint 02: Tenant Isolation Tests</title>
-                      <summary>Sprint 02: Tenant Isolation Tests ## Status: INCOMPLETE ## Implementation Summary: Tenant isolation tests were implemented across multiple spec files including tenant_scoped_spec.rb, shared exampl...</summary>
-                      <keywords>cross-tenant, hook, tests, tenant_scoped_spec.rb, current.account, expectation, workspace#generate_slug, implementation, pass, tenant</keywords>
-                    </chapter>
-                  </section>
-                </section>
-              </section>
+    <section id="pushp">
+      <title>.pushp</title>
+      <section id="pushp-mangroves">
+        <title>Mangroves</title>
+        <section id="pushp-mangroves-tks">
+          <title>.tks</title>
+          <section id="pushp-mangroves-tks-done">
+            <title>Done</title>
+            <section id="pushp-mangroves-tks-done-2025-19-10-sprint">
+              <title>2025 19 10 Sprint</title>
+              <chapter id="pushp-mangroves-tks-done-2025-19-10-sprint-02-tenant-isolation-tests" path=".pushp/mangroves/.tks/done/2025-19-10__sprint/02-tenant-isolation-tests.md" modified="2025-12-09T14:32:04Z" size="1282" words="153" readTime="1min" hash="sha256:47ef1165b3ebdae5">
+                <title>Sprint 02: Tenant Isolation Tests</title>
+                <summary>Sprint 02: Tenant Isolation Tests ## Status: INCOMPLETE ## Implementation Summary: Tenant isolation tests were implemented across multiple spec files including tenant_scoped_spec.rb, shared exampl...</summary>
+                <keywords>current.account, pass, test, fails, account.workspaces, tests, hook, implementation, tenant_scoped_spec.rb, cross-tenant</keywords>
+              </chapter>
             </section>
           </section>
         </section>

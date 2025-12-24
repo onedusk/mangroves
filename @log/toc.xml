@@ -3,26 +3,17 @@
     <totalDocs>1</totalDocs>
   </metadata>
   <sections>
-    <section id="company">
-      <title>Company</title>
-      <section id="company-sandbox">
-        <title>Sandbox</title>
-        <section id="company-sandbox-dl-dev">
-          <title>Dl Dev</title>
-          <section id="company-sandbox-dl-dev-experiments">
-            <title>Experiments</title>
-            <section id="company-sandbox-dl-dev-experiments-mangroves">
-              <title>Mangroves</title>
-              <section id="company-sandbox-dl-dev-experiments-mangroves-log">
-                <title>@log</title>
-                <chapter id="company-sandbox-dl-dev-experiments-mangroves-log-test-fixes-summary-2025-10-20" path="company/sandbox/dl_dev/experiments/mangroves/@log/test-fixes-summary-2025-10-20.md" modified="2025-10-20T10:40:04Z" size="6708" words="896" readTime="3min" hash="sha256:657d64864f48772a">
-                  <title>Test Fixes Orchestration - Final Summary</title>
-                  <summary>Test Fixes Orchestration - Final Summary *Date: 2025-10-20* ## Executive Summary Successfully reduced test failures from **127 to 7** (94.5% reduction) by orchestrating 7 parallel agents plus manu...</summary>
-                  <keywords>query, success, issue, **total, native, value, (priority, fixes, raw(), missing</keywords>
-                </chapter>
-              </section>
-            </section>
-          </section>
+    <section id="pushp">
+      <title>.pushp</title>
+      <section id="pushp-mangroves">
+        <title>Mangroves</title>
+        <section id="pushp-mangroves-log">
+          <title>@log</title>
+          <chapter id="pushp-mangroves-log-test-fixes-summary-2025-10-20" path=".pushp/mangroves/@log/test-fixes-summary-2025-10-20.md" modified="2025-12-09T14:32:04Z" size="6708" words="896" readTime="3min" hash="sha256:657d64864f48772a">
+            <title>Test Fixes Orchestration - Final Summary</title>
+            <summary>Test Fixes Orchestration - Final Summary *Date: 2025-10-20* ## Executive Summary Successfully reduced test failures from **127 to 7** (94.5% reduction) by orchestrating 7 parallel agents plus manu...</summary>
+            <keywords>integration, issues, manual, examples, **120, updated, text, expect, phlex/capybara, safety</keywords>
+          </chapter>
         </section>
       </section>
     </section>
