@@ -32,7 +32,7 @@ class DropdownMenuComponent < ApplicationComponent
         dropdown_menu_target: "trigger"
       },
       aria: {
-        haspopup: "menu",
+        haspopup: "true",
         expanded: "false",
         controls: @menu_id
       },
