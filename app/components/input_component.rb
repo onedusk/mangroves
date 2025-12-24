@@ -45,7 +45,7 @@ class InputComponent < ApplicationComponent
         type: @type,
         name: @name,
         id: @id,
-        value: @value,
+        value: sanitized_value,
         placeholder: @placeholder,
         disabled: @disabled,
         required: @required,
@@ -59,7 +59,7 @@ class InputComponent < ApplicationComponent
       )
 
       if @hint && !@error_message
-        p(id: hint_id, class: "mt-1 text-sm text-gray-500") { plain @hint }
+        p(id: hint_id, class: "mt-1 text-sm text-gray-500") { sanitize_text(@hint) }
       end
 
       if @error_message
@@ -108,5 +108,10 @@ class InputComponent < ApplicationComponent
     else
       "#{base} border-gray-300 focus:ring-blue-500 focus:border-blue-500"
     end + (@disabled ? " bg-gray-100 cursor-not-allowed" : "")
+  end
+
+  def sanitized_value
+    return nil if @value.nil?
+    ERB::Util.html_escape(@value.to_s)
   end
 end

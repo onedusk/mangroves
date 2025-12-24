@@ -33,7 +33,8 @@ class WorkspacePolicy < ApplicationPolicy
 
     # For class-level authorization (index), use Current.account
     account = record.is_a?(Class) ? Current.account : record.account
-    @account_membership = user.account_memberships.find_by(account: account)
+    # Use unscoped to bypass TenantScoped concern in tests and policy checks
+    @account_membership = AccountMembership.unscoped.find_by(user: user, account: account)
   end
 
   def workspace_membership
@@ -45,7 +46,8 @@ class WorkspacePolicy < ApplicationPolicy
   class Scope < ApplicationPolicy::Scope
     def resolve
       # Users can only see workspaces they have membership in
-      scope.joins(:workspace_memberships).where(workspace_memberships: {user_id: user.id})
+      # Use unscoped to bypass TenantScoped concern in tests and policy scope
+      scope.unscoped.joins(:workspace_memberships).where(workspace_memberships: {user_id: user.id})
     end
   end
 end

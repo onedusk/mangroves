@@ -68,7 +68,15 @@ class WorkspaceMembership < ApplicationRecord
   end
 
   def user_belongs_to_workspace_account
-    return if user.account_memberships.exists?(account:)
+    workspace_account = workspace.account
+    # Use unscoped to bypass TenantScoped concern - we need to check membership
+    # across all accounts, not just Current.account
+    has_membership = AccountMembership.unscoped.exists?(
+      user_id: user.id,
+      account_id: workspace_account.id
+    )
+
+    return if has_membership
 
     errors.add(:user, "must belong to the workspace's account")
   end

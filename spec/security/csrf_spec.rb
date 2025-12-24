@@ -20,7 +20,7 @@ RSpec.describe "CSRF Protection", type: :request do
       # Simulate CSRF attack - POST without token
       post accounts_path, params: {account: {name: "Evil Account"}}, headers: {"HTTP_X_CSRF_TOKEN" => "invalid"}
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
     end
 
     it "accepts requests with valid CSRF token" do
@@ -42,7 +42,7 @@ RSpec.describe "CSRF Protection", type: :request do
         params: {account: {name: "Hacked"}},
         headers: {"HTTP_X_CSRF_TOKEN" => "invalid"}
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
       expect(account.reload.name).not_to eq("Hacked")
     end
   end
@@ -54,7 +54,7 @@ RSpec.describe "CSRF Protection", type: :request do
       delete account_workspace_path(account, workspace_to_delete),
         headers: {"HTTP_X_CSRF_TOKEN" => "invalid"}
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
       expect(Workspace.exists?(workspace_to_delete.id)).to be true
     end
   end

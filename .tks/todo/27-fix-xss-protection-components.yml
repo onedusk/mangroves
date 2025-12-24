@@ -1,0 +1,41 @@
+# NO MORE than 1 task per file, NO MORE / NO LESS than 6-8 subtasks per task
+id: "27"
+task: "Fix XSS Protection and HTML Escaping in Components"
+entry: "2025-12-24T00:00:00Z"
+modified: "2025-12-24T00:00:00Z"
+priority: "H"
+project: "mangroves"
+status: "todo"
+uuid: "v8.0.3"
+urgency: "10"
+subtasks:
+  - desc: "Fix AccordionComponent HTML escaping in content (XSS vulnerability)"
+    agent: "security-specialist"
+  - desc: "Fix BreadcrumbComponent to sanitize href attributes (javascript: injection)"
+    agent: "security-specialist"
+  - desc: "Fix BadgeComponent text content escaping (3 XSS failures)"
+    agent: "security-specialist"
+  - desc: "Fix ButtonComponent text and href escaping (2 XSS failures)"
+    agent: "security-specialist"
+  - desc: "Fix CardComponent header/description/footer escaping (3 XSS failures)"
+    agent: "security-specialist"
+  - desc: "Fix DialogComponent, DropdownMenuComponent, SidebarComponent XSS issues"
+    agent: "security-specialist"
+  - desc: "Add comprehensive XSS test coverage for all components"
+    agent: "security-specialist"
+  - desc: "Run security-focused specs to verify XSS protection"
+    agent: "test-runner"
+must_reference:
+  [
+    "app/components/accordion_component.rb",
+    "app/components/breadcrumb_component.rb",
+    "app/components/badge_component.rb",
+    "app/components/button_component.rb",
+    "app/components/card_component.rb",
+    "app/components/dialog_component.rb",
+    "app/components/dropdown_menu_component.rb",
+    "app/components/sidebar_component.rb",
+    "spec/components/**/*_spec.rb",
+    "TEST_FAILURES.md",
+    "CLAUDE.md"
+  ]

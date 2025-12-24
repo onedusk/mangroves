@@ -1,0 +1,31 @@
+# NO MORE than 1 task per file, NO MORE / NO LESS than 6-8 subtasks per task
+id: "30"
+task: "Fix BadgeComponent Interface and API"
+entry: "2025-12-24T00:00:00Z"
+modified: "2025-12-24T00:00:00Z"
+priority: "H"
+project: "mangroves"
+status: "todo"
+uuid: "v8.0.3"
+urgency: "8"
+subtasks:
+  - desc: "Analyze BadgeComponent current implementation and test expectations"
+    agent: "code-analyst"
+  - desc: "Update BadgeComponent initialize to accept keyword arguments instead of positional"
+    agent: "ruby-component-specialist"
+  - desc: "Ensure BadgeComponent properly escapes text content"
+    agent: "security-specialist"
+  - desc: "Ensure BadgeComponent properly escapes variant attribute"
+    agent: "security-specialist"
+  - desc: "Update BadgeComponent documentation and usage examples"
+    agent: "documentation-writer"
+  - desc: "Review all BadgeComponent usages in codebase for compatibility"
+    agent: "code-reviewer"
+  - desc: "Run BadgeComponent specs to verify all 3 failures resolved"
+    agent: "test-runner"
+must_reference:
+  [
+    "app/components/badge_component.rb",
+    "spec/components/badge_component_spec.rb",
+    "TEST_FAILURES.md"
+  ]

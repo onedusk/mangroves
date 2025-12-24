@@ -65,19 +65,19 @@ RSpec.describe "Workspaces", type: :request do
     it "creates new workspace" do
       expect do
         post account_workspaces_path(account), params: valid_params
-      end.to change(account.workspaces, :count).by(1)
+      end.to change { Workspace.unscoped.where(account: account).count }.by(1)
     end
 
     it "creates owner membership for current user" do
       post account_workspaces_path(account), params: valid_params
-      new_workspace = Workspace.last
+      new_workspace = Workspace.unscoped.order(:created_at).last
       membership = new_workspace.workspace_memberships.find_by(user: user)
       expect(membership.role).to eq("owner")
     end
 
     it "redirects to workspace show page" do
       post account_workspaces_path(account), params: valid_params
-      new_workspace = Workspace.last
+      new_workspace = Workspace.unscoped.order(:created_at).last
       expect(response).to redirect_to(account_workspace_path(account, new_workspace))
     end
   end
@@ -122,7 +122,7 @@ RSpec.describe "Workspaces", type: :request do
     it "deletes the workspace" do
       expect do
         delete account_workspace_path(account, workspace)
-      end.to change(account.workspaces, :count).by(-1)
+      end.to change { Workspace.unscoped.where(account: account).count }.by(-1)
     end
 
     context "when user is not owner" do

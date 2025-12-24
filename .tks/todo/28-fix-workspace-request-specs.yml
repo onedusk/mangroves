@@ -1,0 +1,40 @@
+# NO MORE than 1 task per file, NO MORE / NO LESS than 6-8 subtasks per task
+id: "28"
+task: "Fix Workspace Controller 500 Errors in Request Specs"
+entry: "2025-12-24T00:00:00Z"
+modified: "2025-12-24T00:00:00Z"
+priority: "H"
+project: "mangroves"
+status: "todo"
+uuid: "v8.0.3"
+urgency: "8"
+subtasks:
+  - desc: "Debug 500 error in POST /accounts/:account_id/workspaces create action"
+    agent: "rails-debugger"
+  - desc: "Fix workspace creation endpoint to return proper response (3 failures)"
+    agent: "rails-backend-specialist"
+  - desc: "Fix workspace validation endpoints (2 validation failures)"
+    agent: "rails-backend-specialist"
+  - desc: "Fix PATCH workspace update endpoint (1 failure)"
+    agent: "rails-backend-specialist"
+  - desc: "Debug 500 error in PATCH /users/current_workspace endpoint"
+    agent: "rails-debugger"
+  - desc: "Fix current workspace update endpoints (2 failures)"
+    agent: "rails-backend-specialist"
+  - desc: "Add comprehensive request spec coverage for edge cases"
+    agent: "test-writer"
+  - desc: "Run workspace request specs to verify all 500 errors resolved"
+    agent: "test-runner"
+must_reference:
+  [
+    "app/controllers/accounts/workspaces_controller.rb",
+    "app/controllers/users/workspaces_controller.rb",
+    "app/models/workspace.rb",
+    "app/models/workspace_membership.rb",
+    "spec/requests/accounts/workspaces_spec.rb",
+    "spec/requests/users/workspaces_spec.rb",
+    "app/models/concerns/tenant_scoped.rb",
+    "app/models/current.rb",
+    "TEST_FAILURES.md",
+    "CLAUDE.md"
+  ]

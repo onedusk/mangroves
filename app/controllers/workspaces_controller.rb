@@ -33,7 +33,7 @@ class WorkspacesController < ApplicationController
       @workspace.workspace_memberships.create!(user: current_user, role: :owner, status: :active)
       redirect_to [@account, @workspace], notice: "Workspace was successfully created."
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -43,7 +43,7 @@ class WorkspacesController < ApplicationController
     if @workspace.update(workspace_params)
       redirect_to [@account, @workspace], notice: "Workspace was successfully updated."
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

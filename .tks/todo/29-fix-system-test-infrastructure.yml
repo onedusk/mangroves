@@ -1,0 +1,40 @@
+# NO MORE than 1 task per file, NO MORE / NO LESS than 6-8 subtasks per task
+id: "29"
+task: "Fix System Test Infrastructure and Accessibility Tests"
+entry: "2025-12-24T00:00:00Z"
+modified: "2025-12-24T00:00:00Z"
+priority: "M"
+project: "mangroves"
+status: "todo"
+uuid: "v8.0.3"
+urgency: "6"
+subtasks:
+  - desc: "Debug Capybara::ElementNotFound errors in accessibility specs"
+    agent: "system-test-specialist"
+  - desc: "Fix database setup and teardown in system test helpers"
+    agent: "system-test-specialist"
+  - desc: "Fix focus management accessibility tests (55 failures)"
+    agent: "accessibility-specialist"
+  - desc: "Fix keyboard navigation accessibility tests (50+ failures)"
+    agent: "accessibility-specialist"
+  - desc: "Fix screen reader support tests (20+ failures)"
+    agent: "accessibility-specialist"
+  - desc: "Fix component-specific accessibility tests (AccordionComponent, DialogComponent, etc.)"
+    agent: "accessibility-specialist"
+  - desc: "Review and update Stimulus controller implementations for accessibility"
+    agent: "javascript-specialist"
+  - desc: "Run full accessibility test suite to verify infrastructure fixes"
+    agent: "test-runner"
+must_reference:
+  [
+    "spec/system/accessibility_spec.rb",
+    "spec/system/accessibility/focus_management_spec.rb",
+    "spec/system/accessibility/keyboard_navigation_spec.rb",
+    "spec/system/accessibility/screen_reader_spec.rb",
+    "spec/support/system_helpers.rb",
+    "spec/rails_helper.rb",
+    "app/javascript/controllers/**/*_controller.js",
+    "app/components/**/*_component.rb",
+    "TEST_FAILURES.md",
+    "CLAUDE.md"
+  ]

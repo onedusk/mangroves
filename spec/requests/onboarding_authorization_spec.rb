@@ -126,7 +126,7 @@ RSpec.describe "Onboarding Authorization Flows", type: :request do
       it "re-renders onboarding page with errors" do
         post onboarding_path, params: invalid_params
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
         expect(response.body).to include("can&#39;t be blank").or include("can't be blank")
       end
     end
