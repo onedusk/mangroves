@@ -14,12 +14,12 @@
             <chapter id="pushp-mangroves-docs-security-validation-hardening-summary" path=".pushp/mangroves/docs/security/validation-hardening-summary.md" modified="2025-12-09T14:32:04Z" size="11225" words="1347" readTime="5min" hash="sha256:388933af33140673">
               <title>Server-Side Validation and Security Hardening Summary</title>
               <summary>Server-Side Validation and Security Hardening Summary **Date:** 2025-10-20 **Task:** Task 22 - Add server-side validation and security hardening **Status:** Complete ## Overview Implemented compr...</summary>
-              <keywords>against, redirect, configured:**, file, account, limits, 2-100, helpers, hardening, tests</keywords>
+              <keywords>origin, test, fields, helpers, minutes, user, actions, lowercase, endpoints, tests</keywords>
             </chapter>
             <chapter id="pushp-mangroves-docs-security-xss-protection-implementation" path=".pushp/mangroves/docs/security/xss-protection-implementation.md" modified="2025-12-09T14:32:04Z" size="12337" words="1495" readTime="5min" hash="sha256:dc0e2c64e4dc4291">
               <title>XSS Protection Implementation Report</title>
               <summary>XSS Protection Implementation Report **Date:** 2025-10-20 **Task:** Fix XSS vulnerabilities across all components **Status:** Complete ## Summary Successfully implemented comprehensive XSS pr...</summary>
-              <keywords>notification, trigger, titles, protection, comprehensive, helpers, files, attempts, proc, additional</keywords>
+              <keywords>attempts, applicationcomponent, length, updated, attacks, implemented, range, card, inherited, payload</keywords>
             </chapter>
           </section>
         </section>
