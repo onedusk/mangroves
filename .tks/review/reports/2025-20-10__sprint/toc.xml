@@ -18,12 +18,12 @@
                 <chapter id="pushp-mangroves-tks-review-reports-2025-20-10-sprint-task-12-form-controls-feedback-components" path=".pushp/mangroves/.tks/review/reports/2025-20-10__sprint/task-12-form-controls-feedback-components.md" modified="2025-12-09T14:32:05Z" size="22843" words="2722" readTime="10min" hash="sha256:cdbb9f82238aabbb">
                   <title>Code Review: Task 12 - Form Control &amp; Feedback Components</title>
                   <summary>Code Review: Task 12 - Form Control &amp; Feedback Components ## Executive Summary The form control and feedback components show good basic implementation with proper Phlex patterns and Stimulus integ...</summary>
-                  <keywords>fail, toastcomponent, critical-02, component, **implement, multiple, updates, animation, performance, without</keywords>
+                  <keywords>class, accessibility, javascript, user, leaks, vulnerability, medium, users, limit, critical-01</keywords>
                 </chapter>
                 <chapter id="pushp-mangroves-tks-review-reports-2025-20-10-sprint-task-15-utility-interactive-components-review" path=".pushp/mangroves/.tks/review/reports/2025-20-10__sprint/task-15-utility-interactive-components-review.md" modified="2025-12-09T14:32:05Z" size="21971" words="2568" readTime="10min" hash="sha256:42798460ba5226c2">
                   <title>Task 15: Utility and Interactive Components Security Review</title>
                   <summary>Task 15: Utility and Interactive Components Security Review **Review Date**: 2025-10-20 **Reviewer**: Claude Code **Scope**: Separator, Resizable, Scroll Area, Slider, Toggle, Toggle Group, and...</summary>
-                  <keywords>inline, (lines, current.account, risk, (arrow, scrollable, **status**, style, enumerate, could</keywords>
+                  <keywords>utility, **critical**, high, must, enumerate, significant, multiple, generally, through, values</keywords>
                 </chapter>
               </section>
             </section>

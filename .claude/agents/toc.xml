@@ -14,77 +14,77 @@
             <chapter id="pushp-mangroves-claude-agents-accessibility-specialist" path=".pushp/mangroves/.claude/agents/accessibility-specialist.md" modified="2025-12-24T12:46:04Z" size="10833" words="1139" readTime="4min" hash="sha256:460e466dc4cee8ef">
               <title>System test with axe</title>
               <summary>You are an accessibility specialist ensuring web applications meet WCAG 2.1 AA standards and provide excellent experiences for all users. ## Primary Responsibilities 1. **ARIA Implementation**: Pr...</summary>
-              <keywords>manage, manual, move, reader, skip, testing, button, content, proper, management</keywords>
+              <keywords>content, attributes, focus, reader, aria, doesn&apos;t, testing, tabs, access, patterns</keywords>
             </chapter>
             <chapter id="pushp-mangroves-claude-agents-code-analyst" path=".pushp/mangroves/.claude/agents/code-analyst.md" modified="2025-12-24T12:47:38Z" size="8367" words="1187" readTime="4min" hash="sha256:0636d163c104c35f">
               <title>Find all files of a type</title>
               <summary>You are a code analyst who investigates codebases, identifies patterns, analyzes architecture, and provides detailed technical assessments. ## Primary Responsibilities 1. **Code Investigation**: D...</summary>
-              <keywords>patterns, pattern, example, bluf, component, controller, relationships, coverage, impact, test</keywords>
+              <keywords>architectural, pattern, check, component, cohesion, changes, relationships, authorization, identify, coverage</keywords>
             </chapter>
             <chapter id="pushp-mangroves-claude-agents-code-reviewer" path=".pushp/mangroves/.claude/agents/code-reviewer.md" modified="2025-12-09T14:32:04Z" size="1213" words="181" readTime="1min" hash="sha256:2a47cc7dfb93f842">
               <title>Untitled</title>
               <summary>You are a senior code reviewer ensuring high standards of code quality and security. When invoked: 1. Run git diff to see recent changes 2. Focus on modified files 3. Begin review immediately Revi...</summary>
-              <keywords>review, code, bluf, issues, fix), include</keywords>
+              <keywords>bluf, issues, review, code, include, fix)</keywords>
             </chapter>
             <chapter id="pushp-mangroves-claude-agents-code-searcher" path=".pushp/mangroves/.claude/agents/code-searcher.md" modified="2025-12-24T12:49:27Z" size="8482" words="1158" readTime="4min" hash="sha256:9b9fda14213cfe4f">
               <title>All Ruby files</title>
               <summary>You are a code search specialist who efficiently locates code elements across large codebases using systematic search strategies. ## Primary Responsibilities 1. **File Finding**: Locate files by n...</summary>
-              <keywords>locate, document, tips, start, similar, dependency, method, grep, line, bluf</keywords>
+              <keywords>report, findings, document, type, patterns, glob, content, finding, broad, **strategy**</keywords>
             </chapter>
             <chapter id="pushp-mangroves-claude-agents-docs-aware-developer" path=".pushp/mangroves/.claude/agents/docs-aware-developer.md" modified="2025-12-09T14:32:04Z" size="3912" words="538" readTime="2min" hash="sha256:ed0dd8eb1bd5583a">
               <title>Untitled</title>
               <summary>You are a documentation-aware development specialist who ensures all implementations follow established patterns and best practices from the project documentation. ## Primary Responsibilities 1. *...</summary>
-              <keywords>patterns, reference, note, naming, relevant, implementation, identified, subagent, workflow, task</keywords>
+              <keywords>comments, hook, added, needed, code, ensure, matches, testing, established, maintain</keywords>
             </chapter>
             <chapter id="pushp-mangroves-claude-agents-documentation-writer" path=".pushp/mangroves/.claude/agents/documentation-writer.md" modified="2025-12-24T12:49:27Z" size="11717" words="1677" readTime="6min" hash="sha256:e932908630debcf3">
               <title>Manages workspace-related operations within a multi-tenant account structure.</title>
               <summary>You are a technical documentation specialist who creates clear, comprehensive, and maintainable documentation. ## Primary Responsibilities 1. **Code Documentation**: Document classes, methods, and...</summary>
-              <keywords>bash, here, documentation**, current, yard, documented, usage, cases, patterns, code</keywords>
+              <keywords>(for, workspace, example, here, reference, ruby, purpose, documentation**, examples, explain</keywords>
             </chapter>
             <chapter id="pushp-mangroves-claude-agents-javascript-specialist" path=".pushp/mangroves/.claude/agents/javascript-specialist.md" modified="2025-12-24T12:47:38Z" size="10270" words="1050" readTime="4min" hash="sha256:d1f830d3b992d81b">
               <title>Controller</title>
               <summary>You are a JavaScript specialist focused on Stimulus controllers and modern JavaScript patterns in Rails 8 applications. ## Primary Responsibilities 1. **Stimulus Controllers**: Build and maintain ...</summary>
-              <keywords>accessibility, check, actions, bluf, follow, aria, verify, navigation, javascript, docs</keywords>
+              <keywords>javascript, compatibility, system, bluf, stimulus, aria, controller, controllers, follow, verify</keywords>
             </chapter>
             <chapter id="pushp-mangroves-claude-agents-rails-backend-specialist" path=".pushp/mangroves/.claude/agents/rails-backend-specialist.md" modified="2025-12-24T12:44:17Z" size="7865" words="889" readTime="3min" hash="sha256:82f6cbd6435623dc">
               <title>For nested attributes</title>
               <summary>You are a Rails backend specialist with expertise in Rails 8 conventions, multi-tenant SaaS architecture, and RESTful API design. ## Primary Responsibilities 1. **Controller Implementation**: Buil...</summary>
-              <keywords>controllers, validations, requirements, expected, account, understand, appropriate, request, model, conventions</keywords>
+              <keywords>understand, ensure, current, controller, model, include, controllers, business, common, conventions</keywords>
             </chapter>
             <chapter id="pushp-mangroves-claude-agents-rails-debugger" path=".pushp/mangroves/.claude/agents/rails-debugger.md" modified="2025-12-24T12:42:53Z" size="5734" words="844" readTime="3min" hash="sha256:d4344044e128a599">
               <title>or</title>
               <summary>You are a Rails debugging specialist who investigates application errors, traces issues through the stack, and identifies root causes efficiently. ## Primary Responsibilities 1. **Error Investigat...</summary>
-              <keywords>strong, output, stack, error, steps, before_action, path, follow, test, analysis**</keywords>
+              <keywords>code, trace, context, steps, read, action, error, first, test, message</keywords>
             </chapter>
             <chapter id="pushp-mangroves-claude-agents-ruby-component-specialist" path=".pushp/mangroves/.claude/agents/ruby-component-specialist.md" modified="2025-12-24T12:41:43Z" size="4449" words="616" readTime="2min" hash="sha256:d69684cd41fae16e">
               <title>Option 1: Block in initialize</title>
               <summary>You are a Ruby component specialist with deep expertise in Phlex components, Rails view layer architecture, and component-driven design. ## Primary Responsibilities 1. **Component Implementation**...</summary>
-              <keywords>specs, content, live, issues, arguments, current, security, testing, keyword, expectations</keywords>
+              <keywords>current, escaping, tests, keyword, issues, attributes, bluf, html, variables, content</keywords>
             </chapter>
             <chapter id="pushp-mangroves-claude-agents-security-specialist" path=".pushp/mangroves/.claude/agents/security-specialist.md" modified="2025-12-24T12:42:53Z" size="5813" words="789" readTime="3min" hash="sha256:125c6bcf29069513">
               <title>Phlex automatically escapes by default</title>
               <summary>You are a security specialist ensuring all code is protected against common web vulnerabilities, with particular focus on XSS, injection attacks, and secure data handling. ## Primary Responsibiliti...</summary>
-              <keywords>input, write, escaping, sanitize, (default, javascript, strong, entities, escaped, style</keywords>
+              <keywords>user, **attack**, bypass, code, best, tags, input, urls, attribute, common</keywords>
             </chapter>
             <chapter id="pushp-mangroves-claude-agents-system-test-specialist" path=".pushp/mangroves/.claude/agents/system-test-specialist.md" modified="2025-12-24T12:46:04Z" size="9035" words="1005" readTime="4min" hash="sha256:6d8287c022f1578e">
               <title>Navigation</title>
               <summary>You are a system test specialist who debugs and maintains Capybara/Selenium-based system tests for Rails applications. ## Primary Responsibilities 1. **System Test Infrastructure**: Fix test setup...</summary>
-              <keywords>capybara, common, test, page, screenshots, output, element, tests, solutions, **problem**</keywords>
+              <keywords>failures, system, setup, screenshots, patterns, reference, database, check, page, issues</keywords>
             </chapter>
             <chapter id="pushp-mangroves-claude-agents-task-decomposer" path=".pushp/mangroves/.claude/agents/task-decomposer.md" modified="2025-12-09T14:32:04Z" size="5172" words="724" readTime="2min" hash="sha256:f1e342044e56e5fc">
               <title>Untitled</title>
               <summary>You are an expert task decomposition specialist with deep experience in software development workflows, project management, and technical execution planning. Your core competency is transforming hig...</summary>
-              <keywords>steps, tests, reference, files, logical, patterns, verification, context, verb, email</keywords>
+              <keywords>schema, commands, verification, sequence, should, single, reference, subtask, follow, commit</keywords>
             </chapter>
             <chapter id="pushp-mangroves-claude-agents-test-runner" path=".pushp/mangroves/.claude/agents/test-runner.md" modified="2025-12-24T12:41:43Z" size="4474" words="682" readTime="2min" hash="sha256:1b4abfc982e75df7">
               <title>Untitled</title>
               <summary>You are a test execution specialist who runs tests, analyzes results, and provides clear feedback on test outcomes. ## Primary Responsibilities 1. **Test Execution**: Run appropriate test commands...</summary>
-              <keywords>appropriate, protection, single, results, provide, include, test, execution, process, common</keywords>
+              <keywords>same, number, include, timing, appropriate, system, fail, missing, **expected, check</keywords>
             </chapter>
             <chapter id="pushp-mangroves-claude-agents-test-writer" path=".pushp/mangroves/.claude/agents/test-writer.md" modified="2025-12-24T12:44:17Z" size="9588" words="1054" readTime="4min" hash="sha256:3d45e753d80d1168">
               <title>Create (persist to database)</title>
               <summary>You are a test writing specialist who creates thorough, maintainable RSpec tests for Rails applications. ## Primary Responsibilities 1. **Test Creation**: Write new test files and test cases 2. **...</summary>
-              <keywords>spec, writing, files, setup, ensure, rails, bluf, conventions, verify, structure</keywords>
+              <keywords>cases, edge, pattern, blocks, understand, patterns, structure, setup, coverage, check</keywords>
             </chapter>
           </section>
         </section>

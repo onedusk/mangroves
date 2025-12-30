@@ -20,37 +20,37 @@
                   <chapter id="pushp-mangroves-tks-review-reports-review-reviewer-comments" path=".pushp/mangroves/.tks/review/reports/review/reviewer/comments.md" modified="2025-12-09T14:32:05Z" size="4432" words="704" readTime="2min" hash="sha256:35118ebf2eec64df">
                     <title>How to write code review comments</title>
                     <summary>How to write code review comments ## Summary - Be kind. - Explain your reasoning. - Balance giving explicit directions with just pointing out problems and letting the developer decide....</summary>
-                    <keywords>always, understand, more, don&apos;t, solution, suggestions, performance, best, pointing, makes</keywords>
+                    <keywords>write, intent, letting, practice, include, solution, better, example, performance, goal</keywords>
                   </chapter>
                   <chapter id="pushp-mangroves-tks-review-reports-review-reviewer-index" path=".pushp/mangroves/.tks/review/reports/review/reviewer/index.md" modified="2025-12-09T14:32:05Z" size="786" words="120" readTime="1min" hash="sha256:06299c5d45d89545">
                     <title>How to do a code review</title>
                     <summary>How to do a code review The pages in this section contain recommendations on the best way to do code reviews, based on long experience. All together they represent one complete document, broken up ...</summary>
-                    <keywords>read, code, many, review</keywords>
+                    <keywords>many, read, review, code</keywords>
                   </chapter>
                   <chapter id="pushp-mangroves-tks-review-reports-review-reviewer-looking-for" path=".pushp/mangroves/.tks/review/reports/review/reviewer/looking-for.md" modified="2025-12-09T14:32:05Z" size="11330" words="1909" readTime="7min" hash="sha256:0a6643fc4ce2bc73">
                     <title>What to look for in a code review</title>
                     <summary>What to look for in a code review Note: Always make sure to take into account [The Standard of Code Review](standard.md) when considering each of these points. ## Design The most important thin...</summary>
-                    <keywords>reviewer, important, it&apos;s, another, need, complex, impact, review, note, bugs</keywords>
+                    <keywords>should, important, test, instead, issues, bugs, problem, usually, asked, methods</keywords>
                   </chapter>
                   <chapter id="pushp-mangroves-tks-review-reports-review-reviewer-navigate" path=".pushp/mangroves/.tks/review/reports/review/reviewer/navigate.md" modified="2025-12-09T14:32:05Z" size="4157" words="723" readTime="2min" hash="sha256:6742ba45208ef35a">
                     <title>Navigating a CL in review</title>
                     <summary>Navigating a CL in review ## Summary Now that you know [what to look for](looking-for.md), what&apos;s the most efficient way to manage a review that&apos;s spread across multiple files? 1. Does the cha...</summary>
-                    <keywords>logical, instead, step, figure, them, while, should, don&apos;t, more, sense</keywords>
+                    <keywords>immediately, send, you&apos;ve, don&apos;t, developers, parts, it&apos;s, important, start, re-work</keywords>
                   </chapter>
                   <chapter id="pushp-mangroves-tks-review-reports-review-reviewer-pushback" path=".pushp/mangroves/.tks/review/reports/review/reviewer/pushback.md" modified="2025-12-09T14:32:05Z" size="4369" words="711" readTime="2min" hash="sha256:a6eeefeee0f786c5">
                     <title>Handling pushback in code reviews</title>
                     <summary>Handling pushback in code reviews Sometimes a developer will push back on a code review. Either they will disagree with your suggestion or they will complain that you are being too strict in gene...</summary>
-                    <keywords>however, happen, clean, should, suggestion, [polite](comments.md#courtesy), change, reviewer&apos;s, more, want</keywords>
+                    <keywords>good, health, issue, comments, improvement, clean, correct, them, strict, about</keywords>
                   </chapter>
                   <chapter id="pushp-mangroves-tks-review-reports-review-reviewer-speed" path=".pushp/mangroves/.tks/review/reports/review/reviewer/speed.md" modified="2025-12-09T14:32:05Z" size="7170" words="1187" readTime="4min" hash="sha256:40906b51b428311f">
                     <title>Speed of Code Reviews</title>
                     <summary>Speed of Code Reviews ## Why Should Code Reviews Be Fast? {#why} **At Google, we optimize for the speed at which a team of developers can produce a product together**, as opposed to optimizing f...</summary>
-                    <keywords>following, while, large, thing, typical, days, more, situations, strict, emergencies</keywords>
+                    <keywords>code, days, complaints, reviews, development, health, take, team, point, still</keywords>
                   </chapter>
                   <chapter id="pushp-mangroves-tks-review-reports-review-reviewer-standard" path=".pushp/mangroves/.tks/review/reports/review/reviewer/standard.md" modified="2025-12-09T14:32:05Z" size="5745" words="948" readTime="3min" hash="sha256:c37144f9f8880092">
                     <title>The Standard of Code Review</title>
                     <summary>The Standard of Code Review The primary purpose of code review is to make sure that the overall code health of Google&apos;s code base is improving over time. All of the tools and processes of code re...</summary>
-                    <keywords>style, look, purely, never, reviewer, polish, should, difficult, consistent, important</keywords>
+                    <keywords>personal, overall, team, consistent, want, something, developer, point, conflict, codebase</keywords>
                   </chapter>
                 </section>
               </section>
